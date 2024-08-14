@@ -52,7 +52,7 @@
     </property>
    </widget>
   </widget>
-  <widget class="QGroupBox" name="groupBox_2">
+  <widget class="QGroupBox" name="Questions_g">
    <property name="geometry">
     <rect>
      <x>240</x>
@@ -64,7 +64,7 @@
    <property name="title">
     <string/>
    </property>
-   <widget class="QGroupBox" name="groupBox_3">
+   <widget class="QGroupBox" name="q1_g">
     <property name="geometry">
      <rect>
       <x>20</x>
@@ -76,7 +76,7 @@
     <property name="title">
      <string/>
     </property>
-    <widget class="QRadioButton" name="radioButton">
+    <widget class="QRadioButton" name="q1_most">
      <property name="geometry">
       <rect>
        <x>20</x>
@@ -89,7 +89,7 @@
       <string/>
      </property>
     </widget>
-    <widget class="QRadioButton" name="radioButton_2">
+    <widget class="QRadioButton" name="q1_least">
      <property name="geometry">
       <rect>
        <x>530</x>
@@ -102,7 +102,7 @@
       <string/>
      </property>
     </widget>
-    <widget class="QLabel" name="label_3">
+    <widget class="QLabel" name="q1_l">
      <property name="geometry">
       <rect>
        <x>30</x>
@@ -116,7 +116,7 @@
      </property>
     </widget>
    </widget>
-   <widget class="QLabel" name="label_2">
+   <widget class="QLabel" name="Requirements_L">
     <property name="geometry">
      <rect>
       <x>220</x>
@@ -129,7 +129,7 @@
      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Requirements&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
    </widget>
-   <widget class="QGroupBox" name="groupBox_4">
+   <widget class="QGroupBox" name="q2_g">
     <property name="geometry">
      <rect>
       <x>20</x>
@@ -141,7 +141,7 @@
     <property name="title">
      <string/>
     </property>
-    <widget class="QRadioButton" name="radioButton_3">
+    <widget class="QRadioButton" name="q2_most">
      <property name="geometry">
       <rect>
        <x>20</x>
@@ -154,7 +154,7 @@
       <string/>
      </property>
     </widget>
-    <widget class="QRadioButton" name="radioButton_4">
+    <widget class="QRadioButton" name="q2_least">
      <property name="geometry">
       <rect>
        <x>530</x>
@@ -167,7 +167,7 @@
       <string/>
      </property>
     </widget>
-    <widget class="QLabel" name="label_4">
+    <widget class="QLabel" name="q2_l">
      <property name="geometry">
       <rect>
        <x>30</x>
@@ -181,7 +181,7 @@
      </property>
     </widget>
    </widget>
-   <widget class="QGroupBox" name="groupBox_5">
+   <widget class="QGroupBox" name="q3_g">
     <property name="geometry">
      <rect>
       <x>20</x>
@@ -193,7 +193,7 @@
     <property name="title">
      <string/>
     </property>
-    <widget class="QRadioButton" name="radioButton_5">
+    <widget class="QRadioButton" name="q3_most">
      <property name="geometry">
       <rect>
        <x>20</x>
@@ -206,7 +206,7 @@
       <string/>
      </property>
     </widget>
-    <widget class="QRadioButton" name="radioButton_6">
+    <widget class="QRadioButton" name="q3_least">
      <property name="geometry">
       <rect>
        <x>530</x>
@@ -219,7 +219,7 @@
       <string/>
      </property>
     </widget>
-    <widget class="QLabel" name="label_5">
+    <widget class="QLabel" name="q3_l">
      <property name="geometry">
       <rect>
        <x>30</x>
@@ -233,7 +233,7 @@
      </property>
     </widget>
    </widget>
-   <widget class="QGroupBox" name="groupBox_6">
+   <widget class="QGroupBox" name="q4_g">
     <property name="geometry">
      <rect>
       <x>20</x>
@@ -245,7 +245,7 @@
     <property name="title">
      <string/>
     </property>
-    <widget class="QRadioButton" name="radioButton_7">
+    <widget class="QRadioButton" name="q4_most">
      <property name="geometry">
       <rect>
        <x>20</x>
@@ -258,7 +258,7 @@
       <string/>
      </property>
     </widget>
-    <widget class="QRadioButton" name="radioButton_8">
+    <widget class="QRadioButton" name="q4_least">
      <property name="geometry">
       <rect>
        <x>530</x>
@@ -271,7 +271,7 @@
       <string/>
      </property>
     </widget>
-    <widget class="QLabel" name="label_6">
+    <widget class="QLabel" name="q4_l">
      <property name="geometry">
       <rect>
        <x>30</x>
@@ -285,7 +285,7 @@
      </property>
     </widget>
    </widget>
-   <widget class="QLabel" name="label_8">
+   <widget class="QLabel" name="MostImportant_L">
     <property name="geometry">
      <rect>
       <x>0</x>
@@ -298,7 +298,7 @@
      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot; style=&quot;line-height: 0.25;&quot;&gt;Most&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;important&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label_9">
+   <widget class="QLabel" name="LeastImportant_L">
     <property name="geometry">
      <rect>
       <x>520</x>
@@ -312,7 +312,7 @@
     </property>
    </widget>
   </widget>
-  <widget class="QPushButton" name="pushButton">
+  <widget class="QPushButton" name="NextButton">
    <property name="geometry">
     <rect>
      <x>490</x>
@@ -351,7 +351,7 @@
     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p style=&quot;line-height: 0.35;&quot;&gt;Choose one item from the &amp;quot;Most important&amp;quot; column on the left and one item from the &amp;quot;least&lt;/p&gt;&lt;p&gt;important&amp;quot; column on the right. You are only allowed one response per column.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
   </widget>
-  <widget class="QLabel" name="label_11">
+  <widget class="QLabel" name="progressNumber">
    <property name="geometry">
     <rect>
      <x>240</x>
