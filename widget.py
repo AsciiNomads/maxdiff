@@ -15,9 +15,14 @@ class Widget(QWidget):
         self.ui = Ui_Widget()
         self.ui.setupUi(self)
 
+    def __del__(self):
+        for q in self.ui.get_questions():
+            print(q)
+        self.ui = None
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
     widget = Widget()
     widget.show()
+    
     sys.exit(app.exec())

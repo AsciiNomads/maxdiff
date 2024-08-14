@@ -18,14 +18,21 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
 from PySide6.QtWidgets import (QApplication, QGroupBox, QLabel, QProgressBar,
-    QPushButton, QRadioButton, QSizePolicy, QWidget)
+    QPushButton, QRadioButton, QSizePolicy, QWidget, QButtonGroup)
 
 from utils.file_reader import read_questions
 
 class Question:
-    def __init__(self, question_text,):
+    def __init__(self, question_text):
         self.question_text = question_text
+        self.question_html = "<html><head/><body><p align=\"center\">{}</p></body></html>".format(self.question_text)
         self.label = QLabel(self.question_text)
+        self.most_prefered = 0
+        self.least_prefered = 0
+        self.total_proposed = 0
+    
+    def __str__(self) -> str:
+        return f"{self.question_text}: Most: {self.most_prefered}, Least: {self.least_prefered}, Total: {self.total_proposed}"
 
 class Ui_Widget(object):
     def __init__(self) -> None:
@@ -35,6 +42,9 @@ class Ui_Widget(object):
         if not Widget.objectName():
             Widget.setObjectName(u"Widget")
         Widget.resize(1078, 552)
+        
+        self.left_button_group = QButtonGroup(Widget)
+        self.right_button_group = QButtonGroup(Widget)
         
         self.question_widgets = []
         
@@ -63,11 +73,18 @@ class Ui_Widget(object):
         self.q1_l = QLabel(self.q1_g)
         self.q1_l.setObjectName(u"q1_l")
         self.q1_l.setGeometry(QRect(30, 10, 501, 21))
+        question_1_button_group = QButtonGroup(Widget)
+        question_1_button_group.addButton(self.q1_least)
+        question_1_button_group.addButton(self.q1_most)
+        self.left_button_group.addButton(self.q1_least)
+        self.right_button_group.addButton(self.q1_most)
         
         self.question_widgets.append({
             "radio1": self.q1_most,
             "radio2": self.q1_least,
-            "label": self.q1_l
+            "label": self.q1_l,
+            "button_group": question_1_button_group,
+            "question": Question("")
         })
         
         self.Requirements_L = QLabel(self.Questions_g)
@@ -86,11 +103,18 @@ class Ui_Widget(object):
         self.q2_l = QLabel(self.q2_g)
         self.q2_l.setObjectName(u"q2_l")
         self.q2_l.setGeometry(QRect(30, 10, 501, 21))
+        question_2_button_group = QButtonGroup(Widget)
+        question_2_button_group.addButton(self.q2_least)
+        question_2_button_group.addButton(self.q2_most)
+        self.left_button_group.addButton( self.q2_least)
+        self.right_button_group.addButton(self.q2_most)
         
         self.question_widgets.append({
             "radio1": self.q2_most,
             "radio2": self.q2_least,
-            "label": self.q2_l
+            "label": self.q2_l,
+            "button_group": question_2_button_group,
+            "question": Question("")
         })
         
         self.q3_g = QGroupBox(self.Questions_g)
@@ -105,11 +129,18 @@ class Ui_Widget(object):
         self.q3_l = QLabel(self.q3_g)
         self.q3_l.setObjectName(u"q3_l")
         self.q3_l.setGeometry(QRect(30, 10, 501, 21))
+        question_3_button_group = QButtonGroup(Widget)
+        question_3_button_group.addButton(self.q3_least)
+        question_3_button_group.addButton(self.q3_most)
+        self.left_button_group.addButton( self.q3_least)
+        self.right_button_group.addButton(self.q3_most)
         
         self.question_widgets.append({
             "radio1": self.q3_most,
             "radio2": self.q3_least,
-            "label": self.q3_l
+            "label": self.q3_l,
+            "button_group": question_3_button_group,
+            "question": Question("")
         })
         
         self.q4_g = QGroupBox(self.Questions_g)
@@ -124,11 +155,18 @@ class Ui_Widget(object):
         self.q4_l = QLabel(self.q4_g)
         self.q4_l.setObjectName(u"q4_l")
         self.q4_l.setGeometry(QRect(30, 10, 501, 21))
+        question_4_button_group = QButtonGroup(Widget)
+        question_4_button_group.addButton(self.q4_least)
+        question_4_button_group.addButton(self.q4_most)
+        self.left_button_group.addButton( self.q4_least)
+        self.right_button_group.addButton(self.q4_most)
         
         self.question_widgets.append({
             "radio1": self.q4_most,
             "radio2": self.q4_least,
-            "label": self.q4_l
+            "label": self.q4_l,
+            "button_group": question_4_button_group,
+            "question": Question("")
         })
         
         self.MostImportant_L = QLabel(self.Questions_g)
@@ -155,6 +193,8 @@ class Ui_Widget(object):
         self.progressNumber.setGeometry(QRect(240, 180, 58, 18))
 
         self.retranslateUi(Widget)
+        
+        self.load_question_set(self.question_sets[self.current_set_index])
 
         QMetaObject.connectSlotsByName(Widget)
     # setupUi
@@ -192,42 +232,54 @@ class Ui_Widget(object):
     def create_question_sets(self):
         # Create question instances
         questions = read_questions("questions.txt")
-        question_objs = []
-        for q in questions:
-            Q = Question("<html><head/><body><p align=\"center\">{}</p></body></html>".format(q))
-            question_objs.append(Q)
+        self.question_objs = []
+        for q_text in questions:
+            Q = Question(q_text)
+            self.question_objs.append(Q)
 
-        # q1 = Question("Question 1", "Yes", "No")
-        # q2 = Question("Question 2", "True", "False")
-        # q3 = Question("Question 3", "Agree", "Disagree")
-        # q4 = Question("Question 4", "Option A", "Option B")
-        # q5 = Question("Question 5", "Option C", "Option D")
-        # q6 = Question("Question 6", "Option E", "Option F")
         result = []
         
-        for i in range(10):
-            subset = random.sample(question_objs, 4)
+        for i in range(5):
+            subset = random.sample(self.question_objs, 4)
             result.append(subset)
 
         # Define sets of questions (can have repeated questions)
         return result
 
-    def load_question_set(self, question_set):
+    def load_question_set(self, question_set: list[Question]):
+        # TODO: If a radio button is going to be checked that both in its row and column are checked, it will not work properly.
+        self.left_button_group.setExclusive(False)
+        self.right_button_group.setExclusive(False)
+        for btn in self.right_button_group.buttons():
+            btn.setChecked(False)
+        for btn in self.left_button_group.buttons():
+            btn.setChecked(False)
+        self.left_button_group.setExclusive(True)
+        self.right_button_group.setExclusive(True)
+            
         for i, question in enumerate(question_set):
-            self.question_widgets[i]["label"].setText(question.question_text)
-            # self.question_widgets[i]["radio1"].setText(question.option1_text)
-            # self.question_widgets[i]["radio2"].setText(question.option2_text)
+            self.question_widgets[i]["label"].setText(question.question_html)
+            self.question_widgets[i]["question"] = question
 
-            # Clear previous selections
-            self.question_widgets[i]["radio1"].setChecked(False)
-            self.question_widgets[i]["radio2"].setChecked(False)
+    def update_questions_results(self):
+        for widget in self.question_widgets:
+            widget['question'].total_proposed += 1
+            if widget["radio1"].isChecked():
+                widget['question'].most_prefered += 1
+            elif widget["radio2"].isChecked():
+                widget['question'].least_prefered += 1
 
     def next_question_set(self):
         # Save or process selected answers if needed
-
+        self.update_questions_results()
         self.current_set_index += 1
         if self.current_set_index < len(self.question_sets):
             self.load_question_set(self.question_sets[self.current_set_index])
         else:
+            for q in self.question_objs:
+                print(q)
             print("No more questions.")
             # Handle end of questions, e.g., show results or submit data
+            
+    def get_questions(self):
+        return self.question_sets
