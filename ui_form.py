@@ -18,11 +18,28 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
 from PySide6.QtWidgets import (QApplication, QGroupBox, QLabel, QProgressBar,
     QPushButton, QRadioButton, QSizePolicy, QWidget)
 
+class Question:
+    def __init__(self, question_text, option1_text, option2_text):
+        self.question_text = question_text
+        self.option1_text = option1_text
+        self.option2_text = option2_text
+
+        self.radio_button_1 = QRadioButton(self.option1_text)
+        self.radio_button_2 = QRadioButton(self.option2_text)
+
+        self.label = QLabel(self.question_text)
+
 class Ui_Widget(object):
+    def __init__(self) -> None:
+        self.current_set_index = 0
+        self.question_sets = self.create_question_sets()
     def setupUi(self, Widget):
         if not Widget.objectName():
             Widget.setObjectName(u"Widget")
         Widget.resize(1078, 552)
+        
+        self.question_widgets = []
+        
         self.groupBox = QGroupBox(Widget)
         self.groupBox.setObjectName(u"groupBox")
         self.groupBox.setGeometry(QRect(280, 10, 521, 101))
@@ -49,6 +66,12 @@ class Ui_Widget(object):
         self.q1_l.setObjectName(u"q1_l")
         self.q1_l.setGeometry(QRect(30, 10, 501, 21))
         
+        self.question_widgets.append({
+            "radio1": self.q1_most,
+            "radio2": self.q1_least,
+            "label": self.q1_l
+        })
+        
         self.Requirements_L = QLabel(self.Questions_g)
         self.Requirements_L.setObjectName(u"Requirements_L")
         self.Requirements_L.setGeometry(QRect(220, 20, 151, 18))
@@ -66,6 +89,12 @@ class Ui_Widget(object):
         self.q2_l.setObjectName(u"q2_l")
         self.q2_l.setGeometry(QRect(30, 10, 501, 21))
         
+        self.question_widgets.append({
+            "radio1": self.q2_most,
+            "radio2": self.q2_least,
+            "label": self.q2_l
+        })
+        
         self.q3_g = QGroupBox(self.Questions_g)
         self.q3_g.setObjectName(u"q3_g")
         self.q3_g.setGeometry(QRect(20, 160, 561, 41))
@@ -78,6 +107,12 @@ class Ui_Widget(object):
         self.q3_l = QLabel(self.q3_g)
         self.q3_l.setObjectName(u"q3_l")
         self.q3_l.setGeometry(QRect(30, 10, 501, 21))
+        
+        self.question_widgets.append({
+            "radio1": self.q3_most,
+            "radio2": self.q3_least,
+            "label": self.q3_l
+        })
         
         self.q4_g = QGroupBox(self.Questions_g)
         self.q4_g.setObjectName(u"q4_g")
@@ -92,15 +127,24 @@ class Ui_Widget(object):
         self.q4_l.setObjectName(u"q4_l")
         self.q4_l.setGeometry(QRect(30, 10, 501, 21))
         
+        self.question_widgets.append({
+            "radio1": self.q4_most,
+            "radio2": self.q4_least,
+            "label": self.q4_l
+        })
+        
         self.MostImportant_L = QLabel(self.Questions_g)
         self.MostImportant_L.setObjectName(u"MostImportant_L")
         self.MostImportant_L.setGeometry(QRect(0, 10, 81, 41))
         self.LeastImportant_L = QLabel(self.Questions_g)
         self.LeastImportant_L.setObjectName(u"LeastImportant_L")
         self.LeastImportant_L.setGeometry(QRect(520, 10, 81, 41))
+        
         self.NextButton = QPushButton(Widget)
         self.NextButton.setObjectName(u"NextButton")
         self.NextButton.setGeometry(QRect(490, 480, 91, 26))
+        self.NextButton.clicked.connect(self.next_question_set)
+        
         self.progressBar = QProgressBar(Widget)
         self.progressBar.setObjectName(u"progressBar")
         self.progressBar.setGeometry(QRect(400, 510, 271, 23))
@@ -147,3 +191,40 @@ class Ui_Widget(object):
         self.progressNumber.setText(QCoreApplication.translate("Widget", u"<html><head/><body><p><span style=\" font-weight:700;\">1 / 30</span></p></body></html>", None))
     # retranslateUi
 
+    def create_question_sets(self):
+        # Create question instances
+        q1 = Question("Question 1", "Yes", "No")
+        q2 = Question("Question 2", "True", "False")
+        q3 = Question("Question 3", "Agree", "Disagree")
+        q4 = Question("Question 4", "Option A", "Option B")
+        q5 = Question("Question 5", "Option C", "Option D")
+        q6 = Question("Question 6", "Option E", "Option F")
+
+        # Define sets of questions (can have repeated questions)
+        return [
+            [q1, q2, q3, q4],
+            [q1, q5, q6, q4],
+            [q3, q5, q4, q2],
+            [q1, q5, q3, q2],
+            # Add more sets as needed
+        ]
+
+    def load_question_set(self, question_set):
+        for i, question in enumerate(question_set):
+            self.question_widgets[i]["label"].setText(question.question_text)
+            # self.question_widgets[i]["radio1"].setText(question.option1_text)
+            # self.question_widgets[i]["radio2"].setText(question.option2_text)
+
+            # Clear previous selections
+            self.question_widgets[i]["radio1"].setChecked(False)
+            self.question_widgets[i]["radio2"].setChecked(False)
+
+    def next_question_set(self):
+        # Save or process selected answers if needed
+
+        self.current_set_index += 1
+        if self.current_set_index < len(self.question_sets):
+            self.load_question_set(self.question_sets[self.current_set_index])
+        else:
+            print("No more questions.")
+            # Handle end of questions, e.g., show results or submit data
