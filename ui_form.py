@@ -8,6 +8,8 @@
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
 
+import random
+
 from PySide6.QtCore import (QCoreApplication, QDate, QDateTime, QLocale,
     QMetaObject, QObject, QPoint, QRect,
     QSize, QTime, QUrl, Qt)
@@ -18,15 +20,11 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
 from PySide6.QtWidgets import (QApplication, QGroupBox, QLabel, QProgressBar,
     QPushButton, QRadioButton, QSizePolicy, QWidget)
 
+from utils.file_reader import read_questions
+
 class Question:
-    def __init__(self, question_text, option1_text, option2_text):
+    def __init__(self, question_text,):
         self.question_text = question_text
-        self.option1_text = option1_text
-        self.option2_text = option2_text
-
-        self.radio_button_1 = QRadioButton(self.option1_text)
-        self.radio_button_2 = QRadioButton(self.option2_text)
-
         self.label = QLabel(self.question_text)
 
 class Ui_Widget(object):
@@ -193,21 +191,26 @@ class Ui_Widget(object):
 
     def create_question_sets(self):
         # Create question instances
-        q1 = Question("Question 1", "Yes", "No")
-        q2 = Question("Question 2", "True", "False")
-        q3 = Question("Question 3", "Agree", "Disagree")
-        q4 = Question("Question 4", "Option A", "Option B")
-        q5 = Question("Question 5", "Option C", "Option D")
-        q6 = Question("Question 6", "Option E", "Option F")
+        questions = read_questions("questions.txt")
+        question_objs = []
+        for q in questions:
+            Q = Question("<html><head/><body><p align=\"center\">{}</p></body></html>".format(q))
+            question_objs.append(Q)
+
+        # q1 = Question("Question 1", "Yes", "No")
+        # q2 = Question("Question 2", "True", "False")
+        # q3 = Question("Question 3", "Agree", "Disagree")
+        # q4 = Question("Question 4", "Option A", "Option B")
+        # q5 = Question("Question 5", "Option C", "Option D")
+        # q6 = Question("Question 6", "Option E", "Option F")
+        result = []
+        
+        for i in range(10):
+            subset = random.sample(question_objs, 4)
+            result.append(subset)
 
         # Define sets of questions (can have repeated questions)
-        return [
-            [q1, q2, q3, q4],
-            [q1, q5, q6, q4],
-            [q3, q5, q4, q2],
-            [q1, q5, q3, q2],
-            # Add more sets as needed
-        ]
+        return result
 
     def load_question_set(self, question_set):
         for i, question in enumerate(question_set):
