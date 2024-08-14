@@ -102,13 +102,13 @@ QRadioButton::indicator:checked {
             <string/>
            </property>
            <layout class="QGridLayout" name="gridLayout">
-            <item row="0" column="0">
+            <item row="0" column="0" alignment="Qt::AlignmentFlag::AlignHCenter">
              <widget class="QLabel" name="label_7">
               <property name="styleSheet">
                <string notr="true"/>
               </property>
               <property name="text">
-               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot;font-size:20px;font-weight:700;&quot;&gt;Sawtooth Software - Demo Version&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:20px; font-weight:700;&quot;&gt;Survey App  - Demo Version&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
               </property>
              </widget>
             </item>
@@ -117,6 +117,9 @@ QRadioButton::indicator:checked {
          </item>
          <item>
           <widget class="QFrame" name="frame_3">
+           <property name="styleSheet">
+            <string notr="true"/>
+           </property>
            <property name="frameShape">
             <enum>QFrame::Shape::StyledPanel</enum>
            </property>
@@ -143,7 +146,7 @@ QRadioButton::indicator:checked {
          <item>
           <widget class="QGroupBox" name="Questions_g">
            <property name="styleSheet">
-            <string notr="true">box-shadow: blue 0px 0px 0px 2px inset, rgb(255, 255, 255) 10px -10px 0px -3px, rgb(31, 193, 27) 10px -10px, rgb(255, 255, 255) 20px -20px 0px -3px, rgb(255, 217, 19) 20px -20px, rgb(255, 255, 255) 30px -30px 0px -3px, rgb(255, 156, 85) 30px -30px, rgb(255, 255, 255) 40px -40px 0px -3px, rgb(255, 85, 85) 40px -40px;</string>
+            <string notr="true"/>
            </property>
            <property name="title">
             <string/>

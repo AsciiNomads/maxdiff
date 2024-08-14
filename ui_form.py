@@ -111,13 +111,14 @@ class Ui_Widget(object):
         self.label_7.setObjectName(u"label_7")
         self.label_7.setStyleSheet(u"")
 
-        self.gridLayout.addWidget(self.label_7, 0, 0, 1, 1)
+        self.gridLayout.addWidget(self.label_7, 0, 0, 1, 1, Qt.AlignmentFlag.AlignHCenter)
 
 
         self.verticalLayout.addWidget(self.groupBox)
 
         self.frame_3 = QFrame(self.frame)
         self.frame_3.setObjectName(u"frame_3")
+        self.frame_3.setStyleSheet(u"")
         self.frame_3.setFrameShape(QFrame.Shape.StyledPanel)
         self.frame_3.setFrameShadow(QFrame.Shadow.Raised)
         self.horizontalLayout_7 = QHBoxLayout(self.frame_3)
@@ -134,7 +135,7 @@ class Ui_Widget(object):
 
         self.Questions_g = QGroupBox(self.frame)
         self.Questions_g.setObjectName(u"Questions_g")
-        self.Questions_g.setStyleSheet(u"box-shadow: blue 0px 0px 0px 2px inset, rgb(255, 255, 255) 10px -10px 0px -3px, rgb(31, 193, 27) 10px -10px, rgb(255, 255, 255) 20px -20px 0px -3px, rgb(255, 217, 19) 20px -20px, rgb(255, 255, 255) 30px -30px 0px -3px, rgb(255, 156, 85) 30px -30px, rgb(255, 255, 255) 40px -40px 0px -3px, rgb(255, 85, 85) 40px -40px;")
+        self.Questions_g.setStyleSheet(u"")
         self.verticalLayout_3 = QVBoxLayout(self.Questions_g)
         self.verticalLayout_3.setObjectName(u"verticalLayout_3")
         self.frame_2 = QFrame(self.Questions_g)
@@ -277,7 +278,7 @@ class Ui_Widget(object):
     def retranslateUi(self, Widget):
         Widget.setWindowTitle(QCoreApplication.translate("Widget", u"Widget", None))
         self.groupBox.setTitle("")
-        self.label_7.setText(QCoreApplication.translate("Widget", u"<html><head/><body><p align=\"center\"><span style=\"font-size:20px;font-weight:700;\">Sawtooth Software - Demo Version</span></p></body></html>", None))
+        self.label_7.setText(QCoreApplication.translate("Widget", u"<html><head/><body><p><span style=\" font-size:20px; font-weight:700;\">Survey App  - Demo Version</span></p></body></html>", None))
         self.label_10.setText(QCoreApplication.translate("Widget", u"<html><head/><body><p style=\"line-height: 0.35;\">Choose one item from the &quot;Most important&quot; column on the left and one item from the &quot;least</p><p>important&quot; column on the right. You are only allowed one response per column.</p></body></html>", None))
         self.Questions_g.setTitle("")
         self.LeastImportant_L.setText(QCoreApplication.translate("Widget", u"<html><head/><body><p align=\"center\" style=\"line-height: 0.25;\">Least</p><p align=\"center\">important</p></body></html>", None))
