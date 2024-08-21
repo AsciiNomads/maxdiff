@@ -46,9 +46,9 @@ class Widget(QWidget):
             qi_most = getattr(self.ui, f"q{i}_most")
             qi_least = getattr(self.ui, f"q{i}_least")
             
-            question_1_button_group = QButtonGroup(self)
-            question_1_button_group.addButton(qi_least)
-            question_1_button_group.addButton(qi_most)
+            question_button_group = QButtonGroup(self)
+            question_button_group.addButton(qi_least)
+            question_button_group.addButton(qi_most)
             self.ui.left_button_group.addButton(qi_least)
             self.ui.right_button_group.addButton(qi_most)
             
@@ -56,7 +56,7 @@ class Widget(QWidget):
                 "radio1": qi_most,
                 "radio2": qi_least,
                 "label": qi_l,
-                "button_group": question_1_button_group,
+                "button_group": question_button_group,
                 "question": Question("")
             })
         
