@@ -140,6 +140,7 @@ class Ui_Widget(object):
         self.verticalLayout_3.setObjectName(u"verticalLayout_3")
         self.questions_part = QLabel(self.Questions_g)
         self.questions_part.setObjectName(u"questions_part")
+        self.questions_part.setStyleSheet(u"background-color: none;")
 
         self.verticalLayout_3.addWidget(self.questions_part)
 

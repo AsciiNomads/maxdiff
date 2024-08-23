@@ -154,6 +154,9 @@ QRadioButton::indicator:checked {
            <layout class="QVBoxLayout" name="verticalLayout_3">
             <item>
              <widget class="QLabel" name="questions_part">
+              <property name="styleSheet">
+               <string notr="true">background-color: none;</string>
+              </property>
               <property name="text">
                <string>Questions : 2/3</string>
               </property>

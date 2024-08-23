@@ -9,6 +9,8 @@ from PySide6.QtWidgets import QApplication, QLabel, QWidget, QButtonGroup
 
 from utils.file_reader import read_questions
 
+from export_ui import Ui_Form
+
 
 class Question:
     def __init__(self, question_text, _id):
@@ -56,6 +58,9 @@ MAX_QUESTIONS_PER_PAGE = 4
 class Widget(QWidget):
     def __init__(self, parent=None):
         super().__init__(parent)
+        self.setWindowTitle("Main Window")
+        # self.show_new_widget()
+
         self.ui = Ui_Widget()
         self.ui.setupUi(self)
 
@@ -69,7 +74,7 @@ class Widget(QWidget):
 
         self.load_question_set(self.question_sets[self.current_set_index])
 
-    def setup_widget(self, widget):
+    def setup_widget(self, widget: QWidget):
         self.ui.left_button_group = QButtonGroup(widget)
         self.ui.right_button_group = QButtonGroup(widget)
         self.ui.question_widgets = []
@@ -107,7 +112,7 @@ class Widget(QWidget):
 
         result = []
 
-        for i in range(5):
+        for i in range(2):
             subset = random.sample(self.question_objs, 4)
             result.append(subset)
 
@@ -165,6 +170,21 @@ class Widget(QWidget):
 
     def get_questions(self):
         return self.question_objs
+
+    def show_new_widget(self):
+        # Create a new widget to show
+        self.new_widget = QWidget()
+        self.ui = Ui_Form()
+        self.ui.setupUi(self.new_widget)
+        # self.new_widget.setWindowTitle("New Widget")
+
+        # Add some content to the new widget
+        # layout = QVBoxLayout()
+        # layout.addWidget(QLabel("This is the new widget!"))
+        # self.new_widget.setLayout(layout)
+
+        # Show the new widget
+        self.new_widget.show()
 
 
 if __name__ == "__main__":
