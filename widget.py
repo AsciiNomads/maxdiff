@@ -1,4 +1,5 @@
 import sys
+import os
 
 from PySide6.QtWidgets import QApplication, QWidget
 
@@ -10,6 +11,10 @@ from PySide6.QtWidgets import QApplication, QLabel, QWidget, QButtonGroup
 from utils.file_reader import read_questions
 
 from export_ui import Ui_Form
+
+from random import randint
+from utils.maxdiff import *
+from utils.gen_plots import *
 
 
 class Question:
@@ -52,6 +57,18 @@ class Question:
         return self.__str__()
 
 
+def generate_random_questions(number_of_questions: int):
+    questions = []
+    for i in range(number_of_questions):
+        q = Question(f"Question {i + 1}", i)
+        q.most_preferred = randint(1, 10)
+        q.least_preferred = randint(1, 10)
+        q.total_proposed = q.most_preferred + q.least_preferred + randint(1, 10)
+        questions.append(q)
+
+    return questions
+
+
 MAX_QUESTIONS_PER_PAGE = 4
 
 
@@ -60,6 +77,8 @@ class Widget(QWidget):
         super().__init__(parent)
         self.setWindowTitle("Main Window")
         # self.show_new_widget()
+        self.resources_dir = "resources/"
+        self._create_dir()
 
         self.ui = Ui_Widget()
         self.ui.setupUi(self)
@@ -112,7 +131,7 @@ class Widget(QWidget):
 
         result = []
 
-        for i in range(2):
+        for i in range(1):
             subset = random.sample(self.question_objs, 4)
             result.append(subset)
 
@@ -175,6 +194,14 @@ class Widget(QWidget):
         return self.question_objs
 
     def exportWidget(self):
+        # get questions
+        # questions = self.get_questions()
+        self.questions = generate_random_questions(15)
+        print(self.questions)
+        #####################
+        # calculate maxdiff
+        #####################
+
         # Create a new widget to show
         self.new_widget = QWidget()
         self.ui = Ui_Form()
@@ -195,17 +222,40 @@ class Widget(QWidget):
         self.comboBox.addItem("show plot")
         self.ui.exportData.clicked.connect(self.export_data)
 
+    def _create_dir(self):
+        if not os.path.exists(self.resources_dir):
+            os.makedirs(self.resources_dir)
+        if not os.path.exists(os.path.join(self.resources_dir, "csv/")):
+            os.makedirs(os.path.join(self.resources_dir, "csv/"))
+        if not os.path.exists(os.path.join(self.resources_dir, "images/")):
+            os.makedirs(os.path.join(self.resources_dir, "images/"))
+
     def export_data(self):
         def export_csv():
-            pass
+            dir = os.path.join(self.resources_dir, "csv/")
+            file_path = os.path.join(dir, "maxdiff.csv")
+            with open(file_path, "w") as f:
+                f.write("Question,Most Preferred,Least Preferred,Total Proposed\n")
+                for q in self.questions:
+                    f.write(
+                        f"{q.id},{q.question_text},{q.most_preferred},{q.least_preferred},{q.total_proposed}\n"
+                    )
 
         def export_pdf():
-            pass
+            # create table with csv
+            dir = "resources/images/"
+
 
         def export_png():
-            pass
+            dir = "resources/images/"
+            file_path = os.path.join(dir, "maxdiff.png")
+            fig = plot_best_worst_scores(self.questions)
+            fig.savefig(file_path, format="png")
 
         def show_plot():
+            fig = plot_best_worst_scores(self.questions)
+            fig.show()
+            # fig.savefig("maxdiff.png", format="png")
             pass
 
         print("Exporting data")

@@ -16,15 +16,17 @@ def plot_best_worst_scores(questions):
     indices = [str(i) for i in indices]
 
     # Creating horizontal bars
-    plt.figure(figsize=(10, len(indices) * 0.5))
-    plt.barh(indices, scores, color="skyblue")
+    fig, ax = plt.subplots(figsize=(10, len(indices) * 0.5))
+    ax.barh(indices, scores, color="skyblue")
 
-    plt.xlabel("Scores")
-    plt.ylabel("Question ID")
-    plt.title("Best-Worst Scores")
+    ax.set_xlabel("Scores")
+    ax.set_ylabel("Question ID")
+    ax.set_title("Best-Worst Scores")
 
-    plt.gca().invert_yaxis()  # Invert y-axis to have the highest score on top
-    plt.show()
+    ax.invert_yaxis()  # Invert y-axis to have the highest score on top
+
+    return fig
+
 
 
 # Function to plot Best-Worst Percentages
