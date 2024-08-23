@@ -168,13 +168,13 @@ class Widget(QWidget):
             print("No more questions.")
 
             self.close()
-            self.show_new_widget()
+            self.exportWidget()
             # Handle end of questions, e.g., show results or submit data
 
     def get_questions(self):
         return self.question_objs
 
-    def show_new_widget(self):
+    def exportWidget(self):
         # Create a new widget to show
         self.new_widget = QWidget()
         self.ui = Ui_Form()

@@ -2,7 +2,7 @@ import numpy as np
 from widget import Question
 
 
-def get_scores(questions: list[Question]):
+def get_scores(questions: list[Question]) -> tuple[np.ndarray, np.ndarray]:
     indices = []
     scores = []
     for item in questions:
@@ -17,7 +17,9 @@ def get_scores(questions: list[Question]):
     return indices, scores
 
 
-def get_percentages(questions: list[Question]):
+def get_percentages(
+    questions: list[Question],
+) -> tuple[np.ndarray, np.ndarray, np.ndarray, np.ndarray]:
     indices = []
     scores = []
     most_preferred_scores = []
