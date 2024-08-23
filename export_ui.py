@@ -133,10 +133,10 @@ class Ui_Form(object):
         self.export_frame.setSpacing(6)
         self.export_frame.setObjectName(u"export_frame")
         self.export_frame.setContentsMargins(-1, 0, -1, -1)
-        self.pushButton_2 = QPushButton(Form)
-        self.pushButton_2.setObjectName(u"pushButton_2")
+        self.exportData = QPushButton(Form)
+        self.exportData.setObjectName(u"exportData")
 
-        self.export_frame.addWidget(self.pushButton_2)
+        self.export_frame.addWidget(self.exportData)
 
         self.comboBox = QComboBox(Form)
         self.comboBox.setObjectName(u"comboBox")
@@ -190,7 +190,7 @@ class Ui_Form(object):
 
     def retranslateUi(self, Form):
         Form.setWindowTitle(QCoreApplication.translate("Form", u"Form", None))
-        self.pushButton_2.setText(QCoreApplication.translate("Form", u"export", None))
+        self.exportData.setText(QCoreApplication.translate("Form", u"export", None))
         self.label_2.setText("")
         self.label.setText("")
     # retranslateUi

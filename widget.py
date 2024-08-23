@@ -193,6 +193,33 @@ class Widget(QWidget):
         self.comboBox.addItem("pdf")
         self.comboBox.addItem("png")
         self.comboBox.addItem("show plot")
+        self.ui.exportData.clicked.connect(self.export_data)
+
+    def export_data(self):
+        def export_csv():
+            pass
+
+        def export_pdf():
+            pass
+
+        def export_png():
+            pass
+
+        def show_plot():
+            pass
+
+        print("Exporting data")
+        print(self.comboBox.currentText())
+
+        if self.comboBox.currentText() == "csv":
+            print("Exporting as CSV")
+            export_csv()
+        elif self.comboBox.currentText() == "pdf":
+            export_pdf()
+        elif self.comboBox.currentText() == "png":
+            export_png()
+        elif self.comboBox.currentText() == "show plot":
+            show_plot()
 
 
 if __name__ == "__main__":
