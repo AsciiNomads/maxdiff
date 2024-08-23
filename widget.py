@@ -61,6 +61,9 @@ class Widget(QWidget):
 
         self.question_sets = self.create_question_sets()
         self.current_set_index = 0
+        self.change_remind_question_lable(
+            self.current_set_index + 1, len(self.question_sets)
+        )
 
         self.setup_widget(self)
 
@@ -137,12 +140,23 @@ class Widget(QWidget):
             elif widget["radio2"].isChecked():
                 widget["question"].increment_and_update_as_least_preferred(questions)
 
+    def change_remind_question_lable(self, number: int, total: int):
+        self.ui.questions_part.setText(f"Questions: {number}/{total}")
+
     def next_question_set(self):
         # Save or process selected answers if needed
         self.update_questions_results()
         self.current_set_index += 1
         if self.current_set_index < len(self.question_sets):
+            if self.current_set_index == len(self.question_sets) - 1:
+                self.ui.NextButton.setText("Finish")
+                self.ui.NextButton.setStyleSheet("background-color: #c0392b;")
+
+                # self.ui.NextButton.styleSheet = "background-color: red"
             self.load_question_set(self.question_sets[self.current_set_index])
+            self.change_remind_question_lable(
+                self.current_set_index + 1, len(self.question_sets)
+            )
         else:
             for q in self.get_questions():
                 print(q)

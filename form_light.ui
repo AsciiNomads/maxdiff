@@ -153,6 +153,13 @@ QRadioButton::indicator:checked {
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_3">
             <item>
+             <widget class="QLabel" name="questions_part">
+              <property name="text">
+               <string>Questions : 2/3</string>
+              </property>
+             </widget>
+            </item>
+            <item>
              <widget class="QFrame" name="frame_2">
               <property name="frameShape">
                <enum>QFrame::Shape::StyledPanel</enum>

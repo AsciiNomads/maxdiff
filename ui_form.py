@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'form.ui'
+## Form generated from reading UI file 'form_light.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.7.2
 ##
@@ -26,20 +26,20 @@ class Ui_Widget(object):
         Widget.resize(1101, 716)
         Widget.setStyleSheet(u"/* Global Styles */\n"
 "QWidget {\n"
-"    background-color: #1E1E2F; /* Dark modern background */\n"
+"    background-color: #F4F4F9; /* Light modern background */\n"
 "    font-family: \"Arial\", sans-serif; /* Use a modern, clean font */\n"
-"    color: #E5E7EB; /* Light gray text for better visibility */\n"
+"    color: #333333; /* Dark gray text for better visibility */\n"
 "}\n"
 "\n"
 "/* Box Style */\n"
 "QFrame#box {\n"
-"    background-color: #2D2D44; /* Darker box color */\n"
-"    border: 1px solid #3E3E5C; /* Slightly lighter border */\n"
+"    background-color: #FFFFFF; /* White box color */\n"
+"    border: 1px solid #D1D5DB; /* Light border */\n"
 "    border-radius: 8px; /* Rounded corners */\n"
 "    padding: 16px;\n"
 "    margin: 8px;\n"
-"    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Stronger shadow */\n"
-"    color: #E5E7EB; /* Light gray text inside the box */\n"
+"    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */\n"
+"    color: #333333; /* Dark gray text inside the box */\n"
 "}\n"
 "\n"
 "/* Button Style */\n"
@@ -55,8 +55,8 @@ class Ui_Widget(object):
 "}\n"
 "\n"
 "QPushButton:hover {\n"
-""
-                        "    background-color: #2563EB; /* Darker blue on hover */\n"
+"    backgroun"
+                        "d-color: #2563EB; /* Darker blue on hover */\n"
 "}\n"
 "\n"
 "QPushButton:pressed {\n"
@@ -67,14 +67,14 @@ class Ui_Widget(object):
 "QLabel#title {\n"
 "    font-size: 24px;\n"
 "    font-weight: bold;\n"
-"    color: #FFFFFF; /* White color for the title to stand out on the dark background */\n"
+"    color: #111827; /* Darker color for the title to stand out on the light background */\n"
 "    margin-bottom: 16px;\n"
 "}\n"
 "\n"
 "/* Radio Button Style */\n"
 "QRadioButton {\n"
 "    font-size: 16px;\n"
-"    color: #E5E7EB; /* Light gray text for better visibility */\n"
+"    color: #333333; /* Dark gray text for better visibility */\n"
 "}\n"
 "\n"
 "QRadioButton::indicator {\n"
@@ -82,7 +82,7 @@ class Ui_Widget(object):
 "    height: 20px;\n"
 "    border-radius: 10px;\n"
 "    border: 2px solid #3B82F6; /* Blue border */\n"
-"    background-color: #2D2D44; /* Darker background */\n"
+"    background-color: #FFFFFF; /* White background */\n"
 "}\n"
 "\n"
 "QRadioButton::indicator:checked {\n"
@@ -138,6 +138,11 @@ class Ui_Widget(object):
         self.Questions_g.setStyleSheet(u"")
         self.verticalLayout_3 = QVBoxLayout(self.Questions_g)
         self.verticalLayout_3.setObjectName(u"verticalLayout_3")
+        self.questions_part = QLabel(self.Questions_g)
+        self.questions_part.setObjectName(u"questions_part")
+
+        self.verticalLayout_3.addWidget(self.questions_part)
+
         self.frame_2 = QFrame(self.Questions_g)
         self.frame_2.setObjectName(u"frame_2")
         self.frame_2.setFrameShape(QFrame.Shape.StyledPanel)
@@ -281,6 +286,7 @@ class Ui_Widget(object):
         self.label_7.setText(QCoreApplication.translate("Widget", u"<html><head/><body><p><span style=\" font-size:20px; font-weight:700;\">Survey App  - Demo Version</span></p></body></html>", None))
         self.label_10.setText(QCoreApplication.translate("Widget", u"<html><head/><body><p style=\"line-height: 0.35;\">Choose one item from the &quot;Most important&quot; column on the left and one item from the &quot;least</p><p>important&quot; column on the right. You are only allowed one response per column.</p></body></html>", None))
         self.Questions_g.setTitle("")
+        self.questions_part.setText(QCoreApplication.translate("Widget", u"Questions : 2/3", None))
         self.LeastImportant_L.setText(QCoreApplication.translate("Widget", u"<html><head/><body><p align=\"center\" style=\"line-height: 0.25;\">Least</p><p align=\"center\">important</p></body></html>", None))
         self.Requirements_L.setText(QCoreApplication.translate("Widget", u"<html><head/><body><p align=\"center\"><span style=\" font-weight:700;\">Requirements</span></p></body></html>", None))
         self.MostImportant_L.setText(QCoreApplication.translate("Widget", u"<html><head/><body><p align=\"center\" style=\"line-height: 0.25;\">Most</p><p align=\"center\">important</p></body></html>", None))
