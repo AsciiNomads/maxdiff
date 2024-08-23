@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Form</class>
+ <widget class="QWidget" name="Form">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>844</width>
+    <height>670</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">/* ComboBox Style */
+QComboBox {
+    background-color: #FFFFFF; /* White background for the dropdown */
+    border: 1px solid #D1D5DB; /* Light border to match other elements */
+    border-radius: 6px; /* Slightly rounded corners for a modern look */
+    padding: 8px 12px; /* Padding for inner content */
+    color: #333333; /* Dark gray text for readability */
+    font-size: 16px; /* Consistent font size */
+}
+
+QComboBox::drop-down {
+    border-left: 1px solid #D1D5DB; /* Separate drop-down button with a light border */
+    background-color: #F4F4F9; /* Light modern background for the drop-down button */
+    width: 30px; /* Width of the drop-down button */
+    padding: 5px; /* Padding inside the drop-down button */
+}
+
+QComboBox::down-arrow {
+    image: url(down-arrow.png); /* Custom down arrow icon */
+    width: 12px; /* Size of the arrow */
+    height: 12px;
+}
+
+QComboBox QAbstractItemView {
+    background-color: #FFFFFF; /* White background for the dropdown list */
+    border: 1px solid #D1D5DB; /* Light border for the list */
+    padding: 8px; /* Padding around the items */
+    selection-background-color: #3B82F6; /* Blue highlight for selected item */
+    selection-color: white; /* White text on selected item */
+    color: #333333; /* Dark gray text for list items */
+}
+
+/* Global Styles */
+QWidget {
+    background-color: #F4F4F9; /* Light modern background */
+    font-family: &quot;Arial&quot;, sans-serif; /* Use a modern, clean font */
+    color: #333333; /* Dark gray text for better visibility */
+}
+
+/* Box Style */
+QFrame#box {
+    background-color: #FFFFFF; /* White box color */
+    border: 1px solid #D1D5DB; /* Light border */
+    border-radius: 8px; /* Rounded corners */
+    padding: 16px;
+    margin: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    color: #333333; /* Dark gray text inside the box */
+}
+
+/* Button Style */
+QPushButton {
+    background-color: #3B82F6; /* Blue background for the button */
+    color: white; /* White text for visibility */
+    border: none;
+    border-radius: 6px;
+    padding: 10px 20px;
+    margin: 4px 0;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+QPushButton:hover {
+    background-color: #2563EB; /* Darker blue on hover */
+}
+
+QPushButton:pressed {
+    background-color: #1D4ED8; /* Even darker blue on press */
+}
+
+/* Title Style */
+QLabel#title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #111827; /* Darker color for the title to stand out on the light background */
+    margin-bottom: 16px;
+}
+
+/* Radio Button Style */
+QRadioButton {
+    font-size: 16px;
+    color: #333333; /* Dark gray text for better visibility */
+}
+
+QRadioButton::indicator {
+    width: 20px;
+    height: 20px;
+    border-radius: 10px;
+    border: 2px solid #3B82F6; /* Blue border */
+    background-color: #FFFFFF; /* White background */
+}
+
+QRadioButton::indicator:checked {
+    background-color: #3B82F6; /* Blue dot when checked */
+    border: 2px solid #2563EB; /* Darker blue border when checked */
+}
+</string>
+  </property>
+  <layout class="QHBoxLayout" name="horizontalLayout_2">
+   <item>
+    <layout class="QVBoxLayout" name="verticalLayout_2">
+     <property name="bottomMargin">
+      <number>0</number>
+     </property>
+     <item>
+      <layout class="QHBoxLayout" name="export_frame">
+       <property name="spacing">
+        <number>6</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <item>
+        <widget class="QPushButton" name="exportData">
+         <property name="text">
+          <string>export</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QComboBox" name="comboBox"/>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <widget class="QWidget" name="formWidget_2" native="true">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>40</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>600</width>
+         <height>600</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>16777215</width>
+         <height>600</height>
+        </size>
+       </property>
+       <property name="baseSize">
+        <size>
+         <width>400</width>
+         <height>400</height>
+        </size>
+       </property>
+       <layout class="QVBoxLayout" name="image_frame">
+        <property name="topMargin">
+         <number>1</number>
+        </property>
+        <item>
+         <widget class="QLabel" name="label_2">
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="label">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+          <property name="pixmap">
+           <pixmap resource="resources/resource.qrc">:/newPrefix/images/wallhaven-01wzrv.jpg</pixmap>
+          </property>
+          <property name="scaledContents">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <resources>
+  <include location="resources/resource.qrc"/>
+ </resources>
+ <connections/>
+</ui>

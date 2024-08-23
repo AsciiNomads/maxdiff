@@ -9,6 +9,8 @@ from PySide6.QtWidgets import QApplication, QLabel, QWidget, QButtonGroup
 
 from utils.file_reader import read_questions
 
+from export_ui import Ui_Form
+
 
 class Question:
     def __init__(self, question_text, _id):
@@ -56,11 +58,17 @@ MAX_QUESTIONS_PER_PAGE = 4
 class Widget(QWidget):
     def __init__(self, parent=None):
         super().__init__(parent)
+        self.setWindowTitle("Main Window")
+        # self.show_new_widget()
+
         self.ui = Ui_Widget()
         self.ui.setupUi(self)
 
         self.question_sets = self.create_question_sets()
         self.current_set_index = 0
+        self.change_remind_question_lable(
+            self.current_set_index + 1, len(self.question_sets)
+        )
 
         self.setup_widget(self)
 
@@ -104,7 +112,7 @@ class Widget(QWidget):
 
         result = []
 
-        for i in range(5):
+        for i in range(2):
             subset = random.sample(self.question_objs, 4)
             result.append(subset)
 
@@ -137,20 +145,81 @@ class Widget(QWidget):
             elif widget["radio2"].isChecked():
                 widget["question"].increment_and_update_as_least_preferred(questions)
 
+    def change_remind_question_lable(self, number: int, total: int):
+        self.ui.questions_part.setText(f"Questions: {number}/{total}")
+
     def next_question_set(self):
         # Save or process selected answers if needed
         self.update_questions_results()
         self.current_set_index += 1
         if self.current_set_index < len(self.question_sets):
+            if self.current_set_index == len(self.question_sets) - 1:
+                self.ui.NextButton.setText("Finish")
+                self.ui.NextButton.setStyleSheet("background-color: #c0392b;")
+
+                # self.ui.NextButton.styleSheet = "background-color: red"
             self.load_question_set(self.question_sets[self.current_set_index])
+            self.change_remind_question_lable(
+                self.current_set_index + 1, len(self.question_sets)
+            )
         else:
             for q in self.get_questions():
                 print(q)
             print("No more questions.")
+
+            self.close()
+            self.show_new_widget()
             # Handle end of questions, e.g., show results or submit data
 
     def get_questions(self):
         return self.question_objs
+
+    def show_new_widget(self):
+        # Create a new widget to show
+        self.new_widget = QWidget()
+        self.ui = Ui_Form()
+        self.ui.setupUi(self.new_widget)
+        # self.new_widget.setWindowTitle("New Widget")
+
+        # Add some content to the new widget
+        # layout = QVBoxLayout()
+        # layout.addWidget(QLabel("This is the new widget!"))
+        # self.new_widget.setLayout(layout)
+
+        # Show the new widget
+        self.new_widget.show()
+        self.comboBox = self.ui.comboBox
+        self.comboBox.addItem("csv")
+        self.comboBox.addItem("pdf")
+        self.comboBox.addItem("png")
+        self.comboBox.addItem("show plot")
+        self.ui.exportData.clicked.connect(self.export_data)
+
+    def export_data(self):
+        def export_csv():
+            pass
+
+        def export_pdf():
+            pass
+
+        def export_png():
+            pass
+
+        def show_plot():
+            pass
+
+        print("Exporting data")
+        print(self.comboBox.currentText())
+
+        if self.comboBox.currentText() == "csv":
+            print("Exporting as CSV")
+            export_csv()
+        elif self.comboBox.currentText() == "pdf":
+            export_pdf()
+        elif self.comboBox.currentText() == "png":
+            export_png()
+        elif self.comboBox.currentText() == "show plot":
+            show_plot()
 
 
 if __name__ == "__main__":

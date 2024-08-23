@@ -1,0 +1,5 @@
+<RCC>
+  <qresource prefix="newPrefix">
+    <file>images/wallhaven-01wzrv.jpg</file>
+  </qresource>
+</RCC>
