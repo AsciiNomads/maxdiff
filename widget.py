@@ -74,7 +74,7 @@ class Widget(QWidget):
 
         self.load_question_set(self.question_sets[self.current_set_index])
 
-    def setup_widget(self, widget: QWidget):
+    def setup_widget(self, widget):
         self.ui.left_button_group = QButtonGroup(widget)
         self.ui.right_button_group = QButtonGroup(widget)
         self.ui.question_widgets = []
@@ -166,6 +166,9 @@ class Widget(QWidget):
             for q in self.get_questions():
                 print(q)
             print("No more questions.")
+
+            self.close()
+            self.show_new_widget()
             # Handle end of questions, e.g., show results or submit data
 
     def get_questions(self):
@@ -185,6 +188,11 @@ class Widget(QWidget):
 
         # Show the new widget
         self.new_widget.show()
+        self.comboBox = self.ui.comboBox
+        self.comboBox.addItem("csv")
+        self.comboBox.addItem("pdf")
+        self.comboBox.addItem("png")
+        self.comboBox.addItem("show plot")
 
 
 if __name__ == "__main__":
