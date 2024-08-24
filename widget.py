@@ -1,7 +1,7 @@
 import sys
 import os
 
-from PySide6.QtWidgets import QApplication, QWidget
+from PySide6.QtWidgets import QApplication, QWidget, QFileDialog
 
 from ui_form import Ui_Widget
 import random
@@ -234,9 +234,21 @@ class Widget(QWidget):
             os.makedirs(os.path.join(self.resources_dir, "images/"))
 
     def export_data(self):
+        def get_filepath(extension: str):
+            file_dialog = QFileDialog()
+            file_path, _ = file_dialog.getSaveFileName(
+                # filter=f"{extension.upper()} files (*.{extension})",
+            )
+            # and extensions to csv file
+            if f".{extension}" not in file_path:
+                file_path = file_path + f".{extension}"
+            return file_path
+
         def export_csv():
-            dir = os.path.join(self.resources_dir, "csv/")
-            file_path = os.path.join(dir, "maxdiff.csv")
+            # dir = os.path.join(self.resources_dir, "csv/")
+            # file_path = os.path.join(dir, "maxdiff.csv")
+            file_path = get_filepath("csv")
+
             with open(file_path, "w") as f:
                 f.write("Question,Most Preferred,Least Preferred,Total Proposed\n")
                 for q in self.questions:
@@ -245,22 +257,21 @@ class Widget(QWidget):
                     )
 
         def export_pdf():
-            # maxdiff_scores = {"Feature A": 0, "Feature B": 0, "Feature C": 0}
             # Sample dictionary data
             data = self.questions
             dir = "resources/images/"
-            file_path = os.path.join(dir, "maxdiff.png")
-            # export_maxdiff_to_pdf(filename)
+            image_path = os.path.join(dir, "maxdiff.png")
+            export_png(show_dialog=False, save_path=image_path)
             # Export to PDF
-            filename = "maxdiff_scores.pdf"
-            export_maxdiff_to_pdf(data, filename, file_path)
-            # pass
-            # create table with csv
-            # dir = "resources/images/"
+            pdf_output_path = get_filepath("pdf")
+            export_maxdiff_to_pdf(data, pdf_output_path, image_path)
 
-        def export_png():
-            dir = "resources/images/"
-            file_path = os.path.join(dir, "maxdiff.png")
+        def export_png(show_dialog=True, save_path=None):
+            if show_dialog:
+                file_path = get_filepath("png")
+            else:
+                file_path = save_path
+
             fig = plot_best_worst_scores(self.questions)
             fig.savefig(file_path, format="png")
 
