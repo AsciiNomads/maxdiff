@@ -137,7 +137,7 @@ class Widget(QWidget):
 
         result = []
 
-        for i in range(1):
+        for i in range(5):
             subset = random.sample(self.question_objs, 4)
             result.append(subset)
 
@@ -208,8 +208,8 @@ class Widget(QWidget):
             self.ui.plot_pic.setPixmap(QPixmap(file_path))
 
         # get questions
-        # questions = self.get_questions()
-        self.questions = generate_random_questions(15)
+        self.questions = self.get_questions()
+        # self.questions = generate_random_questions(15)
         print(self.questions)
         # Create a new widget to show
         self.new_widget = QWidget()

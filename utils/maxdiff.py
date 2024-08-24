@@ -8,7 +8,12 @@ def get_scores(questions: list) -> tuple[np.ndarray, np.ndarray]:
     scores = []
     for item in questions:
         indices.append(item.id)
-        scores.append(item.most_preferred / item.total_proposed)
+        try:
+            scores.append(
+                (item.most_preferred - item.least_preferred) / item.total_proposed
+            )
+        except ZeroDivisionError:
+            scores.append(0)
 
     scores = np.array(scores)
     positions = np.argsort(-scores)
@@ -27,11 +32,16 @@ def get_percentages(
     least_preferred_scores = []
     for item in questions:
         indices.append(item.id)
-        scores.append(
-            (item.most_preferred - item.least_preferred) / item.total_proposed
-        )
-        most_preferred_scores.append(item.most_preferred / item.total_proposed)
-        least_preferred_scores.append(item.least_preferred / item.total_proposed)
+        try:
+            scores.append(
+                (item.most_preferred - item.least_preferred) / item.total_proposed
+            )
+            most_preferred_scores.append(item.most_preferred / item.total_proposed)
+            least_preferred_scores.append(item.least_preferred / item.total_proposed)
+        except ZeroDivisionError:
+            scores.append(0)
+            most_preferred_scores.append(0)
+            least_preferred_scores.append(0)
 
     scores = np.array(scores)
     positions = np.argsort(-scores)

@@ -33,12 +33,26 @@ def export_maxdiff_to_pdf(maxdiff_scores, filename, image_path):
 
     # Add table data
     for item in maxdiff_scores:
-        pdf.cell(cell_width, cell_height, item.question_text, border=1)
+        pdf.cell(cell_width, cell_height, str(item.id), border=1)
         pdf.cell(cell_width, cell_height, str(item.most_preferred), border=1)
         pdf.cell(cell_width, cell_height, str(item.least_preferred), border=1)
         pdf.cell(cell_width, cell_height, str(item.total_proposed), border=1)
         pdf.ln(cell_height)  # Move to the next line
 
+    # Add a line break
+    pdf.ln(10)
+
+    # Add questions ID and text
+    for question in maxdiff_scores:
+        question_id = str(question.id)
+        question_text = question.question_text
+        pdf.set_font("Arial", size=8)
+        pdf.cell(200, 10, f"ID: {question_id} - {question_text}", ln=True)
+
+    # Add a line break
+    pdf.ln(10)
+
+    # pdf.cell(cell_width, cell_height, item.question_text, border=1)
     # Generate the plot image in memory
     # items = list(maxdiff_scores.keys())
     # scores = list(maxdiff_scores.values())
