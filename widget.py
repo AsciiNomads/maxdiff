@@ -61,6 +61,7 @@ class Question:
 
 
 def generate_random_questions(number_of_questions: int):
+    """this function is for testing purposes"""
     questions = []
     for i in range(number_of_questions):
         q = Question(f"Question {i + 1}", i)
@@ -137,7 +138,8 @@ class Widget(QWidget):
 
         result = []
 
-        for i in range(5):
+        number_of_sets = len(self.question_objs) * MAX_QUESTIONS_PER_PAGE
+        for i in range(number_of_sets):
             subset = random.sample(self.question_objs, 4)
             result.append(subset)
 
