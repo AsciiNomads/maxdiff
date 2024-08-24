@@ -133,7 +133,7 @@ QRadioButton::indicator:checked {
                <enum>Qt::LayoutDirection::LeftToRight</enum>
               </property>
               <property name="text">
-               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p style=&quot;line-height: 0.35;&quot;&gt;Choose one item from the &amp;quot;Most important&amp;quot; column on the left and one item from the &amp;quot;least&lt;/p&gt;&lt;p&gt;important&amp;quot; column on the right. You are only allowed one response per column.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Choose one item from the &amp;quot;Least important&amp;quot; column on the left and one item from the &amp;quot;Most&lt;/p&gt;&lt;p&gt; important&amp;quot; column on the right. You are only allowed one response per column.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
               </property>
               <property name="alignment">
                <set>Qt::AlignmentFlag::AlignCenter</set>

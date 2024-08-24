@@ -285,7 +285,7 @@ class Ui_Widget(object):
         Widget.setWindowTitle(QCoreApplication.translate("Widget", u"Widget", None))
         self.groupBox.setTitle("")
         self.label_7.setText(QCoreApplication.translate("Widget", u"<html><head/><body><p><span style=\" font-size:20px; font-weight:700;\">Survey App  - Demo Version</span></p></body></html>", None))
-        self.label_10.setText(QCoreApplication.translate("Widget", u"<html><head/><body><p style=\"line-height: 0.35;\">Choose one item from the &quot;Most important&quot; column on the left and one item from the &quot;least</p><p>important&quot; column on the right. You are only allowed one response per column.</p></body></html>", None))
+        self.label_10.setText(QCoreApplication.translate("Widget", u"<html><head/><body><p>Choose one item from the &quot;Least important&quot; column on the left and one item from the &quot;Most</p><p> important&quot; column on the right. You are only allowed one response per column.</p></body></html>", None))
         self.Questions_g.setTitle("")
         self.questions_part.setText(QCoreApplication.translate("Widget", u"Questions : 2/3", None))
         self.LeastImportant_L.setText(QCoreApplication.translate("Widget", u"<html><head/><body><p align=\"center\" style=\"line-height: 0.25;\">Least</p><p align=\"center\">important</p></body></html>", None))

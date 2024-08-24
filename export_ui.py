@@ -18,6 +18,7 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
 from PySide6.QtWidgets import (QApplication, QComboBox, QHBoxLayout, QLabel,
     QPushButton, QSizePolicy, QVBoxLayout, QWidget)
 import resource_rc
+import resource_rc
 
 class Ui_Form(object):
     def setupUi(self, Form):
@@ -156,20 +157,24 @@ class Ui_Form(object):
         self.formWidget_2.setMinimumSize(QSize(600, 600))
         self.formWidget_2.setMaximumSize(QSize(16777215, 600))
         self.formWidget_2.setBaseSize(QSize(400, 400))
-        self.image_frame = QVBoxLayout(self.formWidget_2)
-        self.image_frame.setObjectName(u"image_frame")
-        self.image_frame.setContentsMargins(-1, 35, -1, -1)
+        self.horizontalLayout = QHBoxLayout(self.formWidget_2)
+        self.horizontalLayout.setObjectName(u"horizontalLayout")
+        self.horizontalLayout.setContentsMargins(-1, 35, -1, -1)
         self.plot_pic = QLabel(self.formWidget_2)
         self.plot_pic.setObjectName(u"plot_pic")
-        sizePolicy1 = QSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Preferred)
+        self.plot_pic.setEnabled(True)
+        sizePolicy1 = QSizePolicy(QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Preferred)
         sizePolicy1.setHorizontalStretch(0)
         sizePolicy1.setVerticalStretch(0)
         sizePolicy1.setHeightForWidth(self.plot_pic.sizePolicy().hasHeightForWidth())
         self.plot_pic.setSizePolicy(sizePolicy1)
+        self.plot_pic.setMinimumSize(QSize(400, 400))
+        self.plot_pic.setBaseSize(QSize(600, 600))
+        self.plot_pic.setAutoFillBackground(True)
         self.plot_pic.setPixmap(QPixmap(u":/newPrefix/images/wallhaven-01wzrv.jpg"))
         self.plot_pic.setScaledContents(True)
 
-        self.image_frame.addWidget(self.plot_pic)
+        self.horizontalLayout.addWidget(self.plot_pic)
 
 
         self.verticalLayout_2.addWidget(self.formWidget_2)
