@@ -138,7 +138,7 @@ class Widget(QWidget):
 
         result = []
 
-        number_of_sets = len(self.question_objs) * MAX_QUESTIONS_PER_PAGE
+        number_of_sets = len(self.question_objs) * 3
         # number_of_sets = 1
         for i in range(number_of_sets):
             subset = random.sample(self.question_objs, 4)
