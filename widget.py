@@ -16,6 +16,8 @@ from random import randint
 from utils.maxdiff import *
 from utils.gen_plots import *
 
+from utils.pdf_export import *
+
 
 class Question:
     def __init__(self, question_text, _id):
@@ -242,9 +244,18 @@ class Widget(QWidget):
                     )
 
         def export_pdf():
-            # create table with csv
+            # maxdiff_scores = {"Feature A": 0, "Feature B": 0, "Feature C": 0}
+            # Sample dictionary data
+            data = self.questions
             dir = "resources/images/"
-
+            file_path = os.path.join(dir, "maxdiff.png")
+            # export_maxdiff_to_pdf(filename)
+            # Export to PDF
+            filename = "maxdiff_scores.pdf"
+            export_maxdiff_to_pdf(data, filename, file_path)
+            # pass
+            # create table with csv
+            # dir = "resources/images/"
 
         def export_png():
             dir = "resources/images/"
@@ -275,6 +286,7 @@ class Widget(QWidget):
 if __name__ == "__main__":
     app = QApplication(sys.argv)
     widget = Widget()
+    # widget.exportWidget.show()
     widget.show()
 
     sys.exit(app.exec())
