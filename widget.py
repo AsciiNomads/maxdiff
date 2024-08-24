@@ -75,6 +75,9 @@ def generate_random_questions(number_of_questions: int):
 MAX_QUESTIONS_PER_PAGE = 4
 
 
+# TODO :
+# 1. if a radio button is going to be checked that both in its row and column are checked, it will not work properly. and next button will not be enabled.
+# 2. if have not most and least selected, next button will not be enabled.
 class Widget(QWidget):
     def __init__(self, parent=None):
         super().__init__(parent)
@@ -142,7 +145,7 @@ class Widget(QWidget):
         return result
 
     def load_question_set(self, question_set: list[Question]):
-        # TODO: If a radio button is going to be checked that both in its row and column are checked, it will not work properly.
+        # TODO: If a radio button is going to be checked that both in its row and column are checked, it will not work properly. and next button will not be enabled.
         self.ui.left_button_group.setExclusive(False)
         self.ui.right_button_group.setExclusive(False)
         for btn in self.ui.right_button_group.buttons():
