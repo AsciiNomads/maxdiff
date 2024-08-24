@@ -166,17 +166,10 @@ QRadioButton::indicator:checked {
        </property>
        <layout class="QVBoxLayout" name="image_frame">
         <property name="topMargin">
-         <number>1</number>
+         <number>35</number>
         </property>
         <item>
-         <widget class="QLabel" name="label_2">
-          <property name="text">
-           <string/>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QLabel" name="label">
+         <widget class="QLabel" name="plot_pic">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
             <horstretch>0</horstretch>

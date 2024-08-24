@@ -7,6 +7,7 @@ from ui_form import Ui_Widget
 import random
 
 from PySide6.QtWidgets import QApplication, QLabel, QWidget, QButtonGroup
+from PySide6.QtGui import QPixmap
 
 from utils.file_reader import read_questions
 
@@ -264,10 +265,11 @@ class Widget(QWidget):
             fig.savefig(file_path, format="png")
 
         def show_plot():
+            dir = "resources/images/"
+            file_path = os.path.join(dir, "maxdiff.png")
             fig = plot_best_worst_scores(self.questions)
-            fig.show()
-            # fig.savefig("maxdiff.png", format="png")
-            pass
+            fig.savefig(file_path, format="png")
+            self.ui.plot_pic.setPixmap(QPixmap(file_path))
 
         print("Exporting data")
         print(self.comboBox.currentText())

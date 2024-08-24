@@ -158,23 +158,18 @@ class Ui_Form(object):
         self.formWidget_2.setBaseSize(QSize(400, 400))
         self.image_frame = QVBoxLayout(self.formWidget_2)
         self.image_frame.setObjectName(u"image_frame")
-        self.image_frame.setContentsMargins(-1, 1, -1, -1)
-        self.label_2 = QLabel(self.formWidget_2)
-        self.label_2.setObjectName(u"label_2")
-
-        self.image_frame.addWidget(self.label_2)
-
-        self.label = QLabel(self.formWidget_2)
-        self.label.setObjectName(u"label")
+        self.image_frame.setContentsMargins(-1, 35, -1, -1)
+        self.plot_pic = QLabel(self.formWidget_2)
+        self.plot_pic.setObjectName(u"plot_pic")
         sizePolicy1 = QSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Preferred)
         sizePolicy1.setHorizontalStretch(0)
         sizePolicy1.setVerticalStretch(0)
-        sizePolicy1.setHeightForWidth(self.label.sizePolicy().hasHeightForWidth())
-        self.label.setSizePolicy(sizePolicy1)
-        self.label.setPixmap(QPixmap(u":/newPrefix/images/wallhaven-01wzrv.jpg"))
-        self.label.setScaledContents(True)
+        sizePolicy1.setHeightForWidth(self.plot_pic.sizePolicy().hasHeightForWidth())
+        self.plot_pic.setSizePolicy(sizePolicy1)
+        self.plot_pic.setPixmap(QPixmap(u":/newPrefix/images/wallhaven-01wzrv.jpg"))
+        self.plot_pic.setScaledContents(True)
 
-        self.image_frame.addWidget(self.label)
+        self.image_frame.addWidget(self.plot_pic)
 
 
         self.verticalLayout_2.addWidget(self.formWidget_2)
@@ -191,7 +186,6 @@ class Ui_Form(object):
     def retranslateUi(self, Form):
         Form.setWindowTitle(QCoreApplication.translate("Form", u"Form", None))
         self.exportData.setText(QCoreApplication.translate("Form", u"export", None))
-        self.label_2.setText("")
-        self.label.setText("")
+        self.plot_pic.setText("")
     # retranslateUi
 
