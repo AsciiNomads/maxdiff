@@ -139,6 +139,7 @@ class Widget(QWidget):
         result = []
 
         number_of_sets = len(self.question_objs) * MAX_QUESTIONS_PER_PAGE
+        # number_of_sets = 1
         for i in range(number_of_sets):
             subset = random.sample(self.question_objs, 4)
             result.append(subset)
@@ -167,9 +168,9 @@ class Widget(QWidget):
         for widget in self.ui.question_widgets:
             widget["question"].increment_total_proposed()
 
-            if widget["radio1"].isChecked():
+            if widget["radio2"].isChecked():
                 widget["question"].increment_and_update_as_most_preferred(questions)
-            elif widget["radio2"].isChecked():
+            elif widget["radio1"].isChecked():
                 widget["question"].increment_and_update_as_least_preferred(questions)
 
     def change_remind_question_lable(self, number: int, total: int):
