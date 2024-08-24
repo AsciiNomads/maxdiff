@@ -197,14 +197,17 @@ class Widget(QWidget):
         return self.question_objs
 
     def exportWidget(self):
+        def show_plot():
+            dir = "resources/images/"
+            file_path = os.path.join(dir, "maxdiff.png")
+            fig = plot_best_worst_scores(self.questions)
+            fig.savefig(file_path, format="png")
+            self.ui.plot_pic.setPixmap(QPixmap(file_path))
+
         # get questions
         # questions = self.get_questions()
         self.questions = generate_random_questions(15)
         print(self.questions)
-        #####################
-        # calculate maxdiff
-        #####################
-
         # Create a new widget to show
         self.new_widget = QWidget()
         self.ui = Ui_Form()
@@ -218,11 +221,11 @@ class Widget(QWidget):
 
         # Show the new widget
         self.new_widget.show()
+        show_plot()
         self.comboBox = self.ui.comboBox
         self.comboBox.addItem("csv")
         self.comboBox.addItem("pdf")
         self.comboBox.addItem("png")
-        self.comboBox.addItem("show plot")
         self.ui.exportData.clicked.connect(self.export_data)
 
     def _create_dir(self):
@@ -274,13 +277,6 @@ class Widget(QWidget):
 
             fig = plot_best_worst_scores(self.questions)
             fig.savefig(file_path, format="png")
-
-        def show_plot():
-            dir = "resources/images/"
-            file_path = os.path.join(dir, "maxdiff.png")
-            fig = plot_best_worst_scores(self.questions)
-            fig.savefig(file_path, format="png")
-            self.ui.plot_pic.setPixmap(QPixmap(file_path))
 
         print("Exporting data")
         print(self.comboBox.currentText())
