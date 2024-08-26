@@ -92,7 +92,8 @@ class Widget(QWidget):
 
         self.question_sets = self.create_question_sets()
         self.current_set_index = 0
-        self.change_remind_question_lable(
+        
+        self.update_question_reminder_label(
             self.current_set_index + 1, len(self.question_sets)
         )
 
@@ -101,32 +102,60 @@ class Widget(QWidget):
         self.load_question_set(self.question_sets[self.current_set_index])
 
     def setup_widget(self, widget):
-        self.ui.left_button_group = QButtonGroup(widget)
-        self.ui.right_button_group = QButtonGroup(widget)
+        self.ui.left_button_group = QButtonGroup(self)
+        self.ui.left_button_group.setExclusive(True)
+
+        self.ui.right_button_group = QButtonGroup(self)
+        self.ui.right_button_group.setExclusive(True)
+        
         self.ui.question_widgets = []
 
         for i in range(1, MAX_QUESTIONS_PER_PAGE + 1):
-            qi_l = getattr(self.ui, f"q{i}_l")
-            qi_most = getattr(self.ui, f"q{i}_most")
-            qi_least = getattr(self.ui, f"q{i}_least")
+            # Access widgets by name
+            question_label = getattr(self.ui, f"q{i}_l")
+            left_radio = getattr(self.ui, f"q{i}_least")
+            right_radio = getattr(self.ui, f"q{i}_most")
 
-            question_button_group = QButtonGroup(self)
-            question_button_group.addButton(qi_least)
-            question_button_group.addButton(qi_most)
-            self.ui.left_button_group.addButton(qi_least)
-            self.ui.right_button_group.addButton(qi_most)
+            # Add radios to their respective column groups
+            self.ui.left_button_group.addButton(left_radio)
+            self.ui.right_button_group.addButton(right_radio)
 
-            self.ui.question_widgets.append(
-                {
-                    "radio1": qi_most,
-                    "radio2": qi_least,
-                    "label": qi_l,
-                    "button_group": question_button_group,
-                    "question": Question("", _id=-(i + 1)),
-                }
-            )
+            # Store references in a list for easy access
+            self.ui.question_widgets.append({
+                "label": question_label,
+                "left_radio": left_radio,
+                "right_radio": right_radio,
+                "question": Question("", _id=-(i + 1)),
+            })
+
+            # Connect signals for row-wise restriction
+            left_radio.toggled.connect(lambda checked, idx=i-1: self.handle_left_radio_toggle(checked, idx))
+            right_radio.toggled.connect(lambda checked, idx=i-1: self.handle_right_radio_toggle(checked, idx))
 
         self.ui.NextButton.clicked.connect(self.next_question_set)
+        
+    def handle_left_radio_toggle(self, checked, index):
+        """
+        When a left radio button is toggled:
+        - If checked, disable the right radio button in the same row.
+        - If unchecked, enable the right radio button in the same row.
+        """
+        right_radio = self.ui.question_widgets[index]['right_radio']
+        right_radio.setEnabled(not checked)
+
+    def handle_right_radio_toggle(self, checked, index):
+        """
+        When a right radio button is toggled:
+        - If checked, disable the left radio button in the same row.
+        - If unchecked, enable the left radio button in the same row.
+        """
+        left_radio = self.ui.question_widgets[index]['left_radio']
+        left_radio.setEnabled(not checked)
+        
+    def check_enable_next_button(self):
+        # Enable the "Next" button only if each row has one selection
+        all_selected = all(w["left_radio"].isChecked() or w["right_radio"].isChecked() for w in self.ui.question_widgets)
+        self.ui.NextButton.setEnabled(all_selected)
 
     def create_question_sets(self):
         # Create question instances
@@ -151,10 +180,13 @@ class Widget(QWidget):
         # TODO: If a radio button is going to be checked that both in its row and column are checked, it will not work properly. and next button will not be enabled.
         self.ui.left_button_group.setExclusive(False)
         self.ui.right_button_group.setExclusive(False)
-        for btn in self.ui.right_button_group.buttons():
-            btn.setChecked(False)
-        for btn in self.ui.left_button_group.buttons():
-            btn.setChecked(False)
+        
+        for widget in self.ui.question_widgets:
+            widget['left_radio'].setChecked(False)
+            widget['right_radio'].setChecked(False)
+            widget['left_radio'].setEnabled(True)
+            widget['right_radio'].setEnabled(True)
+
         self.ui.left_button_group.setExclusive(True)
         self.ui.right_button_group.setExclusive(True)
 
@@ -168,12 +200,12 @@ class Widget(QWidget):
         for widget in self.ui.question_widgets:
             widget["question"].increment_total_proposed()
 
-            if widget["radio2"].isChecked():
+            if widget["right_radio"].isChecked():
                 widget["question"].increment_and_update_as_most_preferred(questions)
-            elif widget["radio1"].isChecked():
+            elif widget["left_radio"].isChecked():
                 widget["question"].increment_and_update_as_least_preferred(questions)
 
-    def change_remind_question_lable(self, number: int, total: int):
+    def update_question_reminder_label(self, number: int, total: int):
         self.ui.questions_part.setText(f"Questions: {number}/{total}")
 
     def next_question_set(self):
@@ -187,7 +219,7 @@ class Widget(QWidget):
 
                 # self.ui.NextButton.styleSheet = "background-color: red"
             self.load_question_set(self.question_sets[self.current_set_index])
-            self.change_remind_question_lable(
+            self.update_question_reminder_label(
                 self.current_set_index + 1, len(self.question_sets)
             )
         else:

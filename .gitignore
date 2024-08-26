@@ -2,3 +2,6 @@
 __pycache__
 *.pyc
 *.bkp
+*.pdf
+*.csv
+*.png
