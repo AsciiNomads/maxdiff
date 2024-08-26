@@ -15,12 +15,22 @@ def plot_best_worst_scores(questions):
     # Convert indices to strings for better readability (optional)
     # indices = [str(i) for i in indices]
 
-    # print(dir(questions[0]))
+    max_label_length = max(len(question.question_text) for question in questions)
+
+    fig_width = max(6.5, 0.25 * max_label_length)
+    fig_height = max(4, 0.5 * len(questions))
+
+    # ax.barh(labels, values)
+    # plt.subplots_adjust(left=0.3)
+
     titles = [q.question_text for q in questions]
 
     # Creating horizontal bars
-    # fig, ax = plt.subplots(figsize=(10, len(indices) * 0.5))
-    fig, ax = plt.subplots(figsize=(10, len(titles) * 0.5))
+    # fig, ax = plt.subplots(figsize=(10, len(titles) * 0.5))
+    fig, ax = plt.subplots(figsize=(fig_width, fig_height))
+    plt.subplots_adjust(left=0.4)  # Adjust 'left' to create more space for labels
+    plt.subplots_adjust(bottom=0.3)  # Adjust to provide space for long labels
+
     # ax.barh(indices, scores, color="skyblue")
     ax.barh(titles, scores, color="skyblue")
 

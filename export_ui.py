@@ -16,15 +16,15 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
 from PySide6.QtWidgets import (QApplication, QComboBox, QHBoxLayout, QLabel,
-    QPushButton, QSizePolicy, QVBoxLayout, QWidget)
-import resource_rc
+    QPushButton, QSizePolicy, QSpacerItem, QVBoxLayout,
+    QWidget)
 import resource_rc
 
 class Ui_Form(object):
     def setupUi(self, Form):
         if not Form.objectName():
             Form.setObjectName(u"Form")
-        Form.resize(844, 670)
+        Form.resize(991, 726)
         Form.setStyleSheet(u"/* ComboBox Style */\n"
 "QComboBox {\n"
 "    background-color: #FFFFFF; /* White background for the dropdown */\n"
@@ -149,32 +149,38 @@ class Ui_Form(object):
 
         self.formWidget_2 = QWidget(Form)
         self.formWidget_2.setObjectName(u"formWidget_2")
-        sizePolicy = QSizePolicy(QSizePolicy.Policy.Preferred, QSizePolicy.Policy.Fixed)
+        sizePolicy = QSizePolicy(QSizePolicy.Policy.Preferred, QSizePolicy.Policy.Preferred)
         sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(40)
+        sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.formWidget_2.sizePolicy().hasHeightForWidth())
         self.formWidget_2.setSizePolicy(sizePolicy)
         self.formWidget_2.setMinimumSize(QSize(600, 600))
         self.formWidget_2.setMaximumSize(QSize(16777215, 600))
         self.formWidget_2.setBaseSize(QSize(400, 400))
+        self.formWidget_2.setAutoFillBackground(False)
         self.horizontalLayout = QHBoxLayout(self.formWidget_2)
         self.horizontalLayout.setObjectName(u"horizontalLayout")
         self.horizontalLayout.setContentsMargins(-1, 35, -1, -1)
+        self.horizontalSpacer = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+
+        self.horizontalLayout.addItem(self.horizontalSpacer)
+
         self.plot_pic = QLabel(self.formWidget_2)
         self.plot_pic.setObjectName(u"plot_pic")
         self.plot_pic.setEnabled(True)
-        sizePolicy1 = QSizePolicy(QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Preferred)
-        sizePolicy1.setHorizontalStretch(0)
-        sizePolicy1.setVerticalStretch(0)
-        sizePolicy1.setHeightForWidth(self.plot_pic.sizePolicy().hasHeightForWidth())
-        self.plot_pic.setSizePolicy(sizePolicy1)
+        sizePolicy.setHeightForWidth(self.plot_pic.sizePolicy().hasHeightForWidth())
+        self.plot_pic.setSizePolicy(sizePolicy)
         self.plot_pic.setMinimumSize(QSize(400, 400))
         self.plot_pic.setBaseSize(QSize(600, 600))
-        self.plot_pic.setAutoFillBackground(True)
+        self.plot_pic.setAutoFillBackground(False)
         self.plot_pic.setPixmap(QPixmap(u":/newPrefix/images/wallhaven-01wzrv.jpg"))
-        self.plot_pic.setScaledContents(True)
+        self.plot_pic.setScaledContents(False)
 
         self.horizontalLayout.addWidget(self.plot_pic)
+
+        self.horizontalSpacer_2 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+
+        self.horizontalLayout.addItem(self.horizontalSpacer_2)
 
 
         self.verticalLayout_2.addWidget(self.formWidget_2)
