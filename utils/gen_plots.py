@@ -13,20 +13,25 @@ def plot_best_worst_scores(questions):
     indices, scores = get_scores(questions)
 
     # Convert indices to strings for better readability (optional)
-    indices = [str(i) for i in indices]
+    # indices = [str(i) for i in indices]
+
+    # print(dir(questions[0]))
+    titles = [q.question_text for q in questions]
 
     # Creating horizontal bars
-    fig, ax = plt.subplots(figsize=(10, len(indices) * 0.5))
-    ax.barh(indices, scores, color="skyblue")
+    # fig, ax = plt.subplots(figsize=(10, len(indices) * 0.5))
+    fig, ax = plt.subplots(figsize=(10, len(titles) * 0.5))
+    # ax.barh(indices, scores, color="skyblue")
+    ax.barh(titles, scores, color="skyblue")
 
     ax.set_xlabel("Scores")
-    ax.set_ylabel("Question ID")
+    # ax.set_ylabel("Question ID")
+    ax.set_ylabel("Question Title")
     ax.set_title("Best-Worst Scores")
 
     ax.invert_yaxis()  # Invert y-axis to have the highest score on top
 
     return fig
-
 
 
 # Function to plot Best-Worst Percentages
