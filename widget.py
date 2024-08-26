@@ -177,8 +177,8 @@ class Widget(QWidget):
 
         result = []
 
-        # number_of_sets = len(self.question_objs) * 3
-        number_of_sets = 2
+        number_of_sets = len(self.question_objs) * 3
+        # number_of_sets = 2
         for i in range(number_of_sets):
             subset = random.sample(self.question_objs, 4)
             result.append(subset)
