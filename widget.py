@@ -310,7 +310,7 @@ class Widget(QWidget):
         def get_filepath(extension: str):
             file_dialog = QFileDialog()
             file_path, _ = file_dialog.getSaveFileName(
-                # filter=f"{extension.upper()} files (*.{extension})",
+                filter=f"{extension.upper()} files (*.{extension})",
             )
             # and extensions to csv file
             if f".{extension}" not in file_path:
