@@ -11,6 +11,7 @@ from PySide6.QtGui import QPixmap
 
 from utils.file_reader import read_questions
 
+from PySide6.QtCore import Qt
 from export_ui import Ui_Form
 
 from random import randint
@@ -252,7 +253,24 @@ class Widget(QWidget):
             file_path = os.path.join(dir, "maxdiff.png")
             fig = plot_best_worst_scores(self.questions)
             fig.savefig(file_path, format="png")
-            self.ui.plot_pic.setPixmap(QPixmap(file_path))
+            pixmap = QPixmap(file_path)
+
+            # Get the original size of the image
+            original_width = pixmap.width()
+            original_height = pixmap.height()
+
+            # Determine the size to scale the image to
+            # Example: scaling to half the original size
+            scaled_width = original_width // 1.5
+            scaled_height = original_height // 1.5
+            # scaled_width = original_width
+            # scaled_height = original_height
+
+            # Scale the image while keeping the aspect ratio and using smooth transformation
+            scaled_pixmap = pixmap.scaled(
+                scaled_width, scaled_height, Qt.KeepAspectRatio, Qt.SmoothTransformation
+            )
+            self.ui.plot_pic.setPixmap(scaled_pixmap)
 
         # get questions
         self.questions = self.get_questions()
