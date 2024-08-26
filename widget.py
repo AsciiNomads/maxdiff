@@ -1,10 +1,12 @@
 import sys
+import csv
+import random
+
 import os
 
 from PySide6.QtWidgets import QApplication, QWidget, QFileDialog
 
 from ui_form import Ui_Widget
-import random
 
 from PySide6.QtWidgets import QApplication, QLabel, QWidget, QButtonGroup
 from PySide6.QtGui import QPixmap
@@ -316,15 +318,28 @@ class Widget(QWidget):
             return file_path
 
         def export_csv():
-            # dir = os.path.join(self.resources_dir, "csv/")
-            # file_path = os.path.join(dir, "maxdiff.csv")
             file_path = get_filepath("csv")
 
-            with open(file_path, "w") as f:
-                f.write("Question,Most Preferred,Least Preferred,Total Proposed\n")
+            with open(file_path, "w", newline="") as f:
+                writer = csv.writer(f)
+                writer.writerow(
+                    [
+                        "id",
+                        "Question",
+                        "Most Preferred",
+                        "Least Preferred",
+                        "Total Proposed",
+                    ]
+                )
                 for q in self.questions:
-                    f.write(
-                        f"{q.id},{q.question_text},{q.most_preferred},{q.least_preferred},{q.total_proposed}\n"
+                    writer.writerow(
+                        [
+                            q.id,
+                            q.question_text,
+                            q.most_preferred,
+                            q.least_preferred,
+                            q.total_proposed,
+                        ]
                     )
 
         def export_pdf():
