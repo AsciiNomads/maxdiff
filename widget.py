@@ -76,9 +76,6 @@ def generate_random_questions(number_of_questions: int):
 MAX_QUESTIONS_PER_PAGE = 4
 
 
-# TODO :
-# 1. if a radio button is going to be checked that both in its row and column are checked, it will not work properly. and next button will not be enabled.
-# 2. if have not most and least selected, next button will not be enabled.
 class Widget(QWidget):
     def __init__(self, parent=None):
         super().__init__(parent)
@@ -98,6 +95,8 @@ class Widget(QWidget):
         )
 
         self.setup_widget(self)
+        
+        self.next_button_style = self.ui.NextButton.styleSheet()
 
         self.load_question_set(self.question_sets[self.current_set_index])
 
@@ -142,6 +141,7 @@ class Widget(QWidget):
         """
         right_radio = self.ui.question_widgets[index]['right_radio']
         right_radio.setEnabled(not checked)
+        self.check_enable_next_button()
 
     def handle_right_radio_toggle(self, checked, index):
         """
@@ -151,11 +151,21 @@ class Widget(QWidget):
         """
         left_radio = self.ui.question_widgets[index]['left_radio']
         left_radio.setEnabled(not checked)
+        self.check_enable_next_button()
         
-    def check_enable_next_button(self):
+    def check_enable_next_button(self, is_finish=False):
         # Enable the "Next" button only if each row has one selection
-        all_selected = all(w["left_radio"].isChecked() or w["right_radio"].isChecked() for w in self.ui.question_widgets)
-        self.ui.NextButton.setEnabled(all_selected)
+        any_left_selected = any(w["left_radio"].isChecked() for w in self.ui.question_widgets)
+        any_right_selected = any(w["right_radio"].isChecked() for w in self.ui.question_widgets)
+        button_style = "background-color: #c0392b;" if is_finish else ""
+        
+        # Enable or disable the Next button based on selections
+        if any_left_selected and any_right_selected:
+            self.ui.NextButton.setEnabled(True)
+            self.ui.NextButton.setStyleSheet(self.next_button_style)  # Reset to default style
+        else:
+            self.ui.NextButton.setEnabled(False)
+            self.ui.NextButton.setStyleSheet("background-color: lightgray; color: gray;")
 
     def create_question_sets(self):
         # Create question instances
@@ -167,8 +177,8 @@ class Widget(QWidget):
 
         result = []
 
-        number_of_sets = len(self.question_objs) * 3
-        # number_of_sets = 1
+        # number_of_sets = len(self.question_objs) * 3
+        number_of_sets = 2
         for i in range(number_of_sets):
             subset = random.sample(self.question_objs, 4)
             result.append(subset)
@@ -177,7 +187,6 @@ class Widget(QWidget):
         return result
 
     def load_question_set(self, question_set: list[Question]):
-        # TODO: If a radio button is going to be checked that both in its row and column are checked, it will not work properly. and next button will not be enabled.
         self.ui.left_button_group.setExclusive(False)
         self.ui.right_button_group.setExclusive(False)
         
@@ -193,6 +202,8 @@ class Widget(QWidget):
         for i, question in enumerate(question_set):
             self.ui.question_widgets[i]["label"].setText(question.question_html)
             self.ui.question_widgets[i]["question"] = question
+            
+        self.check_enable_next_button()
 
     def update_questions_results(self):
         questions = [w["question"] for w in self.ui.question_widgets]
@@ -216,6 +227,7 @@ class Widget(QWidget):
             if self.current_set_index == len(self.question_sets) - 1:
                 self.ui.NextButton.setText("Finish")
                 self.ui.NextButton.setStyleSheet("background-color: #c0392b;")
+                self.next_button_style = self.ui.NextButton.styleSheet()
 
                 # self.ui.NextButton.styleSheet = "background-color: red"
             self.load_question_set(self.question_sets[self.current_set_index])
