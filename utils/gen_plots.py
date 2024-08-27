@@ -17,13 +17,21 @@ def plot_best_worst_scores(questions):
 
     max_label_length = max(len(question.question_text) for question in questions)
 
-    fig_width = max(6.5, 0.25 * max_label_length)
+    if max_label_length > 50:
+        fig_width = max(6.5, 0.25 * 50)
+    else:
+        fig_width = max(6.5, 0.25 * max_label_length)
     fig_height = max(4, 0.5 * len(questions))
 
     # ax.barh(labels, values)
     # plt.subplots_adjust(left=0.3)
 
-    titles = [q.question_text for q in questions]
+    titles = []
+    for q in questions:
+        if len(q.question_text) > 50:
+            titles.append(q.question_text[:50] + "...")
+            continue
+        titles.append(q.question_text)
 
     # Creating horizontal bars
     # fig, ax = plt.subplots(figsize=(10, len(titles) * 0.5))
