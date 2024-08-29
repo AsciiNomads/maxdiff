@@ -6,6 +6,7 @@ import sys
 # import os
 
 from PySide6.QtWidgets import QApplication, QWidget, QFileDialog
+from PySide6.QtCore import Qt
 
 
 from PySide6.QtWidgets import (
@@ -89,6 +90,11 @@ class Widget(QWidget):
 
         self.setup_widget(self)
 
+    def set_editable_items(self, list_widget):
+        for i in range(list_widget.count()):
+            item = list_widget.item(i)
+            item.setFlags(item.flags() | Qt.ItemIsEditable)
+
     def listWigetSetItem(
         self,
         list_widget,
@@ -99,15 +105,23 @@ class Widget(QWidget):
             value = ["Item 1", "Item 2", "Item 3", "Item 4", "Item 5"]
         else:
             value = value
+
         list_widget.addItems(value)
+        self.set_editable_items(list_widget)
+
+    def delete_item(self, list_widget):
+        for item in list_widget.selectedItems():
+            list_widget.takeItem(list_widget.row(item))
 
     def setup_widget(self, widget):
         list_widget = self.ui.q1_bullets
 
         # set default values
-        self.listWigetSetItem(list_widget, value=["test"])
-
-        list_widget.setEditTriggers(QListWidget.DoubleClicked)
+        self.listWigetSetItem(list_widget)
+        self.ui.add_btn.clicked.connect(
+            lambda: self.listWigetSetItem(list_widget, value=["new item"])
+        )
+        self.ui.remove_btn.clicked.connect(lambda: self.delete_item(list_widget))
 
 
 if __name__ == "__main__":
