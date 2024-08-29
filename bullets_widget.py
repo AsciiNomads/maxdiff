@@ -176,11 +176,26 @@ class Widget(QWidget):
             list_widgets[i - 1].addItems(bullets[i - 1])
             self.set_editable_items(list_widgets[i - 1])
 
+    def get_all_list_widgets_items(self, in_one_list=False):
+        bullets = []
+        for i in range(1, 7):
+            items = []
+            list_widget = getattr(widget.ui, f"q_bullets_{i}")
+            for j in range(list_widget.count()):
+                items.append(list_widget.item(j).text())
+            bullets.append(items)
+        if in_one_list:
+            return [item for sublist in bullets for item in sublist]
+        return bullets
+
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
     widget = Widget()
     widget.show()
     widget.fill_list_widget_with_csv_file("bullets.csv")
+
+    # get all items for each list_widget
+    print(widget.get_all_list_widgets_items(in_one_list=True))
 
     sys.exit(app.exec())
