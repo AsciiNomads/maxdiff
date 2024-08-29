@@ -23,7 +23,7 @@ class Ui_Form(object):
     def setupUi(self, Form):
         if not Form.objectName():
             Form.setObjectName(u"Form")
-        Form.resize(1017, 1160)
+        Form.resize(1017, 1060)
         Form.setStyleSheet(u"/* Modern Light Theme */\n"
 "\n"
 "/* Style for QCheckBox */\n"
@@ -180,6 +180,61 @@ class Ui_Form(object):
 "    color: #F8F9FA; /* Light gray text */\n"
 "    border: 1px solid #E6B0AA; /* Light red border when disabled */\n"
 "}\n"
+"/* Add Button */\n"
+"QPushButton#add_btn_1 {\n"
+"    background-color: #28A745; /* Modern green color for add */\n"
+"    color: #FFFFFF; /* White text */\n"
+"    font-size: 16px;\n"
+"    padding: 8px 16px;\n"
+"    border: none;\n"
+"    border-radius: 6px; /* Rounded corne"
+                        "rs */\n"
+"    font-weight: bold;\n"
+"}\n"
+"\n"
+"QPushButton#add_btn_1 :hover {\n"
+"    background-color: #218838; /* Darker green on hover */\n"
+"}\n"
+"\n"
+"QPushButton#add_btn_1 :pressed {\n"
+"    background-color: #1E7E34; /* Even darker green when pressed */\n"
+"    padding-top: 10px; /* Simulates button press effect */\n"
+"    padding-bottom: 6px;\n"
+"}\n"
+"\n"
+"QPushButton#add_btn_1 :disabled {\n"
+"    background-color: #A9DFBF; /* Light green when disabled */\n"
+"    color: #E9ECEF; /* Light gray text */\n"
+"    border: 1px solid #C3E6CB; /* Light green border when disabled */\n"
+"}\n"
+"\n"
+"/* Remove Button */\n"
+"QPushButton#remove_btn_1  {\n"
+"    background-color: #DC3545; /* Modern red color for remove */\n"
+"    color: #FFFFFF; /* White text */\n"
+"    font-size: 16px;\n"
+"    padding: 8px 16px;\n"
+"    border: none;\n"
+"    border-radius: 6px; /* Rounded corners */\n"
+"    font-weight: bold;\n"
+"}\n"
+"\n"
+"QPushButton#remove_btn_1 :hover {\n"
+"    background-color: #C82333; /* Darker red on hover "
+                        "*/\n"
+"}\n"
+"\n"
+"QPushButton#remove_btn_1 :pressed {\n"
+"    background-color: #A71D2A; /* Even darker red when pressed */\n"
+"    padding-top: 10px; /* Simulates button press effect */\n"
+"    padding-bottom: 6px;\n"
+"}\n"
+"\n"
+"QPushButton#remove_btn_1 :disabled {\n"
+"    background-color: #F5B7B1; /* Light red when disabled */\n"
+"    color: #F8F9FA; /* Light gray text */\n"
+"    border: 1px solid #E6B0AA; /* Light red border when disabled */\n"
+"}\n"
 "")
         self.verticalLayout_38 = QVBoxLayout(Form)
         self.verticalLayout_38.setObjectName(u"verticalLayout_38")
@@ -232,6 +287,7 @@ class Ui_Form(object):
         self.verticalLayout.setObjectName(u"verticalLayout")
         self.add_btn_1 = QPushButton(self.frame_1_2)
         self.add_btn_1.setObjectName(u"add_btn_1")
+        self.add_btn_1.setStyleSheet(u"")
 
         self.verticalLayout.addWidget(self.add_btn_1)
 
