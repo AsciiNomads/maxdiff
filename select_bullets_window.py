@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'select_bullets.ui'
+## Form generated from reading UI file 'select_bullets_window.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.7.2
 ##
@@ -16,229 +16,20 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
 from PySide6.QtWidgets import (QApplication, QFrame, QHBoxLayout, QLabel,
-    QListWidget, QListWidgetItem, QPushButton, QSizePolicy,
-    QSpacerItem, QVBoxLayout, QWidget)
+    QListWidget, QListWidgetItem, QMainWindow, QMenuBar,
+    QPushButton, QSizePolicy, QSpacerItem, QStatusBar,
+    QVBoxLayout, QWidget)
 
-class Ui_Form(object):
-    def setupUi(self, Form):
-        if not Form.objectName():
-            Form.setObjectName(u"Form")
-        Form.resize(1017, 868)
-        Form.setStyleSheet(u"/* Modern Light Theme */\n"
-"\n"
-"/* Style for QCheckBox */\n"
-"QCheckBox {\n"
-"    font-size: 14px;\n"
-"    color: #2C3E50; /* Slightly darker text for better readability */\n"
-"    padding: 6px;\n"
-"}\n"
-"\n"
-"QCheckBox::indicator {\n"
-"    width: 20px;\n"
-"    height: 20px;\n"
-"    border-radius: 4px;\n"
-"    border: 1px solid #BDC3C7; /* Light gray border */\n"
-"    background-color: #ECF0F1; /* Light background color */\n"
-"}\n"
-"\n"
-"QCheckBox::indicator:unchecked:hover {\n"
-"    background-color: #D5DBDB; /* Slightly darker on hover */\n"
-"}\n"
-"\n"
-"QCheckBox::indicator:checked {\n"
-"    background-color: #3498DB; /* Blue color when checked */\n"
-"    border: none;\n"
-"}\n"
-"\n"
-"/* Style for QTabWidget */\n"
-"QTabWidget::pane {\n"
-"    border: 1px solid #D6DBDF; /* Light border around the tab content */\n"
-"    background-color: #FAFAFA; /* Light background */\n"
-"}\n"
-"\n"
-"QTabBar::tab {\n"
-"    background: #F2F3F4; /* Light gray background for tabs */\n"
-"    border: 1px solid #D6DBDF;\n"
-"    padd"
-                        "ing: 8px 20px;\n"
-"    margin-right: 3px;\n"
-"    font-size: 14px;\n"
-"    color: #2C3E50; /* Darker text color for better contrast */\n"
-"    border-top-left-radius: 6px;\n"
-"    border-top-right-radius: 6px;\n"
-"}\n"
-"\n"
-"QTabBar::tab:selected {\n"
-"    background: #FFFFFF; /* White background for the selected tab */\n"
-"    color: #1A5276; /* Darker blue for selected tab text */\n"
-"    border-bottom-color: transparent; /* Removes the bottom border of the selected tab */\n"
-"}\n"
-"\n"
-"QTabBar::tab:hover {\n"
-"    background: #E5E8E8; /* Light gray on hover */\n"
-"}\n"
-"\n"
-"/* Style for QLabel */\n"
-"QLabel {\n"
-"    font-size: 14px;\n"
-"\n"
-"    color: #34495E; /* Darker text color */\n"
-"    padding: 6px;\n"
-"    /* background-color: #FFFFFF; /* White background for a clean look */\n"
-"	background-color: None; \n"
-"}\n"
-"\n"
-"QLabel#title {\n"
-"    font-size: 18px;\n"
-"    font-weight: bold;\n"
-"    color: #1C2833; /* Darker, bold title */\n"
-"    padding: 12px 0;\n"
-"    background-color: #F7F9F9; /* S"
-                        "lightly off-white background for the title */\n"
-"}\n"
-"/* Modern Green Confirm Button */\n"
-"\n"
-"QPushButton#confirm_btn {\n"
-"    background-color: #28A745; /* Modern green color */\n"
-"    color: #FFFFFF; /* White text */\n"
-"    font-size: 16px;\n"
-"    padding: 8px 16px;\n"
-"    border: none;\n"
-"    border-radius: 6px; /* Rounded corners for a modern look */\n"
-"    font-weight: bold;\n"
-"}\n"
-"\n"
-"QPushButton#confirm_btn:hover {\n"
-"    background-color: #218838; /* Darker green on hover */\n"
-"}\n"
-"\n"
-"QPushButton#confirm_btn:pressed {\n"
-"    background-color: #1E7E34; /* Even darker green when pressed */\n"
-"    padding-top: 10px; /* Slightly shifts down when pressed for a tactile effect */\n"
-"    padding-bottom: 6px; /* Compensates for the shift */\n"
-"}\n"
-"\n"
-"QPushButton#confirm_btn:disabled {\n"
-"    background-color: #A9DFBF; /* Light green when disabled */\n"
-"    color: #E9ECEF; /* Light gray text */\n"
-"    border: 1px solid #C3E6CB; /* Light green border when disabled */\n"
-"}\n"
-"\n"
-""
-                        "/* -------------------------------- */\n"
-"/* Add Button */\n"
-"QPushButton#add_btn {\n"
-"    background-color: #28A745; /* Modern green color for add */\n"
-"    color: #FFFFFF; /* White text */\n"
-"    font-size: 16px;\n"
-"    padding: 8px 16px;\n"
-"    border: none;\n"
-"    border-radius: 6px; /* Rounded corners */\n"
-"    font-weight: bold;\n"
-"}\n"
-"\n"
-"QPushButton#add_btn:hover {\n"
-"    background-color: #218838; /* Darker green on hover */\n"
-"}\n"
-"\n"
-"QPushButton#add_btn:pressed {\n"
-"    background-color: #1E7E34; /* Even darker green when pressed */\n"
-"    padding-top: 10px; /* Simulates button press effect */\n"
-"    padding-bottom: 6px;\n"
-"}\n"
-"\n"
-"QPushButton#add_btn:disabled {\n"
-"    background-color: #A9DFBF; /* Light green when disabled */\n"
-"    color: #E9ECEF; /* Light gray text */\n"
-"    border: 1px solid #C3E6CB; /* Light green border when disabled */\n"
-"}\n"
-"\n"
-"/* Remove Button */\n"
-"QPushButton#remove_btn {\n"
-"    background-color: #DC3545; /* Modern red color for remove *"
-                        "/\n"
-"    color: #FFFFFF; /* White text */\n"
-"    font-size: 16px;\n"
-"    padding: 8px 16px;\n"
-"    border: none;\n"
-"    border-radius: 6px; /* Rounded corners */\n"
-"    font-weight: bold;\n"
-"}\n"
-"\n"
-"QPushButton#remove_btn:hover {\n"
-"    background-color: #C82333; /* Darker red on hover */\n"
-"}\n"
-"\n"
-"QPushButton#remove_btn:pressed {\n"
-"    background-color: #A71D2A; /* Even darker red when pressed */\n"
-"    padding-top: 10px; /* Simulates button press effect */\n"
-"    padding-bottom: 6px;\n"
-"}\n"
-"\n"
-"QPushButton#remove_btn:disabled {\n"
-"    background-color: #F5B7B1; /* Light red when disabled */\n"
-"    color: #F8F9FA; /* Light gray text */\n"
-"    border: 1px solid #E6B0AA; /* Light red border when disabled */\n"
-"}\n"
-"/* Add Button */\n"
-"QPushButton#add_btn_1 {\n"
-"    background-color: #28A745; /* Modern green color for add */\n"
-"    color: #FFFFFF; /* White text */\n"
-"    font-size: 16px;\n"
-"    padding: 8px 16px;\n"
-"    border: none;\n"
-"    border-radius: 6px; /* Rounded corne"
-                        "rs */\n"
-"    font-weight: bold;\n"
-"}\n"
-"\n"
-"QPushButton#add_btn_1 :hover {\n"
-"    background-color: #218838; /* Darker green on hover */\n"
-"}\n"
-"\n"
-"QPushButton#add_btn_1 :pressed {\n"
-"    background-color: #1E7E34; /* Even darker green when pressed */\n"
-"    padding-top: 10px; /* Simulates button press effect */\n"
-"    padding-bottom: 6px;\n"
-"}\n"
-"\n"
-"QPushButton#add_btn_1 :disabled {\n"
-"    background-color: #A9DFBF; /* Light green when disabled */\n"
-"    color: #E9ECEF; /* Light gray text */\n"
-"    border: 1px solid #C3E6CB; /* Light green border when disabled */\n"
-"}\n"
-"\n"
-"/* Remove Button */\n"
-"QPushButton#remove_btn_1  {\n"
-"    background-color: #DC3545; /* Modern red color for remove */\n"
-"    color: #FFFFFF; /* White text */\n"
-"    font-size: 16px;\n"
-"    padding: 8px 16px;\n"
-"    border: none;\n"
-"    border-radius: 6px; /* Rounded corners */\n"
-"    font-weight: bold;\n"
-"}\n"
-"\n"
-"QPushButton#remove_btn_1 :hover {\n"
-"    background-color: #C82333; /* Darker red on hover "
-                        "*/\n"
-"}\n"
-"\n"
-"QPushButton#remove_btn_1 :pressed {\n"
-"    background-color: #A71D2A; /* Even darker red when pressed */\n"
-"    padding-top: 10px; /* Simulates button press effect */\n"
-"    padding-bottom: 6px;\n"
-"}\n"
-"\n"
-"QPushButton#remove_btn_1 :disabled {\n"
-"    background-color: #F5B7B1; /* Light red when disabled */\n"
-"    color: #F8F9FA; /* Light gray text */\n"
-"    border: 1px solid #E6B0AA; /* Light red border when disabled */\n"
-"}\n"
-"")
-        self.verticalLayout_38 = QVBoxLayout(Form)
-        self.verticalLayout_38.setObjectName(u"verticalLayout_38")
-        self.frame = QFrame(Form)
+class Ui_MainWindow(object):
+    def setupUi(self, MainWindow):
+        if not MainWindow.objectName():
+            MainWindow.setObjectName(u"MainWindow")
+        MainWindow.resize(800, 763)
+        self.centralwidget = QWidget(MainWindow)
+        self.centralwidget.setObjectName(u"centralwidget")
+        self.verticalLayout_3 = QVBoxLayout(self.centralwidget)
+        self.verticalLayout_3.setObjectName(u"verticalLayout_3")
+        self.frame = QFrame(self.centralwidget)
         self.frame.setObjectName(u"frame")
         self.frame.setFrameShape(QFrame.Shape.StyledPanel)
         self.frame.setFrameShadow(QFrame.Shadow.Raised)
@@ -567,77 +358,85 @@ class Ui_Form(object):
         self.verticalLayout_33.addWidget(self.confirm_btn)
 
 
-        self.verticalLayout_38.addWidget(self.frame)
+        self.verticalLayout_3.addWidget(self.frame)
 
+        MainWindow.setCentralWidget(self.centralwidget)
+        self.menubar = QMenuBar(MainWindow)
+        self.menubar.setObjectName(u"menubar")
+        self.menubar.setGeometry(QRect(0, 0, 800, 19))
+        MainWindow.setMenuBar(self.menubar)
+        self.statusbar = QStatusBar(MainWindow)
+        self.statusbar.setObjectName(u"statusbar")
+        MainWindow.setStatusBar(self.statusbar)
 
-        self.retranslateUi(Form)
+        self.retranslateUi(MainWindow)
 
-        QMetaObject.connectSlotsByName(Form)
+        QMetaObject.connectSlotsByName(MainWindow)
     # setupUi
 
-    def retranslateUi(self, Form):
-        Form.setWindowTitle(QCoreApplication.translate("Form", u"Form", None))
-        self.instruciton.setText(QCoreApplication.translate("Form", u"select bullet", None))
-        self.q_title_1.setText(QCoreApplication.translate("Form", u"questions 1 ", None))
+    def retranslateUi(self, MainWindow):
+        MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"MainWindow", None))
+        self.instruciton.setText(QCoreApplication.translate("MainWindow", u"select bullet", None))
+        self.q_title_1.setText(QCoreApplication.translate("MainWindow", u"questions 1 ", None))
 
         __sortingEnabled = self.q_bullets_1.isSortingEnabled()
         self.q_bullets_1.setSortingEnabled(False)
         ___qlistwidgetitem = self.q_bullets_1.item(0)
-        ___qlistwidgetitem.setText(QCoreApplication.translate("Form", u"bullet 1 ", None));
+        ___qlistwidgetitem.setText(QCoreApplication.translate("MainWindow", u"bullet 1 ", None));
         self.q_bullets_1.setSortingEnabled(__sortingEnabled)
 
-        self.add_btn_1.setText(QCoreApplication.translate("Form", u"+", None))
-        self.remove_btn_1.setText(QCoreApplication.translate("Form", u"-", None))
-        self.q_title_2.setText(QCoreApplication.translate("Form", u"questions 2", None))
+        self.add_btn_1.setText(QCoreApplication.translate("MainWindow", u"+", None))
+        self.remove_btn_1.setText(QCoreApplication.translate("MainWindow", u"-", None))
+        self.q_title_2.setText(QCoreApplication.translate("MainWindow", u"questions 2", None))
 
         __sortingEnabled1 = self.q_bullets_2.isSortingEnabled()
         self.q_bullets_2.setSortingEnabled(False)
         ___qlistwidgetitem1 = self.q_bullets_2.item(0)
-        ___qlistwidgetitem1.setText(QCoreApplication.translate("Form", u"bullet 1 ", None));
+        ___qlistwidgetitem1.setText(QCoreApplication.translate("MainWindow", u"bullet 1 ", None));
         self.q_bullets_2.setSortingEnabled(__sortingEnabled1)
 
-        self.add_btn_2.setText(QCoreApplication.translate("Form", u"+", None))
-        self.remove_btn_2.setText(QCoreApplication.translate("Form", u"-", None))
-        self.q_title_3.setText(QCoreApplication.translate("Form", u"questions 3", None))
+        self.add_btn_2.setText(QCoreApplication.translate("MainWindow", u"+", None))
+        self.remove_btn_2.setText(QCoreApplication.translate("MainWindow", u"-", None))
+        self.q_title_3.setText(QCoreApplication.translate("MainWindow", u"questions 3", None))
 
         __sortingEnabled2 = self.q_bullets_3.isSortingEnabled()
         self.q_bullets_3.setSortingEnabled(False)
         ___qlistwidgetitem2 = self.q_bullets_3.item(0)
-        ___qlistwidgetitem2.setText(QCoreApplication.translate("Form", u"bullet 1 ", None));
+        ___qlistwidgetitem2.setText(QCoreApplication.translate("MainWindow", u"bullet 1 ", None));
         self.q_bullets_3.setSortingEnabled(__sortingEnabled2)
 
-        self.add_btn_3.setText(QCoreApplication.translate("Form", u"+", None))
-        self.remove_btn_3.setText(QCoreApplication.translate("Form", u"-", None))
-        self.q_title_4.setText(QCoreApplication.translate("Form", u"questions 4", None))
+        self.add_btn_3.setText(QCoreApplication.translate("MainWindow", u"+", None))
+        self.remove_btn_3.setText(QCoreApplication.translate("MainWindow", u"-", None))
+        self.q_title_4.setText(QCoreApplication.translate("MainWindow", u"questions 4", None))
 
         __sortingEnabled3 = self.q_bullets_4.isSortingEnabled()
         self.q_bullets_4.setSortingEnabled(False)
         ___qlistwidgetitem3 = self.q_bullets_4.item(0)
-        ___qlistwidgetitem3.setText(QCoreApplication.translate("Form", u"bullet 1 ", None));
+        ___qlistwidgetitem3.setText(QCoreApplication.translate("MainWindow", u"bullet 1 ", None));
         self.q_bullets_4.setSortingEnabled(__sortingEnabled3)
 
-        self.add_btn_4.setText(QCoreApplication.translate("Form", u"+", None))
-        self.remove_btn_4.setText(QCoreApplication.translate("Form", u"-", None))
-        self.q_title_5.setText(QCoreApplication.translate("Form", u"questions 5", None))
+        self.add_btn_4.setText(QCoreApplication.translate("MainWindow", u"+", None))
+        self.remove_btn_4.setText(QCoreApplication.translate("MainWindow", u"-", None))
+        self.q_title_5.setText(QCoreApplication.translate("MainWindow", u"questions 5", None))
 
         __sortingEnabled4 = self.q_bullets_5.isSortingEnabled()
         self.q_bullets_5.setSortingEnabled(False)
         ___qlistwidgetitem4 = self.q_bullets_5.item(0)
-        ___qlistwidgetitem4.setText(QCoreApplication.translate("Form", u"bullet 1 ", None));
+        ___qlistwidgetitem4.setText(QCoreApplication.translate("MainWindow", u"bullet 1 ", None));
         self.q_bullets_5.setSortingEnabled(__sortingEnabled4)
 
-        self.add_btn_5.setText(QCoreApplication.translate("Form", u"+", None))
-        self.remove_btn_5.setText(QCoreApplication.translate("Form", u"-", None))
-        self.q_title_6.setText(QCoreApplication.translate("Form", u"questions 6", None))
+        self.add_btn_5.setText(QCoreApplication.translate("MainWindow", u"+", None))
+        self.remove_btn_5.setText(QCoreApplication.translate("MainWindow", u"-", None))
+        self.q_title_6.setText(QCoreApplication.translate("MainWindow", u"questions 6", None))
 
         __sortingEnabled5 = self.q_bullets_6.isSortingEnabled()
         self.q_bullets_6.setSortingEnabled(False)
         ___qlistwidgetitem5 = self.q_bullets_6.item(0)
-        ___qlistwidgetitem5.setText(QCoreApplication.translate("Form", u"bullet 1 ", None));
+        ___qlistwidgetitem5.setText(QCoreApplication.translate("MainWindow", u"bullet 1 ", None));
         self.q_bullets_6.setSortingEnabled(__sortingEnabled5)
 
-        self.add_btn_6.setText(QCoreApplication.translate("Form", u"+", None))
-        self.remove_btn_6.setText(QCoreApplication.translate("Form", u"-", None))
-        self.confirm_btn.setText(QCoreApplication.translate("Form", u"Confirm", None))
+        self.add_btn_6.setText(QCoreApplication.translate("MainWindow", u"+", None))
+        self.remove_btn_6.setText(QCoreApplication.translate("MainWindow", u"-", None))
+        self.confirm_btn.setText(QCoreApplication.translate("MainWindow", u"Confirm", None))
     # retranslateUi
 
