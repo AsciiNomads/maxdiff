@@ -124,50 +124,15 @@ QPushButton#add_btn {
     font-weight: bold;
 }
 
-QPushButton#add_btn:hover {
-    background-color: #218838; /* Darker green on hover */
-}
-
-QPushButton#add_btn:pressed {
-    background-color: #1E7E34; /* Even darker green when pressed */
-    padding-top: 10px; /* Simulates button press effect */
-    padding-bottom: 6px;
-}
-
-QPushButton#add_btn:disabled {
-    background-color: #A9DFBF; /* Light green when disabled */
-    color: #E9ECEF; /* Light gray text */
-    border: 1px solid #C3E6CB; /* Light green border when disabled */
-}
-
-/* Remove Button */
-QPushButton#remove_btn {
-    background-color: #DC3545; /* Modern red color for remove */
-    color: #FFFFFF; /* White text */
-    font-size: 16px;
-    padding: 8px 16px;
-    border: none;
-    border-radius: 6px; /* Rounded corners */
-    font-weight: bold;
-}
-
-QPushButton#remove_btn:hover {
-    background-color: #C82333; /* Darker red on hover */
-}
-
-QPushButton#remove_btn:pressed {
-    background-color: #A71D2A; /* Even darker red when pressed */
-    padding-top: 10px; /* Simulates button press effect */
-    padding-bottom: 6px;
-}
-
-QPushButton#remove_btn:disabled {
-    background-color: #F5B7B1; /* Light red when disabled */
-    color: #F8F9FA; /* Light gray text */
-    border: 1px solid #E6B0AA; /* Light red border when disabled */
-}
+/* ----------------------------------------*/
 /* Add Button */
-QPushButton#add_btn_1 {
+QPushButton#add_btn_1,
+QPushButton#add_btn_2,
+QPushButton#add_btn_3,
+QPushButton#add_btn_4,
+QPushButton#add_btn_5,
+QPushButton#add_btn_6,
+QPushButton#add_btn_7 {
     background-color: #28A745; /* Modern green color for add */
     color: #FFFFFF; /* White text */
     font-size: 16px;
@@ -177,24 +142,37 @@ QPushButton#add_btn_1 {
     font-weight: bold;
 }
 
-QPushButton#add_btn_1 :hover {
+QPushButton#add_btn_1:hover,
+QPushButton#add_btn_2:hover,
+QPushButton#add_btn_3:hover,
+QPushButton#add_btn_4:hover,
+QPushButton#add_btn_5:hover,
+QPushButton#add_btn_6:hover,
+QPushButton#add_btn_7:hover {
     background-color: #218838; /* Darker green on hover */
 }
 
-QPushButton#add_btn_1 :pressed {
+QPushButton#add_btn_1:pressed,
+QPushButton#add_btn_2:pressed,
+QPushButton#add_btn_3:pressed,
+QPushButton#add_btn_4:pressed,
+QPushButton#add_btn_5:pressed,
+QPushButton#add_btn_6:pressed,
+QPushButton#add_btn_7:pressed {
     background-color: #1E7E34; /* Even darker green when pressed */
     padding-top: 10px; /* Simulates button press effect */
     padding-bottom: 6px;
 }
 
-QPushButton#add_btn_1 :disabled {
-    background-color: #A9DFBF; /* Light green when disabled */
-    color: #E9ECEF; /* Light gray text */
-    border: 1px solid #C3E6CB; /* Light green border when disabled */
-}
 
 /* Remove Button */
-QPushButton#remove_btn_1  {
+QPushButton#remove_btn_1,
+QPushButton#remove_btn_2,
+QPushButton#remove_btn_3,
+QPushButton#remove_btn_4,
+QPushButton#remove_btn_5,
+QPushButton#remove_btn_6,
+QPushButton#remove_btn_7 {
     background-color: #DC3545; /* Modern red color for remove */
     color: #FFFFFF; /* White text */
     font-size: 16px;
@@ -204,21 +182,28 @@ QPushButton#remove_btn_1  {
     font-weight: bold;
 }
 
-QPushButton#remove_btn_1 :hover {
+QPushButton#remove_btn_1:hover,
+QPushButton#remove_btn_2:hover,
+QPushButton#remove_btn_3:hover,
+QPushButton#remove_btn_4:hover,
+QPushButton#remove_btn_5:hover,
+QPushButton#remove_btn_6:hover,
+QPushButton#remove_btn_7:hover {
     background-color: #C82333; /* Darker red on hover */
 }
 
-QPushButton#remove_btn_1 :pressed {
-    background-color: #A71D2A; /* Even darker red when pressed */
+QPushButton#remove_btn_1:pressed,
+QPushButton#remove_btn_2:pressed,
+QPushButton#remove_btn_3:pressed,
+QPushButton#remove_btn_4:pressed,
+QPushButton#remove_btn_5:pressed,
+QPushButton#remove_btn_6:pressed,
+QPushButton#remove_btn_7:pressed {
+    background-color: #BD2130; /* Even darker red when pressed */
     padding-top: 10px; /* Simulates button press effect */
     padding-bottom: 6px;
 }
 
-QPushButton#remove_btn_1 :disabled {
-    background-color: #F5B7B1; /* Light red when disabled */
-    color: #F8F9FA; /* Light gray text */
-    border: 1px solid #E6B0AA; /* Light red border when disabled */
-}
 </string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout_38">
