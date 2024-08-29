@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1017</width>
-    <height>1060</height>
+    <height>868</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -265,6 +265,12 @@ QPushButton#remove_btn_1 :disabled {
          <enum>QFrame::Shadow::Raised</enum>
         </property>
         <layout class="QVBoxLayout" name="verticalLayout_8">
+         <property name="topMargin">
+          <number>0</number>
+         </property>
+         <property name="bottomMargin">
+          <number>0</number>
+         </property>
          <item>
           <widget class="QLabel" name="q_title_1">
            <property name="text">
@@ -281,6 +287,12 @@ QPushButton#remove_btn_1 :disabled {
             <enum>QFrame::Shadow::Raised</enum>
            </property>
            <layout class="QHBoxLayout" name="horizontalLayout">
+            <property name="topMargin">
+             <number>0</number>
+            </property>
+            <property name="bottomMargin">
+             <number>0</number>
+            </property>
             <item>
              <widget class="QListWidget" name="q_bullets_1">
               <item>
@@ -334,6 +346,12 @@ QPushButton#remove_btn_1 :disabled {
          <enum>QFrame::Shadow::Raised</enum>
         </property>
         <layout class="QVBoxLayout" name="verticalLayout_9">
+         <property name="topMargin">
+          <number>0</number>
+         </property>
+         <property name="bottomMargin">
+          <number>0</number>
+         </property>
          <item>
           <widget class="QLabel" name="q_title_2">
            <property name="text">
@@ -350,6 +368,12 @@ QPushButton#remove_btn_1 :disabled {
             <enum>QFrame::Shadow::Raised</enum>
            </property>
            <layout class="QHBoxLayout" name="horizontalLayout_4">
+            <property name="topMargin">
+             <number>0</number>
+            </property>
+            <property name="bottomMargin">
+             <number>0</number>
+            </property>
             <item>
              <widget class="QListWidget" name="q_bullets_2">
               <item>
@@ -413,6 +437,12 @@ QPushButton#remove_btn_1 :disabled {
          <enum>QFrame::Shadow::Raised</enum>
         </property>
         <layout class="QVBoxLayout" name="verticalLayout_25">
+         <property name="topMargin">
+          <number>0</number>
+         </property>
+         <property name="bottomMargin">
+          <number>0</number>
+         </property>
          <item>
           <widget class="QLabel" name="q_title_3">
            <property name="text">
@@ -429,6 +459,12 @@ QPushButton#remove_btn_1 :disabled {
             <enum>QFrame::Shadow::Raised</enum>
            </property>
            <layout class="QHBoxLayout" name="horizontalLayout_23">
+            <property name="topMargin">
+             <number>0</number>
+            </property>
+            <property name="bottomMargin">
+             <number>0</number>
+            </property>
             <item>
              <widget class="QListWidget" name="q_bullets_3">
               <item>
@@ -471,17 +507,6 @@ QPushButton#remove_btn_1 :disabled {
        </widget>
       </item>
       <item>
-       <widget class="QFrame" name="frame_3">
-        <property name="frameShape">
-         <enum>QFrame::Shape::StyledPanel</enum>
-        </property>
-        <property name="frameShadow">
-         <enum>QFrame::Shadow::Raised</enum>
-        </property>
-        <layout class="QHBoxLayout" name="horizontalLayout_3"/>
-       </widget>
-      </item>
-      <item>
        <widget class="QFrame" name="question_frame_4">
         <property name="frameShape">
          <enum>QFrame::Shape::StyledPanel</enum>
@@ -490,6 +515,12 @@ QPushButton#remove_btn_1 :disabled {
          <enum>QFrame::Shadow::Raised</enum>
         </property>
         <layout class="QVBoxLayout" name="verticalLayout_31">
+         <property name="topMargin">
+          <number>0</number>
+         </property>
+         <property name="bottomMargin">
+          <number>0</number>
+         </property>
          <item>
           <widget class="QLabel" name="q_title_4">
            <property name="text">
@@ -506,6 +537,12 @@ QPushButton#remove_btn_1 :disabled {
             <enum>QFrame::Shadow::Raised</enum>
            </property>
            <layout class="QHBoxLayout" name="horizontalLayout_24">
+            <property name="topMargin">
+             <number>0</number>
+            </property>
+            <property name="bottomMargin">
+             <number>0</number>
+            </property>
             <item>
              <widget class="QListWidget" name="q_bullets_4">
               <item>
@@ -556,6 +593,12 @@ QPushButton#remove_btn_1 :disabled {
          <enum>QFrame::Shadow::Raised</enum>
         </property>
         <layout class="QVBoxLayout" name="verticalLayout_34">
+         <property name="topMargin">
+          <number>0</number>
+         </property>
+         <property name="bottomMargin">
+          <number>0</number>
+         </property>
          <item>
           <widget class="QLabel" name="q_title_5">
            <property name="text">
@@ -572,6 +615,12 @@ QPushButton#remove_btn_1 :disabled {
             <enum>QFrame::Shadow::Raised</enum>
            </property>
            <layout class="QHBoxLayout" name="horizontalLayout_25">
+            <property name="topMargin">
+             <number>0</number>
+            </property>
+            <property name="bottomMargin">
+             <number>0</number>
+            </property>
             <item>
              <widget class="QListWidget" name="q_bullets_5">
               <item>
@@ -622,6 +671,12 @@ QPushButton#remove_btn_1 :disabled {
          <enum>QFrame::Shadow::Raised</enum>
         </property>
         <layout class="QVBoxLayout" name="verticalLayout_36">
+         <property name="topMargin">
+          <number>0</number>
+         </property>
+         <property name="bottomMargin">
+          <number>0</number>
+         </property>
          <item>
           <widget class="QLabel" name="q_title_6">
            <property name="text">
@@ -638,6 +693,12 @@ QPushButton#remove_btn_1 :disabled {
             <enum>QFrame::Shadow::Raised</enum>
            </property>
            <layout class="QHBoxLayout" name="horizontalLayout_26">
+            <property name="topMargin">
+             <number>0</number>
+            </property>
+            <property name="bottomMargin">
+             <number>0</number>
+            </property>
             <item>
              <widget class="QListWidget" name="q_bullets_6">
               <item>

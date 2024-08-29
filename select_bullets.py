@@ -23,7 +23,7 @@ class Ui_Form(object):
     def setupUi(self, Form):
         if not Form.objectName():
             Form.setObjectName(u"Form")
-        Form.resize(1017, 1060)
+        Form.resize(1017, 868)
         Form.setStyleSheet(u"/* Modern Light Theme */\n"
 "\n"
 "/* Style for QCheckBox */\n"
@@ -262,6 +262,7 @@ class Ui_Form(object):
         self.question_frame_1.setFrameShadow(QFrame.Shadow.Raised)
         self.verticalLayout_8 = QVBoxLayout(self.question_frame_1)
         self.verticalLayout_8.setObjectName(u"verticalLayout_8")
+        self.verticalLayout_8.setContentsMargins(-1, 0, -1, 0)
         self.q_title_1 = QLabel(self.question_frame_1)
         self.q_title_1.setObjectName(u"q_title_1")
 
@@ -273,6 +274,7 @@ class Ui_Form(object):
         self.frame_1_1.setFrameShadow(QFrame.Shadow.Raised)
         self.horizontalLayout = QHBoxLayout(self.frame_1_1)
         self.horizontalLayout.setObjectName(u"horizontalLayout")
+        self.horizontalLayout.setContentsMargins(-1, 0, -1, 0)
         self.q_bullets_1 = QListWidget(self.frame_1_1)
         QListWidgetItem(self.q_bullets_1)
         self.q_bullets_1.setObjectName(u"q_bullets_1")
@@ -311,6 +313,7 @@ class Ui_Form(object):
         self.question_frame_2.setFrameShadow(QFrame.Shadow.Raised)
         self.verticalLayout_9 = QVBoxLayout(self.question_frame_2)
         self.verticalLayout_9.setObjectName(u"verticalLayout_9")
+        self.verticalLayout_9.setContentsMargins(-1, 0, -1, 0)
         self.q_title_2 = QLabel(self.question_frame_2)
         self.q_title_2.setObjectName(u"q_title_2")
 
@@ -322,6 +325,7 @@ class Ui_Form(object):
         self.frame_2_1.setFrameShadow(QFrame.Shadow.Raised)
         self.horizontalLayout_4 = QHBoxLayout(self.frame_2_1)
         self.horizontalLayout_4.setObjectName(u"horizontalLayout_4")
+        self.horizontalLayout_4.setContentsMargins(-1, 0, -1, 0)
         self.q_bullets_2 = QListWidget(self.frame_2_1)
         QListWidgetItem(self.q_bullets_2)
         self.q_bullets_2.setObjectName(u"q_bullets_2")
@@ -363,6 +367,7 @@ class Ui_Form(object):
         self.question_frame_3.setFrameShadow(QFrame.Shadow.Raised)
         self.verticalLayout_25 = QVBoxLayout(self.question_frame_3)
         self.verticalLayout_25.setObjectName(u"verticalLayout_25")
+        self.verticalLayout_25.setContentsMargins(-1, 0, -1, 0)
         self.q_title_3 = QLabel(self.question_frame_3)
         self.q_title_3.setObjectName(u"q_title_3")
 
@@ -374,6 +379,7 @@ class Ui_Form(object):
         self.frame_3_1.setFrameShadow(QFrame.Shadow.Raised)
         self.horizontalLayout_23 = QHBoxLayout(self.frame_3_1)
         self.horizontalLayout_23.setObjectName(u"horizontalLayout_23")
+        self.horizontalLayout_23.setContentsMargins(-1, 0, -1, 0)
         self.q_bullets_3 = QListWidget(self.frame_3_1)
         QListWidgetItem(self.q_bullets_3)
         self.q_bullets_3.setObjectName(u"q_bullets_3")
@@ -405,21 +411,13 @@ class Ui_Form(object):
 
         self.verticalLayout_33.addWidget(self.question_frame_3)
 
-        self.frame_3 = QFrame(self.frame)
-        self.frame_3.setObjectName(u"frame_3")
-        self.frame_3.setFrameShape(QFrame.Shape.StyledPanel)
-        self.frame_3.setFrameShadow(QFrame.Shadow.Raised)
-        self.horizontalLayout_3 = QHBoxLayout(self.frame_3)
-        self.horizontalLayout_3.setObjectName(u"horizontalLayout_3")
-
-        self.verticalLayout_33.addWidget(self.frame_3)
-
         self.question_frame_4 = QFrame(self.frame)
         self.question_frame_4.setObjectName(u"question_frame_4")
         self.question_frame_4.setFrameShape(QFrame.Shape.StyledPanel)
         self.question_frame_4.setFrameShadow(QFrame.Shadow.Raised)
         self.verticalLayout_31 = QVBoxLayout(self.question_frame_4)
         self.verticalLayout_31.setObjectName(u"verticalLayout_31")
+        self.verticalLayout_31.setContentsMargins(-1, 0, -1, 0)
         self.q_title_4 = QLabel(self.question_frame_4)
         self.q_title_4.setObjectName(u"q_title_4")
 
@@ -431,6 +429,7 @@ class Ui_Form(object):
         self.frame_4_1.setFrameShadow(QFrame.Shadow.Raised)
         self.horizontalLayout_24 = QHBoxLayout(self.frame_4_1)
         self.horizontalLayout_24.setObjectName(u"horizontalLayout_24")
+        self.horizontalLayout_24.setContentsMargins(-1, 0, -1, 0)
         self.q_bullets_4 = QListWidget(self.frame_4_1)
         QListWidgetItem(self.q_bullets_4)
         self.q_bullets_4.setObjectName(u"q_bullets_4")
@@ -468,6 +467,7 @@ class Ui_Form(object):
         self.question_frame_5.setFrameShadow(QFrame.Shadow.Raised)
         self.verticalLayout_34 = QVBoxLayout(self.question_frame_5)
         self.verticalLayout_34.setObjectName(u"verticalLayout_34")
+        self.verticalLayout_34.setContentsMargins(-1, 0, -1, 0)
         self.q_title_5 = QLabel(self.question_frame_5)
         self.q_title_5.setObjectName(u"q_title_5")
 
@@ -479,6 +479,7 @@ class Ui_Form(object):
         self.frame_5_1.setFrameShadow(QFrame.Shadow.Raised)
         self.horizontalLayout_25 = QHBoxLayout(self.frame_5_1)
         self.horizontalLayout_25.setObjectName(u"horizontalLayout_25")
+        self.horizontalLayout_25.setContentsMargins(-1, 0, -1, 0)
         self.q_bullets_5 = QListWidget(self.frame_5_1)
         QListWidgetItem(self.q_bullets_5)
         self.q_bullets_5.setObjectName(u"q_bullets_5")
@@ -516,6 +517,7 @@ class Ui_Form(object):
         self.question_frame_6.setFrameShadow(QFrame.Shadow.Raised)
         self.verticalLayout_36 = QVBoxLayout(self.question_frame_6)
         self.verticalLayout_36.setObjectName(u"verticalLayout_36")
+        self.verticalLayout_36.setContentsMargins(-1, 0, -1, 0)
         self.q_title_6 = QLabel(self.question_frame_6)
         self.q_title_6.setObjectName(u"q_title_6")
 
@@ -527,6 +529,7 @@ class Ui_Form(object):
         self.frame_6_1.setFrameShadow(QFrame.Shadow.Raised)
         self.horizontalLayout_26 = QHBoxLayout(self.frame_6_1)
         self.horizontalLayout_26.setObjectName(u"horizontalLayout_26")
+        self.horizontalLayout_26.setContentsMargins(-1, 0, -1, 0)
         self.q_bullets_6 = QListWidget(self.frame_6_1)
         QListWidgetItem(self.q_bullets_6)
         self.q_bullets_6.setObjectName(u"q_bullets_6")
