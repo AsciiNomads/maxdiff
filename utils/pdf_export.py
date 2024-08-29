@@ -5,6 +5,8 @@ import io
 
 # Function to export MaxDiff scores to a PDF file
 def export_maxdiff_to_pdf(maxdiff_scores, filename, image_path):
+    def sanitize_text(text):
+        return text.encode('latin-1', 'replace').decode('latin-1')
 
     # Create a PDF object
     pdf = FPDF()
@@ -42,35 +44,15 @@ def export_maxdiff_to_pdf(maxdiff_scores, filename, image_path):
     # Add a line break
     pdf.ln(10)
 
-    # Add questions ID and text
+    # Add questions ID and sanitized text
     for question in maxdiff_scores:
         question_id = str(question.id)
-        question_text = question.question_text
+        question_text = sanitize_text(question.question_text)
         pdf.set_font("Arial", size=8)
         pdf.cell(200, 10, f"ID: {question_id} - {question_text}", ln=True)
 
     # Add a line break
     pdf.ln(10)
-
-    # pdf.cell(cell_width, cell_height, item.question_text, border=1)
-    # Generate the plot image in memory
-    # items = list(maxdiff_scores.keys())
-    # scores = list(maxdiff_scores.values())
-
-    # plt.figure(figsize=(8, 6))
-    # plt.bar(items, scores, color="skyblue")
-    # plt.xlabel("Features")
-    # plt.ylabel("MaxDiff Score")
-    # plt.title("MaxDiff Scores of Survey Features")
-    # plt.ylim(
-    #     -max(abs(min(scores)), max(scores)) - 1, max(abs(min(scores)), max(scores)) + 1
-    # )
-    # plt.axhline(0, color="black", linewidth=0.5)
-
-    # # Save the plot to a bytes buffer
-    # buf = io.BytesIO()
-    # plt.savefig(buf, format="png")
-    # buf.seek(0)
 
     # Add the plot image to the PDF
     pdf.ln(10)
@@ -78,6 +60,7 @@ def export_maxdiff_to_pdf(maxdiff_scores, filename, image_path):
 
     # Output the PDF to a file
     pdf.output(filename)
+
 
 
 # # Example MaxDiff scores (you can replace this with your actual data)

@@ -12,44 +12,29 @@ from utils.maxdiff import get_scores, get_percentages
 def plot_best_worst_scores(questions):
     indices, scores = get_scores(questions)
 
-    # Convert indices to strings for better readability (optional)
-    # indices = [str(i) for i in indices]
-
     max_label_length = max(len(question.question_text) for question in questions)
-
-    if max_label_length > 50:
-        fig_width = max(6.5, 0.25 * 50)
-    else:
-        fig_width = max(6.5, 0.25 * max_label_length)
+    
+    # Calculate the figure width and height based on the number of questions
+    fig_width = max(6.5, 0.25 * max_label_length)
     fig_height = max(4, 0.5 * len(questions))
 
-    # ax.barh(labels, values)
-    # plt.subplots_adjust(left=0.3)
-
-    titles = []
-    for q in questions:
-        if len(q.question_text) > 50:
-            titles.append(q.question_text[:50] + "...")
-            continue
-        titles.append(q.question_text)
+    titles = [
+        q.question_text[:50] + "..." if len(q.question_text) > 50 else q.question_text
+        for q in questions
+    ]
 
     # Creating horizontal bars
-    # fig, ax = plt.subplots(figsize=(10, len(titles) * 0.5))
     fig, ax = plt.subplots(figsize=(fig_width, fig_height))
-    plt.subplots_adjust(left=0.4)  # Adjust 'left' to create more space for labels
-    plt.subplots_adjust(bottom=0.3)  # Adjust to provide space for long labels
-
+    plt.subplots_adjust(left=0.4, bottom=0.3)  # Adjust margins for labels
 
     sorted_titles = [titles[i] for i in indices]
-    # ax.barh(indices, scores, color="skyblue")
     ax.barh(sorted_titles, scores, color="skyblue")
 
     ax.set_xlabel("Scores")
-    # ax.set_ylabel("Question ID")
     ax.set_ylabel("Question Title")
     ax.set_title("Best-Worst Scores")
 
-    ax.invert_yaxis()  # Invert y-axis to have the highest score on top
+    ax.invert_yaxis()  # Highest score on top
 
     return fig
 
