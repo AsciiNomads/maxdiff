@@ -90,6 +90,10 @@ class Widget(QWidget):
         self.current_set_index = 0
 
         self.setup_widget(self)
+        self.bullets = []
+        self.ui.confirm_btn.clicked.connect(
+            lambda: self.get_all_list_widgets_items(in_one_list=True)
+        )
 
     def set_editable_items(self, list_widget):
         for i in range(list_widget.count()):
@@ -185,7 +189,12 @@ class Widget(QWidget):
                 items.append(list_widget.item(j).text())
             bullets.append(items)
         if in_one_list:
-            return [item for sublist in bullets for item in sublist]
+            self.bullets = [item for sublist in bullets for item in sublist]
+            print(self.bullets)
+            return self.bullets
+
+        self.bullets = bullets
+        print(self.bullets)
         return bullets
 
 
@@ -196,6 +205,6 @@ if __name__ == "__main__":
     widget.fill_list_widget_with_csv_file("bullets.csv")
 
     # get all items for each list_widget
-    print(widget.get_all_list_widgets_items(in_one_list=True))
+    # print(widget.get_all_list_widgets_items(in_one_list=True))
 
     sys.exit(app.exec())
