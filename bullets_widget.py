@@ -5,7 +5,7 @@ import sys
 
 # import os
 
-from PySide6.QtWidgets import QApplication, QWidget, QFileDialog
+from PySide6.QtWidgets import QApplication, QWidget, QFileDialog, QPushButton
 from PySide6.QtCore import Qt
 
 
@@ -97,7 +97,7 @@ class Widget(QWidget):
 
     def listWigetSetItem(
         self,
-        list_widget,
+        l_w,
         value=None,
         default_values=True,
     ):
@@ -106,22 +106,55 @@ class Widget(QWidget):
         else:
             value = value
 
+        # list_widget = btn.parent().parent().findChild(QListWidget)
+        list_widget = l_w
         list_widget.addItems(value)
         self.set_editable_items(list_widget)
 
-    def delete_item(self, list_widget):
-        for item in list_widget.selectedItems():
-            list_widget.takeItem(list_widget.row(item))
+    # def delete_item(self, btn, list_widget):
+    def removeItem(self, l_w):
+        list_widget = l_w
+        # list_widget = btn.parent().parent().findChild(QListWidget)
+
+        if list_widget:
+            for item in list_widget.selectedItems():
+                list_widget.takeItem(list_widget.row(item))
+        else:
+            print("QListWidget not found")
+
+    def connet_buttons(self):
+        # Find all QPushButton widgets
+        buttons = self.findChildren(QPushButton)
+        list_widgets = self.findChildren(QListWidget)
+        # print(list_widgets[0])
+        list_widgets_counter = 0
+        for button in buttons:
+            # print(button.text())
+            if list_widgets_counter >= 2:
+                try:
+                    list_widgets.pop(0)
+                except:
+                    pass
+            if button.text() == "+":
+                button.clicked.connect(
+                    lambda: self.listWigetSetItem(list_widgets[1], value=["new item"])
+                )
+                list_widgets_counter += 1
+            elif button.text() == "-":
+                button.clicked.connect(lambda: self.removeItem(list_widgets[1]))
+                list_widgets_counter += 1
 
     def setup_widget(self, widget):
-        list_widget = self.ui.q1_bullets
+        # list_widget = self.ui.q1_bullets
+
+        self.connet_buttons()
 
         # set default values
-        self.listWigetSetItem(list_widget)
-        self.ui.add_btn.clicked.connect(
-            lambda: self.listWigetSetItem(list_widget, value=["new item"])
-        )
-        self.ui.remove_btn.clicked.connect(lambda: self.delete_item(list_widget))
+        # self.listWigetSetItem(list_widget)
+        # self.ui.add_btn.clicked.connect(
+        #     lambda: self.listWigetSetItem(list_widget, value=["new item"])
+        # )
+        # self.ui.remove_btn.clicked.connect(lambda: self.removeItem(list_widget))
 
 
 if __name__ == "__main__":
