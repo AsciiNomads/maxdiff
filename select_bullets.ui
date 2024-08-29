@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1017</width>
-    <height>1084</height>
+    <height>1160</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -213,14 +213,14 @@ QPushButton#remove_btn:disabled {
         </property>
         <layout class="QVBoxLayout" name="verticalLayout_8">
          <item>
-          <widget class="QLabel" name="q1_title">
+          <widget class="QLabel" name="q_title_1">
            <property name="text">
             <string>questions 1 </string>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QFrame" name="frame_2">
+          <widget class="QFrame" name="frame_1_1">
            <property name="frameShape">
             <enum>QFrame::Shape::StyledPanel</enum>
            </property>
@@ -229,7 +229,7 @@ QPushButton#remove_btn:disabled {
            </property>
            <layout class="QHBoxLayout" name="horizontalLayout">
             <item>
-             <widget class="QListWidget" name="q1_bullets">
+             <widget class="QListWidget" name="q_bullets_1">
               <item>
                <property name="text">
                 <string>bullet 1 </string>
@@ -238,7 +238,7 @@ QPushButton#remove_btn:disabled {
              </widget>
             </item>
             <item>
-             <widget class="QFrame" name="frame_4">
+             <widget class="QFrame" name="frame_1_2">
               <property name="frameShape">
                <enum>QFrame::Shape::StyledPanel</enum>
               </property>
@@ -247,14 +247,14 @@ QPushButton#remove_btn:disabled {
               </property>
               <layout class="QVBoxLayout" name="verticalLayout">
                <item>
-                <widget class="QPushButton" name="add_btn">
+                <widget class="QPushButton" name="add_btn_1">
                  <property name="text">
                   <string>+</string>
                  </property>
                 </widget>
                </item>
                <item>
-                <widget class="QPushButton" name="remove_btn">
+                <widget class="QPushButton" name="remove_btn_1">
                  <property name="text">
                   <string>-</string>
                  </property>
@@ -279,14 +279,14 @@ QPushButton#remove_btn:disabled {
         </property>
         <layout class="QVBoxLayout" name="verticalLayout_9">
          <item>
-          <widget class="QLabel" name="label_6">
+          <widget class="QLabel" name="q_title_2">
            <property name="text">
             <string>questions 2</string>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QFrame" name="frame_5">
+          <widget class="QFrame" name="frame_2_1">
            <property name="frameShape">
             <enum>QFrame::Shape::StyledPanel</enum>
            </property>
@@ -295,7 +295,7 @@ QPushButton#remove_btn:disabled {
            </property>
            <layout class="QHBoxLayout" name="horizontalLayout_4">
             <item>
-             <widget class="QListWidget" name="listWidget_2">
+             <widget class="QListWidget" name="q_bullets_2">
               <item>
                <property name="text">
                 <string>bullet 1 </string>
@@ -304,7 +304,7 @@ QPushButton#remove_btn:disabled {
              </widget>
             </item>
             <item>
-             <widget class="QFrame" name="frame_6">
+             <widget class="QFrame" name="frame_2_2">
               <property name="frameShape">
                <enum>QFrame::Shape::StyledPanel</enum>
               </property>
@@ -313,14 +313,14 @@ QPushButton#remove_btn:disabled {
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_2">
                <item>
-                <widget class="QPushButton" name="pushButton_4">
+                <widget class="QPushButton" name="add_btn_2">
                  <property name="text">
                   <string>+</string>
                  </property>
                 </widget>
                </item>
                <item>
-                <widget class="QPushButton" name="pushButton_5">
+                <widget class="QPushButton" name="remove_btn_2">
                  <property name="text">
                   <string>-</string>
                  </property>
@@ -349,7 +349,7 @@ QPushButton#remove_btn:disabled {
        </spacer>
       </item>
       <item>
-       <widget class="QFrame" name="question_frame_15">
+       <widget class="QFrame" name="question_frame_3">
         <property name="frameShape">
          <enum>QFrame::Shape::StyledPanel</enum>
         </property>
@@ -358,14 +358,14 @@ QPushButton#remove_btn:disabled {
         </property>
         <layout class="QVBoxLayout" name="verticalLayout_25">
          <item>
-          <widget class="QLabel" name="label_23">
+          <widget class="QLabel" name="q_title_3">
            <property name="text">
             <string>questions 3</string>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QFrame" name="frame_7">
+          <widget class="QFrame" name="frame_3_1">
            <property name="frameShape">
             <enum>QFrame::Shape::StyledPanel</enum>
            </property>
@@ -374,7 +374,7 @@ QPushButton#remove_btn:disabled {
            </property>
            <layout class="QHBoxLayout" name="horizontalLayout_23">
             <item>
-             <widget class="QListWidget" name="listWidget_15">
+             <widget class="QListWidget" name="q_bullets_3">
               <item>
                <property name="text">
                 <string>bullet 1 </string>
@@ -383,7 +383,7 @@ QPushButton#remove_btn:disabled {
              </widget>
             </item>
             <item>
-             <widget class="QFrame" name="frame_33">
+             <widget class="QFrame" name="frame_3_2">
               <property name="frameShape">
                <enum>QFrame::Shape::StyledPanel</enum>
               </property>
@@ -392,14 +392,14 @@ QPushButton#remove_btn:disabled {
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_30">
                <item>
-                <widget class="QPushButton" name="add_2">
+                <widget class="QPushButton" name="add_btn_3">
                  <property name="text">
                   <string>+</string>
                  </property>
                 </widget>
                </item>
                <item>
-                <widget class="QPushButton" name="pushButton_36">
+                <widget class="QPushButton" name="remove_btn_3">
                  <property name="text">
                   <string>-</string>
                  </property>
@@ -426,7 +426,7 @@ QPushButton#remove_btn:disabled {
        </widget>
       </item>
       <item>
-       <widget class="QFrame" name="question_frame_16">
+       <widget class="QFrame" name="question_frame_4">
         <property name="frameShape">
          <enum>QFrame::Shape::StyledPanel</enum>
         </property>
@@ -435,14 +435,14 @@ QPushButton#remove_btn:disabled {
         </property>
         <layout class="QVBoxLayout" name="verticalLayout_31">
          <item>
-          <widget class="QLabel" name="label_24">
+          <widget class="QLabel" name="q_title_4">
            <property name="text">
             <string>questions 4</string>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QFrame" name="frame_39">
+          <widget class="QFrame" name="frame_4_1">
            <property name="frameShape">
             <enum>QFrame::Shape::StyledPanel</enum>
            </property>
@@ -451,7 +451,7 @@ QPushButton#remove_btn:disabled {
            </property>
            <layout class="QHBoxLayout" name="horizontalLayout_24">
             <item>
-             <widget class="QListWidget" name="listWidget_16">
+             <widget class="QListWidget" name="q_bullets_4">
               <item>
                <property name="text">
                 <string>bullet 1 </string>
@@ -460,7 +460,7 @@ QPushButton#remove_btn:disabled {
              </widget>
             </item>
             <item>
-             <widget class="QFrame" name="frame_40">
+             <widget class="QFrame" name="frame_4_2">
               <property name="frameShape">
                <enum>QFrame::Shape::StyledPanel</enum>
               </property>
@@ -469,14 +469,14 @@ QPushButton#remove_btn:disabled {
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_32">
                <item>
-                <widget class="QPushButton" name="pushButton_37">
+                <widget class="QPushButton" name="add_btn_4">
                  <property name="text">
                   <string>+</string>
                  </property>
                 </widget>
                </item>
                <item>
-                <widget class="QPushButton" name="pushButton_38">
+                <widget class="QPushButton" name="remove_btn_4">
                  <property name="text">
                   <string>-</string>
                  </property>
@@ -492,7 +492,7 @@ QPushButton#remove_btn:disabled {
        </widget>
       </item>
       <item>
-       <widget class="QFrame" name="question_frame_17">
+       <widget class="QFrame" name="question_frame_5">
         <property name="frameShape">
          <enum>QFrame::Shape::StyledPanel</enum>
         </property>
@@ -501,14 +501,14 @@ QPushButton#remove_btn:disabled {
         </property>
         <layout class="QVBoxLayout" name="verticalLayout_34">
          <item>
-          <widget class="QLabel" name="label_25">
+          <widget class="QLabel" name="q_title_5">
            <property name="text">
             <string>questions 5</string>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QFrame" name="frame_41">
+          <widget class="QFrame" name="frame_5_1">
            <property name="frameShape">
             <enum>QFrame::Shape::StyledPanel</enum>
            </property>
@@ -517,7 +517,7 @@ QPushButton#remove_btn:disabled {
            </property>
            <layout class="QHBoxLayout" name="horizontalLayout_25">
             <item>
-             <widget class="QListWidget" name="listWidget_17">
+             <widget class="QListWidget" name="q_bullets_5">
               <item>
                <property name="text">
                 <string>bullet 1 </string>
@@ -526,7 +526,7 @@ QPushButton#remove_btn:disabled {
              </widget>
             </item>
             <item>
-             <widget class="QFrame" name="frame_42">
+             <widget class="QFrame" name="frame_5_2">
               <property name="frameShape">
                <enum>QFrame::Shape::StyledPanel</enum>
               </property>
@@ -535,14 +535,14 @@ QPushButton#remove_btn:disabled {
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_35">
                <item>
-                <widget class="QPushButton" name="pushButton_39">
+                <widget class="QPushButton" name="add_btn_5">
                  <property name="text">
                   <string>+</string>
                  </property>
                 </widget>
                </item>
                <item>
-                <widget class="QPushButton" name="pushButton_40">
+                <widget class="QPushButton" name="remove_btn_5">
                  <property name="text">
                   <string>-</string>
                  </property>
@@ -558,7 +558,7 @@ QPushButton#remove_btn:disabled {
        </widget>
       </item>
       <item>
-       <widget class="QFrame" name="question_frame_18">
+       <widget class="QFrame" name="question_frame_6">
         <property name="frameShape">
          <enum>QFrame::Shape::StyledPanel</enum>
         </property>
@@ -567,14 +567,14 @@ QPushButton#remove_btn:disabled {
         </property>
         <layout class="QVBoxLayout" name="verticalLayout_36">
          <item>
-          <widget class="QLabel" name="label_26">
+          <widget class="QLabel" name="q_title_6">
            <property name="text">
             <string>questions 6</string>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QFrame" name="frame_43">
+          <widget class="QFrame" name="frame_6_1">
            <property name="frameShape">
             <enum>QFrame::Shape::StyledPanel</enum>
            </property>
@@ -583,7 +583,7 @@ QPushButton#remove_btn:disabled {
            </property>
            <layout class="QHBoxLayout" name="horizontalLayout_26">
             <item>
-             <widget class="QListWidget" name="listWidget_18">
+             <widget class="QListWidget" name="q_bullets_6">
               <item>
                <property name="text">
                 <string>bullet 1 </string>
@@ -592,7 +592,7 @@ QPushButton#remove_btn:disabled {
              </widget>
             </item>
             <item>
-             <widget class="QFrame" name="frame_44">
+             <widget class="QFrame" name="frame_6_2">
               <property name="frameShape">
                <enum>QFrame::Shape::StyledPanel</enum>
               </property>
@@ -601,14 +601,14 @@ QPushButton#remove_btn:disabled {
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_37">
                <item>
-                <widget class="QPushButton" name="pushButton_41">
+                <widget class="QPushButton" name="add_btn_6">
                  <property name="text">
                   <string>+</string>
                  </property>
                 </widget>
                </item>
                <item>
-                <widget class="QPushButton" name="pushButton_42">
+                <widget class="QPushButton" name="remove_btn_6">
                  <property name="text">
                   <string>-</string>
                  </property>
