@@ -121,13 +121,12 @@ class Widget(QWidget):
 
     def setup_widget(self, widget):
         # set default for listwidget
-        question_bullet_dict = {}
+        self.question_bullet_dict = {}
         for i in range(1, 7):
             tmp = {}
             list_widget = getattr(self.ui, f"q_bullets_{i}")
 
             self.set_editable_items(list_widget)
-            # self.listWidgetSetItem(list_widget)
 
             add_btn = getattr(self.ui, f"add_btn_{i}")
             remove_btn = getattr(self.ui, f"remove_btn_{i}")
@@ -135,17 +134,19 @@ class Widget(QWidget):
             tmp["add_btn"] = add_btn
             tmp["remove_btn"] = remove_btn
             tmp["list_widget"] = list_widget
-            question_bullet_dict[i] = tmp
+            self.question_bullet_dict[i] = tmp
 
-            add_btn.clicked.connect(
-                lambda: self.listWidgetSetItem(
-                    question_bullet_dict[i]["list_widget"], value=["new item"]
-                )
-            )
-            remove_btn.clicked.connect(
-                lambda: self.removeItem(question_bullet_dict[i]["list_widget"])
-            )
+            # Use a helper function to capture the current list_widget correctly
+            add_btn.clicked.connect(self._make_add_item_lambda(list_widget))
+            remove_btn.clicked.connect(self._make_remove_item_lambda(list_widget))
 
+    def _make_add_item_lambda(self, list_widget):
+        """Returns a lambda that correctly captures the list_widget."""
+        return lambda: self.listWidgetSetItem(list_widget, value=["new item"])
+
+    def _make_remove_item_lambda(self, list_widget):
+        """Returns a lambda that correctly captures the list_widget."""
+        return lambda: self.removeItem(list_widget)
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
