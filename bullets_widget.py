@@ -1,6 +1,7 @@
 import sys
 
-# import csv
+import csv
+
 # import random
 
 # import os
@@ -148,9 +149,38 @@ class Widget(QWidget):
         """Returns a lambda that correctly captures the list_widget."""
         return lambda: self.removeItem(list_widget)
 
+    def fill_list_widget_with_csv_file(self, file):
+        bullets = []
+        questions = []
+        with open(file, "r") as f:
+            reader = csv.reader(f, delimiter="|")
+            for row in reader:
+                questions.append(row[0])
+                bullets.append(row[1:])
+
+        question_bullet_dict = {}
+        list_widgets = []
+        tittles = []
+        for i in range(1, 7):
+            tmp = {}
+            list_widget = getattr(self.ui, f"q_bullets_{i}")
+            title = getattr(self.ui, f"q_title_{i}")
+
+            tittles.append(title)
+            list_widgets.append(list_widget)
+
+            tmp["list_widget"] = list_widget
+            question_bullet_dict[i] = tmp
+
+            tittles[i - 1].setText(questions[i - 1])
+            list_widgets[i - 1].addItems(bullets[i - 1])
+            self.set_editable_items(list_widgets[i - 1])
+
+
 if __name__ == "__main__":
     app = QApplication(sys.argv)
     widget = Widget()
     widget.show()
+    widget.fill_list_widget_with_csv_file("bullets.csv")
 
     sys.exit(app.exec())
