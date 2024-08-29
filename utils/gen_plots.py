@@ -39,8 +39,10 @@ def plot_best_worst_scores(questions):
     plt.subplots_adjust(left=0.4)  # Adjust 'left' to create more space for labels
     plt.subplots_adjust(bottom=0.3)  # Adjust to provide space for long labels
 
+
+    sorted_titles = [titles[i] for i in indices]
     # ax.barh(indices, scores, color="skyblue")
-    ax.barh(titles, scores, color="skyblue")
+    ax.barh(sorted_titles, scores, color="skyblue")
 
     ax.set_xlabel("Scores")
     # ax.set_ylabel("Question ID")
