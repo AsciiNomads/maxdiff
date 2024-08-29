@@ -19,62 +19,11 @@ from PySide6.QtWidgets import (
     QButtonGroup,
 )
 
-# from utils.file_reader import read_questions
+from utils.file_io import write_lines
 from select_bullets import Ui_Form
-
-
-class Question:
-    def __init__(self, question_text, _id):
-        self.id = _id
-        self.question_text = question_text
-        self.question_html = (
-            '<html><head/><body><p align="center">{}</p></body></html>'.format(
-                self.question_text
-            )
-        )
-        self.label = QLabel(self.question_text)
-        self.most_preferred = 0
-        self.least_preferred = 0
-        self.total_proposed = 0
-        self.more_preferred_than_listed = []
-        self.less_preferred_than_listed = []
-
-    def increment_and_update_as_most_preferred(self, compared_questions: list = []):
-        self.most_preferred += 1
-
-        for q in compared_questions:
-            if q.id != self.id:
-                self.more_preferred_than_listed.append(q)
-
-    def increment_and_update_as_least_preferred(self, compared_questions: list = []):
-        self.least_preferred += 1
-
-        for q in compared_questions:
-            if q.id != self.id:
-                self.less_preferred_than_listed.append(q)
-
-    def increment_total_proposed(self):
-        self.total_proposed += 1
-
-    def __str__(self) -> str:
-        return f"{self.question_text}: Most: {self.most_preferred}, Least: {self.least_preferred}, Total: {self.total_proposed}"
-
-    def __repr__(self) -> str:
-        return self.__str__()
-
-
-def generate_random_questions(number_of_questions: int):
-    """this function is for testing purposes"""
-    questions = []
-    for i in range(number_of_questions):
-        q = Question(f"Question {i + 1}" * 1, i)
-        q.most_preferred = randint(1, 10)
-        q.least_preferred = randint(1, 10)
-        q.total_proposed = q.most_preferred + q.least_preferred + randint(1, 10)
-        questions.append(q)
-
-    return questions
-
+from widget import Widget as wg
+import ui_form
+from QuestionBullets import QuestionBullets
 
 class Widget(QWidget):
     def __init__(self, parent=None):
@@ -86,11 +35,9 @@ class Widget(QWidget):
         self.ui = Ui_Form()
         self.ui.setupUi(self)
 
-        # self.question_sets = self.create_question_sets()
-        self.current_set_index = 0
-
         self.setup_widget(self)
         self.bullets = []
+        self.all_bullets = []
         self.ui.confirm_btn.clicked.connect(
             lambda: self.get_all_list_widgets_items(in_one_list=True)
         )
@@ -182,22 +129,35 @@ class Widget(QWidget):
             self.set_editable_items(list_widgets[i - 1])
 
     def get_all_list_widgets_items(self, in_one_list=False):
-        bullets = []
+        all_bullets = []
+        self.questions = []
         for i in range(1, 7):
             items = []
+            question_widget = getattr(widget.ui, f"q_title_{i}")
             list_widget = getattr(widget.ui, f"q_bullets_{i}")
             for j in range(list_widget.count()):
                 items.append(list_widget.item(j).text())
-            bullets.append(items)
+            self.questions.append(QuestionBullets(i, question_widget.text(), items))
+            all_bullets.append(items)
+            
         if in_one_list:
-            self.bullets = [item for sublist in bullets for item in sublist]
-            print(self.bullets)
-            return self.bullets
+            self.all_bullets = [item for sublist in all_bullets for item in sublist]
+            # return self.all_bullets
+        
+        write_lines("Bullets.txt", self.all_bullets)        
+        self.goto_maxdiff_widget()
 
-        self.bullets = bullets
-        print(self.bullets)
-        return bullets
+        self.all_bullets = all_bullets
+        
+        return all_bullets
 
+    def goto_maxdiff_widget(self):
+        self.new_widget = wg()
+        self.ui = ui_form.Ui_Widget()
+        self.ui.setupUi(self.new_widget)
+        
+        self.new_widget.show()
+        self.close()
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
