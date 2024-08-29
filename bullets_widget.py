@@ -95,7 +95,7 @@ class Widget(QWidget):
             item = list_widget.item(i)
             item.setFlags(item.flags() | Qt.ItemIsEditable)
 
-    def listWigetSetItem(
+    def listWidgetSetItem(
         self,
         l_w,
         value=None,
@@ -106,15 +106,12 @@ class Widget(QWidget):
         else:
             value = value
 
-        # list_widget = btn.parent().parent().findChild(QListWidget)
         list_widget = l_w
         list_widget.addItems(value)
-        self.set_editable_items(list_widget)
 
     # def delete_item(self, btn, list_widget):
     def removeItem(self, l_w):
         list_widget = l_w
-        # list_widget = btn.parent().parent().findChild(QListWidget)
 
         if list_widget:
             for item in list_widget.selectedItems():
@@ -122,45 +119,37 @@ class Widget(QWidget):
         else:
             print("QListWidget not found")
 
-    def connet_buttons(self):
-        # Find all QPushButton widgets
-        buttons = self.findChildren(QPushButton)
-        list_widgets = self.findChildren(QListWidget)
-        # print(list_widgets[0])
-        list_widgets_counter = 0
-        for button in buttons:
-            # print(button.text())
-            if list_widgets_counter >= 2:
-                try:
-                    list_widgets.pop(0)
-                except:
-                    pass
-            if button.text() == "+":
-                button.clicked.connect(
-                    lambda: self.listWigetSetItem(list_widgets[1], value=["new item"])
-                )
-                list_widgets_counter += 1
-            elif button.text() == "-":
-                button.clicked.connect(lambda: self.removeItem(list_widgets[1]))
-                list_widgets_counter += 1
-
     def setup_widget(self, widget):
-        # list_widget = self.ui.q1_bullets
+        # set default for listwidget
+        question_bullet_dict = {}
+        for i in range(1, 7):
+            tmp = {}
+            list_widget = getattr(self.ui, f"q_bullets_{i}")
 
-        self.connet_buttons()
+            self.set_editable_items(list_widget)
+            # self.listWidgetSetItem(list_widget)
 
-        # set default values
-        # self.listWigetSetItem(list_widget)
-        # self.ui.add_btn.clicked.connect(
-        #     lambda: self.listWigetSetItem(list_widget, value=["new item"])
-        # )
-        # self.ui.remove_btn.clicked.connect(lambda: self.removeItem(list_widget))
+            add_btn = getattr(self.ui, f"add_btn_{i}")
+            remove_btn = getattr(self.ui, f"remove_btn_{i}")
+
+            tmp["add_btn"] = add_btn
+            tmp["remove_btn"] = remove_btn
+            tmp["list_widget"] = list_widget
+            question_bullet_dict[i] = tmp
+
+            add_btn.clicked.connect(
+                lambda: self.listWidgetSetItem(
+                    question_bullet_dict[i]["list_widget"], value=["new item"]
+                )
+            )
+            remove_btn.clicked.connect(
+                lambda: self.removeItem(question_bullet_dict[i]["list_widget"])
+            )
 
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
     widget = Widget()
-    # widget.exportWidget.show()
     widget.show()
 
     sys.exit(app.exec())
