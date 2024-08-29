@@ -276,7 +276,6 @@ class Ui_Form(object):
         self.horizontalLayout.setObjectName(u"horizontalLayout")
         self.horizontalLayout.setContentsMargins(-1, 0, -1, 0)
         self.q_bullets_1 = QListWidget(self.frame_1_1)
-        QListWidgetItem(self.q_bullets_1)
         self.q_bullets_1.setObjectName(u"q_bullets_1")
 
         self.horizontalLayout.addWidget(self.q_bullets_1)
@@ -327,7 +326,6 @@ class Ui_Form(object):
         self.horizontalLayout_4.setObjectName(u"horizontalLayout_4")
         self.horizontalLayout_4.setContentsMargins(-1, 0, -1, 0)
         self.q_bullets_2 = QListWidget(self.frame_2_1)
-        QListWidgetItem(self.q_bullets_2)
         self.q_bullets_2.setObjectName(u"q_bullets_2")
 
         self.horizontalLayout_4.addWidget(self.q_bullets_2)
@@ -381,7 +379,6 @@ class Ui_Form(object):
         self.horizontalLayout_23.setObjectName(u"horizontalLayout_23")
         self.horizontalLayout_23.setContentsMargins(-1, 0, -1, 0)
         self.q_bullets_3 = QListWidget(self.frame_3_1)
-        QListWidgetItem(self.q_bullets_3)
         self.q_bullets_3.setObjectName(u"q_bullets_3")
 
         self.horizontalLayout_23.addWidget(self.q_bullets_3)
@@ -431,7 +428,6 @@ class Ui_Form(object):
         self.horizontalLayout_24.setObjectName(u"horizontalLayout_24")
         self.horizontalLayout_24.setContentsMargins(-1, 0, -1, 0)
         self.q_bullets_4 = QListWidget(self.frame_4_1)
-        QListWidgetItem(self.q_bullets_4)
         self.q_bullets_4.setObjectName(u"q_bullets_4")
 
         self.horizontalLayout_24.addWidget(self.q_bullets_4)
@@ -481,7 +477,6 @@ class Ui_Form(object):
         self.horizontalLayout_25.setObjectName(u"horizontalLayout_25")
         self.horizontalLayout_25.setContentsMargins(-1, 0, -1, 0)
         self.q_bullets_5 = QListWidget(self.frame_5_1)
-        QListWidgetItem(self.q_bullets_5)
         self.q_bullets_5.setObjectName(u"q_bullets_5")
 
         self.horizontalLayout_25.addWidget(self.q_bullets_5)
@@ -531,7 +526,6 @@ class Ui_Form(object):
         self.horizontalLayout_26.setObjectName(u"horizontalLayout_26")
         self.horizontalLayout_26.setContentsMargins(-1, 0, -1, 0)
         self.q_bullets_6 = QListWidget(self.frame_6_1)
-        QListWidgetItem(self.q_bullets_6)
         self.q_bullets_6.setObjectName(u"q_bullets_6")
 
         self.horizontalLayout_26.addWidget(self.q_bullets_6)
@@ -579,63 +573,21 @@ class Ui_Form(object):
         Form.setWindowTitle(QCoreApplication.translate("Form", u"Form", None))
         self.instruciton.setText(QCoreApplication.translate("Form", u"select bullet", None))
         self.q_title_1.setText(QCoreApplication.translate("Form", u"questions 1 ", None))
-
-        __sortingEnabled = self.q_bullets_1.isSortingEnabled()
-        self.q_bullets_1.setSortingEnabled(False)
-        ___qlistwidgetitem = self.q_bullets_1.item(0)
-        ___qlistwidgetitem.setText(QCoreApplication.translate("Form", u"bullet 1 ", None));
-        self.q_bullets_1.setSortingEnabled(__sortingEnabled)
-
         self.add_btn_1.setText(QCoreApplication.translate("Form", u"+", None))
         self.remove_btn_1.setText(QCoreApplication.translate("Form", u"-", None))
         self.q_title_2.setText(QCoreApplication.translate("Form", u"questions 2", None))
-
-        __sortingEnabled1 = self.q_bullets_2.isSortingEnabled()
-        self.q_bullets_2.setSortingEnabled(False)
-        ___qlistwidgetitem1 = self.q_bullets_2.item(0)
-        ___qlistwidgetitem1.setText(QCoreApplication.translate("Form", u"bullet 1 ", None));
-        self.q_bullets_2.setSortingEnabled(__sortingEnabled1)
-
         self.add_btn_2.setText(QCoreApplication.translate("Form", u"+", None))
         self.remove_btn_2.setText(QCoreApplication.translate("Form", u"-", None))
         self.q_title_3.setText(QCoreApplication.translate("Form", u"questions 3", None))
-
-        __sortingEnabled2 = self.q_bullets_3.isSortingEnabled()
-        self.q_bullets_3.setSortingEnabled(False)
-        ___qlistwidgetitem2 = self.q_bullets_3.item(0)
-        ___qlistwidgetitem2.setText(QCoreApplication.translate("Form", u"bullet 1 ", None));
-        self.q_bullets_3.setSortingEnabled(__sortingEnabled2)
-
         self.add_btn_3.setText(QCoreApplication.translate("Form", u"+", None))
         self.remove_btn_3.setText(QCoreApplication.translate("Form", u"-", None))
         self.q_title_4.setText(QCoreApplication.translate("Form", u"questions 4", None))
-
-        __sortingEnabled3 = self.q_bullets_4.isSortingEnabled()
-        self.q_bullets_4.setSortingEnabled(False)
-        ___qlistwidgetitem3 = self.q_bullets_4.item(0)
-        ___qlistwidgetitem3.setText(QCoreApplication.translate("Form", u"bullet 1 ", None));
-        self.q_bullets_4.setSortingEnabled(__sortingEnabled3)
-
         self.add_btn_4.setText(QCoreApplication.translate("Form", u"+", None))
         self.remove_btn_4.setText(QCoreApplication.translate("Form", u"-", None))
         self.q_title_5.setText(QCoreApplication.translate("Form", u"questions 5", None))
-
-        __sortingEnabled4 = self.q_bullets_5.isSortingEnabled()
-        self.q_bullets_5.setSortingEnabled(False)
-        ___qlistwidgetitem4 = self.q_bullets_5.item(0)
-        ___qlistwidgetitem4.setText(QCoreApplication.translate("Form", u"bullet 1 ", None));
-        self.q_bullets_5.setSortingEnabled(__sortingEnabled4)
-
         self.add_btn_5.setText(QCoreApplication.translate("Form", u"+", None))
         self.remove_btn_5.setText(QCoreApplication.translate("Form", u"-", None))
         self.q_title_6.setText(QCoreApplication.translate("Form", u"questions 6", None))
-
-        __sortingEnabled5 = self.q_bullets_6.isSortingEnabled()
-        self.q_bullets_6.setSortingEnabled(False)
-        ___qlistwidgetitem5 = self.q_bullets_6.item(0)
-        ___qlistwidgetitem5.setText(QCoreApplication.translate("Form", u"bullet 1 ", None));
-        self.q_bullets_6.setSortingEnabled(__sortingEnabled5)
-
         self.add_btn_6.setText(QCoreApplication.translate("Form", u"+", None))
         self.remove_btn_6.setText(QCoreApplication.translate("Form", u"-", None))
         self.confirm_btn.setText(QCoreApplication.translate("Form", u"Confirm", None))

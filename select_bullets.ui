@@ -294,13 +294,7 @@ QPushButton#remove_btn_1 :disabled {
              <number>0</number>
             </property>
             <item>
-             <widget class="QListWidget" name="q_bullets_1">
-              <item>
-               <property name="text">
-                <string>bullet 1 </string>
-               </property>
-              </item>
-             </widget>
+             <widget class="QListWidget" name="q_bullets_1"/>
             </item>
             <item>
              <widget class="QFrame" name="frame_1_2">
@@ -375,13 +369,7 @@ QPushButton#remove_btn_1 :disabled {
              <number>0</number>
             </property>
             <item>
-             <widget class="QListWidget" name="q_bullets_2">
-              <item>
-               <property name="text">
-                <string>bullet 1 </string>
-               </property>
-              </item>
-             </widget>
+             <widget class="QListWidget" name="q_bullets_2"/>
             </item>
             <item>
              <widget class="QFrame" name="frame_2_2">
@@ -466,13 +454,7 @@ QPushButton#remove_btn_1 :disabled {
              <number>0</number>
             </property>
             <item>
-             <widget class="QListWidget" name="q_bullets_3">
-              <item>
-               <property name="text">
-                <string>bullet 1 </string>
-               </property>
-              </item>
-             </widget>
+             <widget class="QListWidget" name="q_bullets_3"/>
             </item>
             <item>
              <widget class="QFrame" name="frame_3_2">
@@ -544,13 +526,7 @@ QPushButton#remove_btn_1 :disabled {
              <number>0</number>
             </property>
             <item>
-             <widget class="QListWidget" name="q_bullets_4">
-              <item>
-               <property name="text">
-                <string>bullet 1 </string>
-               </property>
-              </item>
-             </widget>
+             <widget class="QListWidget" name="q_bullets_4"/>
             </item>
             <item>
              <widget class="QFrame" name="frame_4_2">
@@ -622,13 +598,7 @@ QPushButton#remove_btn_1 :disabled {
              <number>0</number>
             </property>
             <item>
-             <widget class="QListWidget" name="q_bullets_5">
-              <item>
-               <property name="text">
-                <string>bullet 1 </string>
-               </property>
-              </item>
-             </widget>
+             <widget class="QListWidget" name="q_bullets_5"/>
             </item>
             <item>
              <widget class="QFrame" name="frame_5_2">
@@ -700,13 +670,7 @@ QPushButton#remove_btn_1 :disabled {
              <number>0</number>
             </property>
             <item>
-             <widget class="QListWidget" name="q_bullets_6">
-              <item>
-               <property name="text">
-                <string>bullet 1 </string>
-               </property>
-              </item>
-             </widget>
+             <widget class="QListWidget" name="q_bullets_6"/>
             </item>
             <item>
              <widget class="QFrame" name="frame_6_2">
