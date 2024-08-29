@@ -21,6 +21,7 @@ from utils.maxdiff import *
 from utils.gen_plots import *
 
 from utils.pdf_export import *
+from maxdiff_function import generate_maxdiff_survey
 
 
 class Question:
@@ -75,6 +76,7 @@ def generate_random_questions(number_of_questions: int):
     return questions
 
 
+MAX_NUMBER_OF_APPEARANCES = 5
 MAX_QUESTIONS_PER_PAGE = 4
 
 
@@ -177,18 +179,15 @@ class Widget(QWidget):
             Q = Question(q_text, _id=i)
             self.question_objs.append(Q)
 
-        result = []
+        result = generate_maxdiff_survey(self.question_objs, MAX_NUMBER_OF_APPEARANCES, MAX_QUESTIONS_PER_PAGE)
 
-        number_of_sets = len(self.question_objs) * 3
+        # number_of_sets = len(self.question_objs) * 3
         # number_of_sets = 2
-        # for i in range(number_of_sets):
-        #     subset = random.sample(self.question_objs, 4)
-        #     result.append(subset)
         
-        for i in range(0, len(self.question_objs), 4):
-            # subset = random.sample(self.Bullet_objs, 4)
-            # result.append(subset)
-            result.append(self.question_objs[i:i+4])
+        # for i in range(0, len(self.question_objs), 4):
+        #     # subset = random.sample(self.Bullet_objs, 4)
+        #     # result.append(subset)
+        #     result.append(self.question_objs[i:i+4])
 
         # Define sets of questions (can have repeated questions)
         return result
