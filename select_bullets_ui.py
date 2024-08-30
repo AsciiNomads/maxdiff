@@ -23,7 +23,7 @@ class Ui_Form(object):
     def setupUi(self, Form):
         if not Form.objectName():
             Form.setObjectName(u"Form")
-        Form.resize(1017, 868)
+        Form.resize(1017, 962)
         Form.setStyleSheet(u"/* Modern Light Theme */\n"
 "\n"
 "/* Style for QCheckBox */\n"
@@ -219,6 +219,10 @@ class Ui_Form(object):
 "    padding-bottom: 6px;\n"
 "}\n"
 "\n"
+"QFrame {\n"
+"    border: none;\n"
+"    background-color: transparent; /* Optional: If you want a transparent background */\n"
+"}\n"
 "")
         self.verticalLayout_38 = QVBoxLayout(Form)
         self.verticalLayout_38.setObjectName(u"verticalLayout_38")
