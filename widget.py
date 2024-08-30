@@ -6,7 +6,7 @@ import os
 
 from PySide6.QtWidgets import QApplication, QWidget, QFileDialog
 
-from ui_form import Ui_Widget
+from Uis.ui_form_ui import Ui_Widget
 
 from PySide6.QtWidgets import QApplication, QLabel, QWidget, QButtonGroup
 from PySide6.QtGui import QPixmap
@@ -14,7 +14,7 @@ from PySide6.QtGui import QPixmap
 from utils.file_io import read_lines
 
 from PySide6.QtCore import Qt
-from export_ui import Ui_Form
+from Uis.export_ui import Ui_Form
 
 from random import randint
 from utils.maxdiff import *
@@ -282,8 +282,8 @@ class Widget(QWidget):
             self.ui.plot_pic.setPixmap(scaled_pixmap)
 
         # get questions
-        # self.questions = self.get_questions()
-        self.questions = generate_random_questions(15)
+        self.questions = self.get_questions()
+        # self.questions = generate_random_questions(15)
         set_rank_scores(self.questions)
         
         # self.questions.sort(key=lambda )
@@ -387,7 +387,7 @@ class Widget(QWidget):
 if __name__ == "__main__":
     app = QApplication(sys.argv)
     widget = Widget()
-    widget.exportWidget()
-    # widget.showFullScreen()
+    # widget.exportWidget()
+    widget.showFullScreen()
 
     sys.exit(app.exec())

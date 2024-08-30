@@ -20,9 +20,9 @@ from PySide6.QtWidgets import (
 )
 
 from utils.file_io import write_lines
-from select_bullets import Ui_Form
+from Uis.select_bullets_ui import Ui_Form
 from widget import Widget as wg
-import ui_form
+import Uis.ui_form_ui
 from QuestionBullets import QuestionBullets
 
 

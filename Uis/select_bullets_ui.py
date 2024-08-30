@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'select_bullets.ui'
+## Form generated from reading UI file 'select_bullets_ui.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.7.2
 ##
@@ -222,6 +222,19 @@ class Ui_Form(object):
 "QFrame {\n"
 "    border: none;\n"
 "    background-color: transparent; /* Optional: If you want a transparent background */\n"
+"}\n"
+"\n"
+"QFrame#question_frame_1,\n"
+"QFrame#ques"
+                        "tion_frame_2,\n"
+"QFrame#question_frame_3,\n"
+"QFrame#question_frame_4,\n"
+"QFrame#question_frame_5,\n"
+"QFrame#question_frame_6 {\n"
+"    border: none; /* Removes all borders */\n"
+"    border-bottom: 2px solid #000000; /* Adds a 2px solid blue bottom border */\n"
+"    background-color: transparent; /* Optional: Set the background color to transparent */\n"
+"    border-radius: 0px; /* Ensures no rounded corners at the bottom */\n"
 "}\n"
 "")
         self.verticalLayout_38 = QVBoxLayout(Form)

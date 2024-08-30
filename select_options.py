@@ -1,7 +1,7 @@
 from PySide6.QtWidgets import QApplication, QDialog, QVBoxLayout, QPushButton, QLabel
 
 import sys
-from dialog_ui import Ui_Dialog
+from Uis.dialog_ui import Ui_Dialog
 
 
 class OptionDialog(QDialog):
