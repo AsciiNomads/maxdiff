@@ -22,12 +22,12 @@ from PySide6.QtWidgets import (
 from utils.file_io import write_lines
 from Uis.select_bullets_ui import Ui_Form
 from widget import Widget as wg
-import Uis.ui_form_ui
+import Uis.ui_form_ui as ui_form
 from QuestionBullets import QuestionBullets
 
 
 class Widget(QWidget):
-    def __init__(self, parent=None):
+    def __init__(self, parent=None, default=False):
         super().__init__(parent)
         self.setWindowTitle("Main Window")
         # self.show_new_widget()
@@ -45,6 +45,9 @@ class Widget(QWidget):
         self.ui.confirm_btn.clicked.connect(
             lambda: self.get_all_list_widgets_items(in_one_list=True)
         )
+
+        if default:
+            self.get_all_list_widgets_items(in_one_list=True)
 
     def set_editable_items(self, list_widget):
         for i in range(list_widget.count()):
