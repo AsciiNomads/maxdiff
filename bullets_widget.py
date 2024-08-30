@@ -21,8 +21,9 @@ from PySide6.QtWidgets import (
 
 from utils.file_io import write_lines
 from Uis.select_bullets_ui import Ui_Form
-from widget import Widget as wg
-import Uis.ui_form_ui as ui_form
+from survey import Widget as wg
+import Uis.light_form_ui as light_survey_form
+
 from QuestionBullets import QuestionBullets
 
 
@@ -170,12 +171,12 @@ class Widget(QWidget):
         return all_bullets
 
     def goto_maxdiff_widget(self):
+        self.close()
         self.new_widget = wg()
-        self.ui = ui_form.Ui_Widget()
+        self.ui = light_survey_form.Ui_Widget()
         self.ui.setupUi(self.new_widget)
 
         self.new_widget.showFullScreen()
-        self.close()
 
 
 if __name__ == "__main__":
