@@ -25,6 +25,7 @@ from widget import Widget as wg
 import ui_form
 from QuestionBullets import QuestionBullets
 
+
 class Widget(QWidget):
     def __init__(self, parent=None):
         super().__init__(parent)
@@ -139,16 +140,16 @@ class Widget(QWidget):
                 items.append(list_widget.item(j).text())
             self.questions.append(QuestionBullets(i, question_widget.text(), items))
             all_bullets.append(items)
-            
+
         if in_one_list:
             self.all_bullets = [item for sublist in all_bullets for item in sublist]
             # return self.all_bullets
-        
-        write_lines("Bullets.txt", self.all_bullets)        
+
+        write_lines("Bullets.txt", self.all_bullets)
         self.goto_maxdiff_widget()
 
         self.all_bullets = all_bullets
-        
+
         return all_bullets
 
     def goto_maxdiff_widget(self):
@@ -156,13 +157,14 @@ class Widget(QWidget):
         self.ui = ui_form.Ui_Widget()
         self.ui.setupUi(self.new_widget)
         
-        self.new_widget.show()
+        self.new_widget.showFullScreen()
         self.close()
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
     widget = Widget()
-    widget.show()
+    widget.showFullScreen()
+
     widget.fill_list_widget_with_csv_file("bullets.csv")
 
     # get all items for each list_widget

@@ -14,7 +14,7 @@ from utils.gen_plots import plot_best_worst_scores, plot_best_worst_percentages
 if __name__ == "__main__":
     app = QApplication(sys.argv)
     widget = Widget()
-    widget.show()
+    widget.showFullScreen()
     exit_code = app.exec()
 
     # An example of how to use the functions to plot the results 
