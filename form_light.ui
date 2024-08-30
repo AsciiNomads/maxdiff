@@ -133,7 +133,7 @@ QRadioButton::indicator:checked {
                <enum>Qt::LayoutDirection::LeftToRight</enum>
               </property>
               <property name="text">
-               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Choose one item from the &amp;quot;Least important&amp;quot; column on the left and one item from the &amp;quot;Most&lt;/p&gt;&lt;p&gt; important&amp;quot; column on the right. You are only allowed one response per column.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Choose one item from the &amp;quot;Most important&amp;quot; column on the left and one item from&lt;/p&gt;&lt;p&gt;the &amp;quot;Least important&amp;quot; column on the right. You are only allowed one response per column.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
               </property>
               <property name="alignment">
                <set>Qt::AlignmentFlag::AlignCenter</set>
@@ -174,7 +174,7 @@ QRadioButton::indicator:checked {
                <item>
                 <widget class="QLabel" name="LeastImportant_L">
                  <property name="text">
-                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot; style=&quot;line-height: 0.25;&quot;&gt;Least&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;important&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:8pt;&quot;&gt;Most&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:8pt;&quot;&gt;important&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                  </property>
                 </widget>
                </item>
@@ -188,7 +188,7 @@ QRadioButton::indicator:checked {
                <item>
                 <widget class="QLabel" name="MostImportant_L">
                  <property name="text">
-                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot; style=&quot;line-height: 0.25;&quot;&gt;Most&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;important&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Least&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;important&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                  </property>
                 </widget>
                </item>
