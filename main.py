@@ -3,7 +3,7 @@ import sys
 
 from PySide6.QtWidgets import QApplication
 
-from widget import Widget
+from bullets_widget  import Widget
 from utils.gen_plots import plot_best_worst_scores, plot_best_worst_percentages
 
 # Important:

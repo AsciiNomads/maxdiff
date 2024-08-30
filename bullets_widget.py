@@ -38,6 +38,8 @@ class Widget(QWidget):
         self.ui.setupUi(self)
 
         self.setup_widget(self)
+        self.fill_list_widget_with_csv_file("bullets.csv")
+
         self.bullets = []
         self.all_bullets = []
         self.ui.confirm_btn.clicked.connect(
@@ -145,8 +147,8 @@ class Widget(QWidget):
         self.questions = []
         for i in range(1, self.number_of_questions + 1):
             items = []
-            question_widget = getattr(widget.ui, f"q_title_{i}")
-            list_widget = getattr(widget.ui, f"q_bullets_{i}")
+            question_widget = getattr(self.ui, f"q_title_{i}")
+            list_widget = getattr(self.ui, f"q_bullets_{i}")
             for j in range(list_widget.count()):
                 items.append(list_widget.item(j).text())
             self.questions.append(QuestionBullets(i, question_widget.text(), items))
@@ -177,8 +179,6 @@ if __name__ == "__main__":
     app = QApplication(sys.argv)
     widget = Widget()
     widget.showFullScreen()
-
-    widget.fill_list_widget_with_csv_file("bullets.csv")
 
     # get all items for each list_widget
     # print(widget.get_all_list_widgets_items(in_one_list=True))
