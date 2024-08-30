@@ -93,13 +93,13 @@ class Widget(QWidget):
 
         self.question_sets = self.create_question_sets()
         self.current_set_index = 0
-        
+
         self.update_question_reminder_label(
             self.current_set_index + 1, len(self.question_sets)
         )
 
         self.setup_widget(self)
-        
+
         self.next_button_style = self.ui.NextButton.styleSheet()
 
         self.load_question_set(self.question_sets[self.current_set_index])
@@ -110,7 +110,7 @@ class Widget(QWidget):
 
         self.ui.right_button_group = QButtonGroup(self)
         self.ui.right_button_group.setExclusive(True)
-        
+
         self.ui.question_widgets = []
 
         for i in range(1, MAX_QUESTIONS_PER_PAGE + 1):
@@ -124,26 +124,32 @@ class Widget(QWidget):
             self.ui.right_button_group.addButton(right_radio)
 
             # Store references in a list for easy access
-            self.ui.question_widgets.append({
-                "label": question_label,
-                "left_radio": left_radio,
-                "right_radio": right_radio,
-                "question": Question("", _id=-(i + 1)),
-            })
+            self.ui.question_widgets.append(
+                {
+                    "label": question_label,
+                    "left_radio": left_radio,
+                    "right_radio": right_radio,
+                    "question": Question("", _id=-(i + 1)),
+                }
+            )
 
             # Connect signals for row-wise restriction
-            left_radio.toggled.connect(lambda checked, idx=i-1: self.handle_left_radio_toggle(checked, idx))
-            right_radio.toggled.connect(lambda checked, idx=i-1: self.handle_right_radio_toggle(checked, idx))
+            left_radio.toggled.connect(
+                lambda checked, idx=i - 1: self.handle_left_radio_toggle(checked, idx)
+            )
+            right_radio.toggled.connect(
+                lambda checked, idx=i - 1: self.handle_right_radio_toggle(checked, idx)
+            )
 
         self.ui.NextButton.clicked.connect(self.next_question_set)
-        
+
     def handle_left_radio_toggle(self, checked, index):
         """
         When a left radio button is toggled:
         - If checked, disable the right radio button in the same row.
         - If unchecked, enable the right radio button in the same row.
         """
-        right_radio = self.ui.question_widgets[index]['right_radio']
+        right_radio = self.ui.question_widgets[index]["right_radio"]
         right_radio.setEnabled(not checked)
         self.check_enable_next_button()
 
@@ -153,23 +159,31 @@ class Widget(QWidget):
         - If checked, disable the left radio button in the same row.
         - If unchecked, enable the left radio button in the same row.
         """
-        left_radio = self.ui.question_widgets[index]['left_radio']
+        left_radio = self.ui.question_widgets[index]["left_radio"]
         left_radio.setEnabled(not checked)
         self.check_enable_next_button()
-        
+
     def check_enable_next_button(self, is_finish=False):
         # Enable the "Next" button only if each row has one selection
-        any_left_selected = any(w["left_radio"].isChecked() for w in self.ui.question_widgets)
-        any_right_selected = any(w["right_radio"].isChecked() for w in self.ui.question_widgets)
+        any_left_selected = any(
+            w["left_radio"].isChecked() for w in self.ui.question_widgets
+        )
+        any_right_selected = any(
+            w["right_radio"].isChecked() for w in self.ui.question_widgets
+        )
         button_style = "background-color: #c0392b;" if is_finish else ""
-        
+
         # Enable or disable the Next button based on selections
         if any_left_selected and any_right_selected:
             self.ui.NextButton.setEnabled(True)
-            self.ui.NextButton.setStyleSheet(self.next_button_style)  # Reset to default style
+            self.ui.NextButton.setStyleSheet(
+                self.next_button_style
+            )  # Reset to default style
         else:
             self.ui.NextButton.setEnabled(False)
-            self.ui.NextButton.setStyleSheet("background-color: lightgray; color: gray;")
+            self.ui.NextButton.setStyleSheet(
+                "background-color: lightgray; color: gray;"
+            )
 
     def create_question_sets(self):
         # Create question instances
@@ -179,11 +193,13 @@ class Widget(QWidget):
             Q = Question(q_text, _id=i)
             self.question_objs.append(Q)
 
-        result = generate_maxdiff_survey(self.question_objs, MAX_NUMBER_OF_APPEARANCES, MAX_QUESTIONS_PER_PAGE)
+        result = generate_maxdiff_survey(
+            self.question_objs, MAX_NUMBER_OF_APPEARANCES, MAX_QUESTIONS_PER_PAGE
+        )
 
         # number_of_sets = len(self.question_objs) * 3
         # number_of_sets = 2
-        
+
         # for i in range(0, len(self.question_objs), 4):
         #     # subset = random.sample(self.Bullet_objs, 4)
         #     # result.append(subset)
@@ -195,12 +211,12 @@ class Widget(QWidget):
     def load_question_set(self, question_set: list[Question]):
         self.ui.left_button_group.setExclusive(False)
         self.ui.right_button_group.setExclusive(False)
-        
+
         for widget in self.ui.question_widgets:
-            widget['left_radio'].setChecked(False)
-            widget['right_radio'].setChecked(False)
-            widget['left_radio'].setEnabled(True)
-            widget['right_radio'].setEnabled(True)
+            widget["left_radio"].setChecked(False)
+            widget["right_radio"].setChecked(False)
+            widget["left_radio"].setEnabled(True)
+            widget["right_radio"].setEnabled(True)
 
         self.ui.left_button_group.setExclusive(True)
         self.ui.right_button_group.setExclusive(True)
@@ -208,7 +224,7 @@ class Widget(QWidget):
         for i, question in enumerate(question_set):
             self.ui.question_widgets[i]["label"].setText(question.question_html)
             self.ui.question_widgets[i]["question"] = question
-            
+
         self.check_enable_next_button()
 
     def update_questions_results(self):
