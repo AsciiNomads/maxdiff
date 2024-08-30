@@ -1,18 +1,22 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
-from utils.maxdiff import get_scores, get_percentages
+from utils.maxdiff import set_rank_scores, get_percentages
 
 # Assuming the following:
 # - questions is a list of Question objects
-# - get_scores() and get_percentages() are defined as provided
+# - set_rank_scores() and get_percentages() are defined as provided
 
 
 # Function to plot Best-Worst Scores
 def plot_best_worst_scores(questions):
-    indices, scores = get_scores(questions)
+    if any([q.rank == 0 for q in questions]):
+        set_rank_scores(questions)
 
     max_label_length = max(len(question.question_text) for question in questions)
+    sorted_questions = sorted(questions, key=lambda q: q.rank)
+    scores = [q.score for q in sorted_questions]
+
     
     # Calculate the figure width and height based on the number of questions
     fig_width = max(6.5, 0.25 * max_label_length)
@@ -20,19 +24,17 @@ def plot_best_worst_scores(questions):
 
     titles = [
         q.question_text[:50] + "..." if len(q.question_text) > 50 else q.question_text
-        for q in questions
+        for q in sorted_questions
     ]
 
     # Creating horizontal bars
     fig, ax = plt.subplots(figsize=(fig_width, fig_height))
     plt.subplots_adjust(left=0.4, bottom=0.3)  # Adjust margins for labels
 
-    sorted_titles = [titles[i] for i in indices]
-
     # Determine colors based on scores
     colors = ["green" if score >= 0 else "blue" for score in scores]
 
-    ax.barh(sorted_titles, scores, color=colors)
+    ax.barh(titles, scores, color=colors)
 
     ax.set_xlabel("Scores")
     ax.set_ylabel("Question Title")
