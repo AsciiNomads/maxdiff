@@ -28,7 +28,11 @@ def plot_best_worst_scores(questions):
     plt.subplots_adjust(left=0.4, bottom=0.3)  # Adjust margins for labels
 
     sorted_titles = [titles[i] for i in indices]
-    ax.barh(sorted_titles, scores, color="skyblue")
+
+    # Determine colors based on scores
+    colors = ["green" if score >= 0 else "blue" for score in scores]
+
+    ax.barh(sorted_titles, scores, color=colors)
 
     ax.set_xlabel("Scores")
     ax.set_ylabel("Question Title")
