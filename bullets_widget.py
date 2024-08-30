@@ -1,6 +1,7 @@
 import sys
 
 import csv
+import pandas as pd
 
 # import random
 
@@ -39,7 +40,8 @@ class Widget(QWidget):
         self.ui.setupUi(self)
 
         self.setup_widget(self)
-        self.fill_list_widget_with_csv_file("bullets.csv")
+        self.fill_list_widget_with_csv_file("bullets.xlsx")
+        # self.fill_list_widget_with_csv_file("bullets.csv")
 
         self.bullets = []
         self.all_bullets = []
@@ -112,11 +114,24 @@ class Widget(QWidget):
     def fill_list_widget_with_csv_file(self, file):
         bullets = []
         questions = []
-        with open(file, "r") as f:
-            reader = csv.reader(f, delimiter="|")
-            for row in reader:
-                questions.append(row[0])
-                bullets.append(row[1:])
+        if file.endswith('.csv'):
+            with open(file, "r") as f:
+                reader = csv.reader(f, delimiter="|")
+                for row in reader:
+                    questions.append(row[0])
+                    bullets.append(row[1:])
+        elif file.endswith('.xlsx'):
+            try:
+                df = pd.read_excel(file)
+                print(df)
+                for i in range(len(df)):
+                    questions.append(df.iloc[i, 0])
+                    bullets.append([item for item in df.iloc[i, 1:] if pd.notna(item)])
+            except Exception as e:
+                print("Error reading xlsx file")
+                print(e)
+        else:
+            print("Invalid file format. Only CSV and XLSX files are supported.")
 
         question_bullet_dict = {}
         list_widgets = []
@@ -137,14 +152,31 @@ class Widget(QWidget):
             self.set_editable_items(list_widgets[i - 1])
 
     def save_content_into_csv(self, file):
-        with open(file, "w") as f:
-            writer = csv.writer(f, delimiter="|")
-            for i in range(1, self.number_of_questions + 1):
-                list_widget = getattr(self.ui, f"q_bullets_{i}")
-                title = getattr(self.ui, f"q_title_{i}")
+        if file.endswith('.csv'):
+            with open(file, "w") as f:
+                writer = csv.writer(f, delimiter="|")
+                for i in range(1, self.number_of_questions + 1):
+                    list_widget = getattr(self.ui, f"q_bullets_{i}")
+                    title = getattr(self.ui, f"q_title_{i}")
 
-                items = [list_widget.item(j).text() for j in range(list_widget.count())]
-                writer.writerow([title.text()] + items)
+                    items = [list_widget.item(j).text() for j in range(list_widget.count())]
+                    writer.writerow([title.text()] + items)
+        elif file.endswith('.xlsx'):
+            try:
+                df = pd.DataFrame(columns=["Question", "Bullets"])
+                for i in range(1, self.number_of_questions + 1):
+                    list_widget = getattr(self.ui, f"q_bullets_{i}")
+                    title = getattr(self.ui, f"q_title_{i}")
+
+                    items = [list_widget.item(j).text() for j in range(list_widget.count())]
+                    df = df.append({"Question": title.text(), "Bullets": "|".join(items)}, ignore_index=True)
+
+                df.to_excel(file, index=False)
+            except Exception as e:
+                print("Error writing xlsx file")
+                print(e)
+        else:
+            print("Invalid file format. Only CSV and XLSX files are supported.")
 
     def get_all_list_widgets_items(self, in_one_list=False):
         all_bullets = []

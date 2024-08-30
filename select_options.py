@@ -3,12 +3,12 @@ from PySide6.QtWidgets import QApplication, QDialog, QVBoxLayout, QPushButton, Q
 import sys
 from Uis.dialog_ui import Ui_Dialog
 import csv
+import pandas as pd
 
 from bullets_widget import Widget as wg
 from Uis.select_bullets_ui import Ui_Form
 from Uis.light_form_ui import Ui_Widget as survey_form
 from survey import Widget as survey_widget
-
 
 class OptionDialog(QDialog):
     def __init__(self):
@@ -23,7 +23,8 @@ class OptionDialog(QDialog):
 
     def goto_bullet_option_select(self, choice="start"):
         if choice == "start":
-            self.save_bullets_into_txt("bullets.csv", "Bullets.txt")
+            # self.save_bullets_into_txt("bullets.csv", "Bullets.txt")
+            self.save_bullets_into_txt("bullets.xlsx", "Bullets.txt")
             self.new_widget = survey_widget()
             self.ui = survey_form()
             self.ui.setupUi(self.new_widget)
@@ -41,14 +42,21 @@ class OptionDialog(QDialog):
             self.accept()
 
     def save_bullets_into_txt(self, read_file, write_file):
-        with open(read_file, "r") as file:
-            reader = csv.reader(file, delimiter="|")
-            for row in reader:
-                self.all_bullets.append(row[1:])
+        if read_file.endswith(".xlsx"):
+            df = pd.read_excel(read_file)
+            for row in df.iterrows():
+                self.all_bullets.append(row[1:].tolist())
+        else:
+            with open(read_file, "r") as file:
+                reader = csv.reader(file, delimiter="|")
+                for row in reader:
+                    self.all_bullets.append(row[1:])
 
         with open(write_file, "w") as file:
             for bullet in self.all_bullets:
                 file.write(f"{bullet[0]}\n")
+                
+        
 
     def choose_option1(self):
         print("start")
