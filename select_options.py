@@ -2,9 +2,12 @@ from PySide6.QtWidgets import QApplication, QDialog, QVBoxLayout, QPushButton, Q
 
 import sys
 from Uis.dialog_ui import Ui_Dialog
+import csv
 
 from bullets_widget import Widget as wg
 from Uis.select_bullets_ui import Ui_Form
+from Uis.light_form_ui import Ui_Widget as survey_form
+from survey import Widget as survey_widget
 
 
 class OptionDialog(QDialog):
@@ -12,30 +15,51 @@ class OptionDialog(QDialog):
         super().__init__()
         self.setWindowTitle("Choose an Option")
 
+        self.all_bullets = []
         self.ui = Ui_Dialog()
         self.ui.setupUi(self)
         self.ui.start_btn.clicked.connect(self.choose_option1)
         self.ui.change_btn.clicked.connect(self.choose_option2)
 
-    def goto_bullet_option_select(self, default):
-        self.new_widget = wg(default=default)
-        self.ui = Ui_Form()
-        self.ui.setupUi(self.new_widget)
+    def goto_bullet_option_select(self, choice="start"):
+        if choice == "start":
+            self.save_bullets_into_txt("bullets.csv", "Bullets.txt")
+            self.new_widget = survey_widget()
+            self.ui = survey_form()
+            self.ui.setupUi(self.new_widget)
 
-        self.new_widget.showFullScreen()
-        # self.close()
-        self.accept()
+            self.new_widget.showFullScreen()
+            self.accept()
+
+        elif choice == "change":
+            self.new_widget = wg()
+            self.ui = Ui_Form()
+            self.ui.setupUi(self.new_widget)
+
+            self.new_widget.showFullScreen()
+            # self.close()
+            self.accept()
+
+    def save_bullets_into_txt(self, read_file, write_file):
+        with open(read_file, "r") as file:
+            reader = csv.reader(file, delimiter="|")
+            for row in reader:
+                self.all_bullets.append(row[1:])
+
+        with open(write_file, "w") as file:
+            for bullet in self.all_bullets:
+                file.write(f"{bullet[0]}\n")
 
     def choose_option1(self):
         print("start")
         # start survey
-        self.goto_bullet_option_select(default=True)
+        self.goto_bullet_option_select(choice="start")
         # self.accept()
 
     def choose_option2(self):
         print("change")
         # change survey options
-        self.goto_bullet_option_select(default=False)
+        self.goto_bullet_option_select(choice="change")
         # self.accept()
 
 
