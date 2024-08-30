@@ -89,6 +89,11 @@ class Ui_Widget(object):
 "    background-color: #3B82F6; /* Blue dot when checked */\n"
 "    border: 2px solid #2563EB; /* Darker blue border when checked */\n"
 "}\n"
+"QFrame {\n"
+"    border: none;\n"
+"    background-color: transparent; /* Option"
+                        "al: If you want a transparent background */\n"
+"}\n"
 "")
         self.verticalLayout_2 = QVBoxLayout(Widget)
         self.verticalLayout_2.setObjectName(u"verticalLayout_2")

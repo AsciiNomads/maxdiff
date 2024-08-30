@@ -20,14 +20,15 @@ from PySide6.QtWidgets import (
 )
 
 from utils.file_io import write_lines
-from select_bullets import Ui_Form
-from widget import Widget as wg
-import ui_form
+from Uis.select_bullets_ui import Ui_Form
+from survey import Widget as wg
+import Uis.light_form_ui as light_survey_form
+
 from QuestionBullets import QuestionBullets
 
 
 class Widget(QWidget):
-    def __init__(self, parent=None):
+    def __init__(self, parent=None, default=False):
         super().__init__(parent)
         self.setWindowTitle("Main Window")
         # self.show_new_widget()
@@ -45,6 +46,9 @@ class Widget(QWidget):
         self.ui.confirm_btn.clicked.connect(
             lambda: self.get_all_list_widgets_items(in_one_list=True)
         )
+
+        if default:
+            self.get_all_list_widgets_items(in_one_list=True)
 
     def set_editable_items(self, list_widget):
         for i in range(list_widget.count()):
@@ -167,12 +171,12 @@ class Widget(QWidget):
         return all_bullets
 
     def goto_maxdiff_widget(self):
+        self.close()
         self.new_widget = wg()
-        self.ui = ui_form.Ui_Widget()
+        self.ui = light_survey_form.Ui_Widget()
         self.ui.setupUi(self.new_widget)
 
         self.new_widget.showFullScreen()
-        self.close()
 
 
 if __name__ == "__main__":

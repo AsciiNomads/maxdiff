@@ -3,7 +3,9 @@ import sys
 
 from PySide6.QtWidgets import QApplication
 
-from bullets_widget  import Widget
+# from bullets_widget import Widget
+from select_options import OptionDialog as Widget
+
 from utils.gen_plots import plot_best_worst_scores, plot_best_worst_percentages
 
 # Important:
@@ -14,14 +16,14 @@ from utils.gen_plots import plot_best_worst_scores, plot_best_worst_percentages
 if __name__ == "__main__":
     app = QApplication(sys.argv)
     widget = Widget()
-    widget.showFullScreen()
+    widget.show()
     exit_code = app.exec()
 
-    # An example of how to use the functions to plot the results 
-    
+    # An example of how to use the functions to plot the results
+
     # questions = widget.get_questions()
-    
+
     # plot_best_worst_scores(questions)
     # plot_best_worst_percentages(questions)
-    
+
     sys.exit(exit_code)

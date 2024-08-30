@@ -6,3 +6,4 @@ __pycache__
 resources/*.csv
 *.png
 Bullets.txt
+bullets.csv

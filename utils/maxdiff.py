@@ -3,7 +3,7 @@ import numpy as np
 # from widget import Question
 
 
-def get_scores(questions: list) -> tuple[np.ndarray, np.ndarray]:
+def set_rank_scores(questions: list) -> tuple[np.ndarray, np.ndarray]:
     indices = []
     scores = []
     for i, item in enumerate(questions):
@@ -19,8 +19,13 @@ def get_scores(questions: list) -> tuple[np.ndarray, np.ndarray]:
     positions = np.argsort(-scores)
     indices = np.array(indices)[positions]
     scores = scores[positions]
+    
+    set_question_ranks(questions, indices, scores)
 
-    return indices, scores
+def set_question_ranks(questions: list, indices, scores) -> None:
+    for i, index in enumerate(indices):
+        questions[index].rank = i + 1
+        questions[index].score = scores[i] * 100
 
 
 def get_percentages(

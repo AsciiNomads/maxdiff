@@ -6,7 +6,7 @@ import os
 
 from PySide6.QtWidgets import QApplication, QWidget, QFileDialog
 
-from ui_form import Ui_Widget
+from Uis.light_form_ui import Ui_Widget
 
 from PySide6.QtWidgets import QApplication, QLabel, QWidget, QButtonGroup
 from PySide6.QtGui import QPixmap
@@ -14,13 +14,14 @@ from PySide6.QtGui import QPixmap
 from utils.file_io import read_lines
 
 from PySide6.QtCore import Qt
-from export_ui import Ui_Form
+from Uis.export_ui import Ui_Form
 
 from random import randint
 from utils.maxdiff import *
 from utils.gen_plots import *
 
 from utils.pdf_export import *
+from utils.maxdiff import set_rank_scores, set_question_ranks
 from maxdiff_function import generate_maxdiff_survey
 
 
@@ -39,6 +40,8 @@ class Question:
         self.total_proposed = 0
         self.more_preferred_than_listed = []
         self.less_preferred_than_listed = []
+        self.score = 0
+        self.rank = 0
 
     def increment_and_update_as_most_preferred(self, compared_questions: list = []):
         self.most_preferred += 1
@@ -67,7 +70,7 @@ def generate_random_questions(number_of_questions: int):
     """this function is for testing purposes"""
     questions = []
     for i in range(number_of_questions):
-        q = Question(f"Question {i + 1}", i)
+        q = Question(f"Question {i + 1}", i + 1)
         q.most_preferred = randint(1, 10)
         q.least_preferred = randint(1, 10)
         q.total_proposed = q.most_preferred + q.least_preferred + randint(1, 10)
@@ -190,7 +193,7 @@ class Widget(QWidget):
         questions = read_lines("Bullets.txt")
         self.question_objs = []
         for i, q_text in enumerate(questions):
-            Q = Question(q_text, _id=i)
+            Q = Question(q_text, _id=i + 1)
             self.question_objs.append(Q)
 
         result = generate_maxdiff_survey(
@@ -297,6 +300,9 @@ class Widget(QWidget):
         # get questions
         self.questions = self.get_questions()
         # self.questions = generate_random_questions(15)
+        set_rank_scores(self.questions)
+
+        # self.questions.sort(key=lambda )
         # Create a new widget to show
         self.new_widget = QWidget()
         self.ui = Ui_Form()
@@ -343,33 +349,36 @@ class Widget(QWidget):
                 writer = csv.writer(f)
                 writer.writerow(
                     [
-                        "id",
+                        "Rank",
+                        "ID",
                         "Question",
                         "Most Preferred",
                         "Least Preferred",
-                        "Total Proposed",
+                        "Appearnaces",
+                        "Scores",
                     ]
                 )
                 for q in self.questions:
                     writer.writerow(
                         [
+                            q.rank,
                             q.id,
                             q.question_text,
                             q.most_preferred,
                             q.least_preferred,
                             q.total_proposed,
+                            q.score,
                         ]
                     )
 
         def export_pdf():
             # Sample dictionary data
-            data = self.questions
             dir = "resources/images/"
             image_path = os.path.join(dir, "maxdiff.png")
             export_png(show_dialog=False, save_path=image_path)
             # Export to PDF
             pdf_output_path = get_filepath("pdf")
-            export_maxdiff_to_pdf(data, pdf_output_path, image_path)
+            export_maxdiff_to_pdf(self.questions, pdf_output_path, image_path)
 
         def export_png(show_dialog=True, save_path=None):
             if show_dialog:
@@ -394,7 +403,7 @@ class Widget(QWidget):
 if __name__ == "__main__":
     app = QApplication(sys.argv)
     widget = Widget()
-    # widget.exportWidget.show()
+    # widget.exportWidget()
     widget.showFullScreen()
 
     sys.exit(app.exec())

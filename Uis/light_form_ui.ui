@@ -16,20 +16,20 @@
   <property name="styleSheet">
    <string notr="true">/* Global Styles */
 QWidget {
-    background-color: #1E1E2F; /* Dark modern background */
+    background-color: #F4F4F9; /* Light modern background */
     font-family: &quot;Arial&quot;, sans-serif; /* Use a modern, clean font */
-    color: #E5E7EB; /* Light gray text for better visibility */
+    color: #333333; /* Dark gray text for better visibility */
 }
 
 /* Box Style */
 QFrame#box {
-    background-color: #2D2D44; /* Darker box color */
-    border: 1px solid #3E3E5C; /* Slightly lighter border */
+    background-color: #FFFFFF; /* White box color */
+    border: 1px solid #D1D5DB; /* Light border */
     border-radius: 8px; /* Rounded corners */
     padding: 16px;
     margin: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Stronger shadow */
-    color: #E5E7EB; /* Light gray text inside the box */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    color: #333333; /* Dark gray text inside the box */
 }
 
 /* Button Style */
@@ -56,14 +56,14 @@ QPushButton:pressed {
 QLabel#title {
     font-size: 24px;
     font-weight: bold;
-    color: #FFFFFF; /* White color for the title to stand out on the dark background */
+    color: #111827; /* Darker color for the title to stand out on the light background */
     margin-bottom: 16px;
 }
 
 /* Radio Button Style */
 QRadioButton {
     font-size: 16px;
-    color: #E5E7EB; /* Light gray text for better visibility */
+    color: #333333; /* Dark gray text for better visibility */
 }
 
 QRadioButton::indicator {
@@ -71,12 +71,16 @@ QRadioButton::indicator {
     height: 20px;
     border-radius: 10px;
     border: 2px solid #3B82F6; /* Blue border */
-    background-color: #2D2D44; /* Darker background */
+    background-color: #FFFFFF; /* White background */
 }
 
 QRadioButton::indicator:checked {
     background-color: #3B82F6; /* Blue dot when checked */
     border: 2px solid #2563EB; /* Darker blue border when checked */
+}
+QFrame {
+    border: none;
+    background-color: transparent; /* Optional: If you want a transparent background */
 }
 </string>
   </property>
@@ -133,7 +137,7 @@ QRadioButton::indicator:checked {
                <enum>Qt::LayoutDirection::LeftToRight</enum>
               </property>
               <property name="text">
-               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p style=&quot;line-height: 0.35;&quot;&gt;Choose one item from the &amp;quot;Most important&amp;quot; column on the left and one item from the &amp;quot;least&lt;/p&gt;&lt;p&gt;important&amp;quot; column on the right. You are only allowed one response per column.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Choose one item from the &amp;quot;Most important&amp;quot; column on the left and one item from&lt;/p&gt;&lt;p&gt;the &amp;quot;Least important&amp;quot; column on the right. You are only allowed one response per column.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
               </property>
               <property name="alignment">
                <set>Qt::AlignmentFlag::AlignCenter</set>
@@ -153,6 +157,16 @@ QRadioButton::indicator:checked {
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_3">
             <item>
+             <widget class="QLabel" name="questions_part">
+              <property name="styleSheet">
+               <string notr="true">background-color: none;</string>
+              </property>
+              <property name="text">
+               <string>Questions : 2/3</string>
+              </property>
+             </widget>
+            </item>
+            <item>
              <widget class="QFrame" name="frame_2">
               <property name="frameShape">
                <enum>QFrame::Shape::StyledPanel</enum>
@@ -164,7 +178,7 @@ QRadioButton::indicator:checked {
                <item>
                 <widget class="QLabel" name="LeastImportant_L">
                  <property name="text">
-                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot; style=&quot;line-height: 0.25;&quot;&gt;Least&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;important&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:8pt;&quot;&gt;Most&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:8pt;&quot;&gt;important&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                  </property>
                 </widget>
                </item>
@@ -178,7 +192,7 @@ QRadioButton::indicator:checked {
                <item>
                 <widget class="QLabel" name="MostImportant_L">
                  <property name="text">
-                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot; style=&quot;line-height: 0.25;&quot;&gt;Most&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;important&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Least&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;important&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                  </property>
                 </widget>
                </item>

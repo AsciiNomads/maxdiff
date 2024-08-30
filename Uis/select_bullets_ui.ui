@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1017</width>
-    <height>868</height>
+    <height>962</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -204,6 +204,22 @@ QPushButton#remove_btn_7:pressed {
     padding-bottom: 6px;
 }
 
+QFrame {
+    border: none;
+    background-color: transparent; /* Optional: If you want a transparent background */
+}
+
+QFrame#question_frame_1,
+QFrame#question_frame_2,
+QFrame#question_frame_3,
+QFrame#question_frame_4,
+QFrame#question_frame_5,
+QFrame#question_frame_6 {
+    border: none; /* Removes all borders */
+    border-bottom: 2px solid #000000; /* Adds a 2px solid blue bottom border */
+    background-color: transparent; /* Optional: Set the background color to transparent */
+    border-radius: 0px; /* Ensures no rounded corners at the bottom */
+}
 </string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout_38">

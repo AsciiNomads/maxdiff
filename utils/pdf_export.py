@@ -1,6 +1,7 @@
 from fpdf import FPDF
 import matplotlib.pyplot as plt
 import io
+import copy
 
 
 # Function to export MaxDiff scores to a PDF file
@@ -26,19 +27,25 @@ def export_maxdiff_to_pdf(maxdiff_scores, filename, image_path):
     cell_height = 10
 
     # Add table headers
-    pdf.cell(cell_width, cell_height, "question", border=1)
-    pdf.cell(cell_width, cell_height, "most_preferred", border=1)
-    pdf.cell(cell_width, cell_height, "least_preferred", border=1)
-    pdf.cell(cell_width, cell_height, "total_proposed", border=1)
+    pdf.cell(cell_width//3, cell_height, "Rank", border=1)
+    pdf.cell(cell_width*2//3, cell_height, "Question ID", border=1)
+    pdf.cell(cell_width*4//5, cell_height, "Most Preferred", border=1)
+    pdf.cell(cell_width*4//5, cell_height, "Least Preferred", border=1)
+    pdf.cell(cell_width*4//5, cell_height, "Appearances", border=1)
+    pdf.cell(cell_width*3//5, cell_height, "Score %", border=1)
 
     pdf.ln(cell_height)  # Move to the next line
+    
+    maxdiff_scores.sort(key=lambda x: x.score, reverse=True)
 
     # Add table data
-    for item in maxdiff_scores:
-        pdf.cell(cell_width, cell_height, str(item.id), border=1)
-        pdf.cell(cell_width, cell_height, str(item.most_preferred), border=1)
-        pdf.cell(cell_width, cell_height, str(item.least_preferred), border=1)
-        pdf.cell(cell_width, cell_height, str(item.total_proposed), border=1)
+    for i, item in enumerate(maxdiff_scores):
+        pdf.cell(cell_width//3, cell_height, str(i+1), border=1)
+        pdf.cell(cell_width*2//3, cell_height, str(item.id), border=1)
+        pdf.cell(cell_width*4//5, cell_height, str(item.most_preferred), border=1)
+        pdf.cell(cell_width*4//5, cell_height, str(item.least_preferred), border=1)
+        pdf.cell(cell_width*4//5, cell_height, str(item.total_proposed), border=1)
+        pdf.cell(cell_width*3//5, cell_height, str(item.score).split('.')[0], border=1)
         pdf.ln(cell_height)  # Move to the next line
 
     # Add a line break
