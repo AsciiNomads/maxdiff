@@ -33,6 +33,7 @@ class Widget(QWidget):
         # self.show_new_widget()
         self.resources_dir = "resources/"
 
+        self.number_of_questions = 6
         self.ui = Ui_Form()
         self.ui.setupUi(self)
 
@@ -76,7 +77,7 @@ class Widget(QWidget):
     def setup_widget(self, widget):
         # set default for listwidget
         self.question_bullet_dict = {}
-        for i in range(1, 7):
+        for i in range(1, self.number_of_questions + 1):
             tmp = {}
             list_widget = getattr(self.ui, f"q_bullets_{i}")
 
@@ -114,7 +115,7 @@ class Widget(QWidget):
         question_bullet_dict = {}
         list_widgets = []
         tittles = []
-        for i in range(1, 7):
+        for i in range(1, self.number_of_questions + 1):
             tmp = {}
             list_widget = getattr(self.ui, f"q_bullets_{i}")
             title = getattr(self.ui, f"q_title_{i}")
@@ -129,10 +130,20 @@ class Widget(QWidget):
             list_widgets[i - 1].addItems(bullets[i - 1])
             self.set_editable_items(list_widgets[i - 1])
 
+    def save_content_into_csv(self, file):
+        with open(file, "w") as f:
+            writer = csv.writer(f, delimiter="|")
+            for i in range(1, self.number_of_questions + 1):
+                list_widget = getattr(self.ui, f"q_bullets_{i}")
+                title = getattr(self.ui, f"q_title_{i}")
+
+                items = [list_widget.item(j).text() for j in range(list_widget.count())]
+                writer.writerow([title.text()] + items)
+
     def get_all_list_widgets_items(self, in_one_list=False):
         all_bullets = []
         self.questions = []
-        for i in range(1, 7):
+        for i in range(1, self.number_of_questions + 1):
             items = []
             question_widget = getattr(widget.ui, f"q_title_{i}")
             list_widget = getattr(widget.ui, f"q_bullets_{i}")
@@ -146,6 +157,7 @@ class Widget(QWidget):
             # return self.all_bullets
 
         write_lines("Bullets.txt", self.all_bullets)
+        self.save_content_into_csv("bullets.csv")
         self.goto_maxdiff_widget()
 
         self.all_bullets = all_bullets
@@ -156,9 +168,10 @@ class Widget(QWidget):
         self.new_widget = wg()
         self.ui = ui_form.Ui_Widget()
         self.ui.setupUi(self.new_widget)
-        
+
         self.new_widget.showFullScreen()
         self.close()
+
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
