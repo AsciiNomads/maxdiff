@@ -1,7 +1,9 @@
 # This Python file uses the following encoding: utf-8
-import sys
+import sys, os
 
 from PySide6.QtWidgets import QApplication
+
+os.environ["QT_QPA_PLATFORM"] = "windows:darkmode=0"
 
 # from bullets_widget import Widget
 from select_options import OptionDialog as Widget
