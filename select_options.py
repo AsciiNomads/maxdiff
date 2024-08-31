@@ -1,4 +1,5 @@
 from PySide6.QtWidgets import QApplication, QDialog, QVBoxLayout, QPushButton, QLabel
+from PySide6.QtCore import Signal
 
 import sys
 from Uis.dialog_ui import Ui_Dialog
@@ -12,6 +13,7 @@ from survey import Widget as survey_widget
 
 
 class OptionDialog(QDialog):
+    change_clicked = Signal()
     def __init__(self):
         super().__init__()
         self.setWindowTitle("Choose an Option")
@@ -20,7 +22,11 @@ class OptionDialog(QDialog):
         self.ui = Ui_Dialog()
         self.ui.setupUi(self)
         self.ui.start_btn.clicked.connect(self.choose_option1)
-        self.ui.change_btn.clicked.connect(self.choose_option2)
+        self.ui.change_btn.clicked.connect(self.on_change)
+    
+    def on_change(self):
+        self.change_clicked.emit()
+        self.close()
 
     def goto_bullet_option_select(self, choice="start"):
         if choice == "start":

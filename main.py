@@ -2,6 +2,7 @@
 import sys, os
 
 from PySide6.QtWidgets import QApplication
+from app_controller import AppController
 
 os.environ["QT_QPA_PLATFORM"] = "windows:darkmode=0"
 
@@ -17,9 +18,9 @@ from utils.gen_plots import plot_best_worst_scores, plot_best_worst_percentages
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
-    widget = Widget()
-    widget.show()
-    exit_code = app.exec()
+    controller = AppController()
+    controller.start()
+    sys.exit(app.exec())
 
     # An example of how to use the functions to plot the results
 

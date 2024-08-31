@@ -8,7 +8,7 @@ import pandas as pd
 # import os
 
 from PySide6.QtWidgets import QApplication, QWidget, QFileDialog, QPushButton
-from PySide6.QtCore import Qt
+from PySide6.QtCore import Qt, Signal
 
 
 from PySide6.QtWidgets import (
@@ -29,6 +29,7 @@ from QuestionBullets import QuestionBullets
 
 
 class Widget(QWidget):
+    confirm_clicked = Signal()
     def __init__(self, parent=None, default=False):
         super().__init__(parent)
         self.setWindowTitle("Main Window")
@@ -45,12 +46,15 @@ class Widget(QWidget):
 
         self.bullets = []
         self.all_bullets = []
-        self.ui.confirm_btn.clicked.connect(
-            lambda: self.get_all_list_widgets_items(in_one_list=True)
-        )
+        self.ui.confirm_btn.clicked.connect(self.on_confirm)
 
         if default:
             self.get_all_list_widgets_items(in_one_list=True)
+
+    def on_confirm(self):
+        # self.get_all_list_widgets_items(in_one_list=True)
+        self.confirm_clicked.emit()
+        self.close()
 
     def set_editable_items(self, list_widget):
         for i in range(list_widget.count()):
