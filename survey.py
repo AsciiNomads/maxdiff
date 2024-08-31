@@ -86,7 +86,7 @@ MAX_QUESTIONS_PER_PAGE = 4
 class Widget(QWidget):
     def __init__(self, parent=None):
         super().__init__(parent)
-        self.setWindowTitle("Main Window")
+        self.setWindowTitle("MaxDiff Survey")
         # self.show_new_widget()
         self.resources_dir = "resources/"
         self._create_dir()

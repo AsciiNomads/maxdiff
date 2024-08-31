@@ -32,7 +32,7 @@ class Widget(QWidget):
     confirm_clicked = Signal()
     def __init__(self, parent=None, default=False):
         super().__init__(parent)
-        self.setWindowTitle("Main Window")
+        self.setWindowTitle("Change the questions")
         # self.show_new_widget()
         self.resources_dir = "resources/"
 
