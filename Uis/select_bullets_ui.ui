@@ -220,7 +220,15 @@ QFrame#question_frame_6 {
     background-color: transparent; /* Optional: Set the background color to transparent */
     border-radius: 0px; /* Ensures no rounded corners at the bottom */
 }
-</string>
+QListWidget::item:selected:active {
+    background-color: white; /* Set highlight color to white during editing */
+    color: black; /* Change text color to black for visibility */
+}
+
+QListWidget::item:selected {
+    background-color: #3B82F6; /* Keep the normal selected item highlight color */
+    color: white; /* Normal selected text color */
+}</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout_38">
    <item>

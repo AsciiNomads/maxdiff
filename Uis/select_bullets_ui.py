@@ -236,7 +236,15 @@ class Ui_Form(object):
 "    background-color: transparent; /* Optional: Set the background color to transparent */\n"
 "    border-radius: 0px; /* Ensures no rounded corners at the bottom */\n"
 "}\n"
-"")
+"QListWidget::item:selected:active {\n"
+"    background-color: white; /* Set highlight color to white during editing */\n"
+"    color: black; /* Change text color to black for visibility */\n"
+"}\n"
+"\n"
+"QListWidget::item:selected {\n"
+"    background-color: #3B82F6; /* Keep the normal selected item highlight color */\n"
+"    color: white; /* Normal selected text color */\n"
+"}")
         self.verticalLayout_38 = QVBoxLayout(Form)
         self.verticalLayout_38.setObjectName(u"verticalLayout_38")
         self.frame = QFrame(Form)
