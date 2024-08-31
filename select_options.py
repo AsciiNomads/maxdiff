@@ -30,7 +30,7 @@ class OptionDialog(QDialog):
             self.ui = survey_form()
             self.ui.setupUi(self.new_widget)
 
-            self.new_widget.showFullScreen()
+            self.new_widget.show()
             self.accept()
 
         elif choice == "change":
@@ -38,7 +38,7 @@ class OptionDialog(QDialog):
             self.ui = Ui_Form()
             self.ui.setupUi(self.new_widget)
 
-            self.new_widget.showFullScreen()
+            self.new_widget.show()
             # self.close()
             self.accept()
 
