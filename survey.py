@@ -315,7 +315,7 @@ class Widget(QWidget):
         # self.new_widget.setLayout(layout)
 
         # Show the new widget
-        self.new_widget.showFullScreen()
+        self.new_widget.show()
         show_plot()
         self.comboBox = self.ui.comboBox
         self.comboBox.addItem("csv")
@@ -404,6 +404,6 @@ if __name__ == "__main__":
     app = QApplication(sys.argv)
     widget = Widget()
     # widget.exportWidget()
-    widget.showFullScreen()
+    widget.show()
 
     sys.exit(app.exec())

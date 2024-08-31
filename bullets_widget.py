@@ -227,13 +227,13 @@ class Widget(QWidget):
         self.ui = light_survey_form.Ui_Widget()
         self.ui.setupUi(self.new_widget)
 
-        self.new_widget.showFullScreen()
+        self.new_widget.show()
 
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
     widget = Widget()
-    widget.showFullScreen()
+    widget.show()
 
     # get all items for each list_widget
     # print(widget.get_all_list_widgets_items(in_one_list=True))
