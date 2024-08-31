@@ -10,6 +10,7 @@ from Uis.select_bullets_ui import Ui_Form
 from Uis.light_form_ui import Ui_Widget as survey_form
 from survey import Widget as survey_widget
 
+
 class OptionDialog(QDialog):
     def __init__(self):
         super().__init__()
@@ -44,19 +45,24 @@ class OptionDialog(QDialog):
     def save_bullets_into_txt(self, read_file, write_file):
         if read_file.endswith(".xlsx"):
             df = pd.read_excel(read_file)
-            for row in df.iterrows():
-                self.all_bullets.append(row[1:].tolist())
+            for _, row in df.iterrows():
+                for value in row[1:]:
+                    if pd.notna(value):  # Check if the cell is not NaN
+                        self.all_bullets.append(value.strip())
+
+            with open(write_file, "w") as file:
+                for bullet in self.all_bullets:
+                    print(bullet)
+                    file.write(f"{bullet}\n")
         else:
             with open(read_file, "r") as file:
                 reader = csv.reader(file, delimiter="|")
                 for row in reader:
                     self.all_bullets.append(row[1:])
 
-        with open(write_file, "w") as file:
-            for bullet in self.all_bullets:
-                file.write(f"{bullet[0]}\n")
-                
-        
+        # with open(write_file, "w") as file:
+        #     for bullet in self.all_bullets:
+        #         file.write(f"{bullet[0]}\n")
 
     def choose_option1(self):
         print("start")
