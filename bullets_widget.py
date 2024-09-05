@@ -52,7 +52,7 @@ class Widget(QWidget):
             self.get_all_list_widgets_items(in_one_list=True)
 
     def on_confirm(self):
-        # self.get_all_list_widgets_items(in_one_list=True)
+        self.get_all_list_widgets_items(in_one_list=True)
         self.confirm_clicked.emit()
         self.close()
 

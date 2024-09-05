@@ -17,7 +17,7 @@ class AppController:
         if self.bullets_widget is None:
             self.bullets_widget = BulletsWidget()
         self.bullets_widget.show()
-        self.bullets_widget.confirm_clicked.connect(self.on_bullets_confirm)
+        # self.bullets_widget.confirm_clicked.connect(self.on_bullets_confirm)
         if self.option_dialog:
             self.option_dialog.close()
 
