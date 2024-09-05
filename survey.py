@@ -95,6 +95,7 @@ class Widget(QWidget):
         self.ui.setupUi(self)
 
         self.question_sets = self.create_question_sets()
+        self.total_pages = len(self.question_sets)
         self.current_set_index = 0
 
         self.update_question_reminder_label(
@@ -276,7 +277,7 @@ class Widget(QWidget):
         def show_plot():
             dir = "resources/images/"
             file_path = os.path.join(dir, "maxdiff.png")
-            fig = plot_best_worst_scores(self.questions)
+            fig = plot_best_worst_scores(self.questions, self.total_pages)
             fig.savefig(file_path, format="png")
             pixmap = QPixmap(file_path)
 
@@ -300,7 +301,7 @@ class Widget(QWidget):
         # get questions
         self.questions = self.get_questions()
         # self.questions = generate_random_questions(15)
-        set_rank_scores(self.questions)
+        set_rank_scores(self.questions, self.total_pages)
 
         # self.questions.sort(key=lambda )
         # Create a new widget to show
@@ -386,7 +387,7 @@ class Widget(QWidget):
             else:
                 file_path = save_path
 
-            fig = plot_best_worst_scores(self.questions)
+            fig = plot_best_worst_scores(self.questions, self.total_pages)
             fig.savefig(file_path, format="png")
 
         print("Exporting data")

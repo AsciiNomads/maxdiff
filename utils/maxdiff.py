@@ -3,14 +3,14 @@ import numpy as np
 # from widget import Question
 
 
-def set_rank_scores(questions: list) -> tuple[np.ndarray, np.ndarray]:
+def set_rank_scores(questions: list, n_total_pages: int) -> tuple[np.ndarray, np.ndarray]:
     indices = []
     scores = []
     for i, item in enumerate(questions):
         indices.append(i)
         try:
             scores.append(
-                (item.most_preferred - item.least_preferred) / item.total_proposed
+                (item.most_preferred - item.least_preferred) / n_total_pages
             )
         except ZeroDivisionError:
             scores.append(0)

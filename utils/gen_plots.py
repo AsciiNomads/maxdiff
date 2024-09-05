@@ -9,9 +9,9 @@ from utils.maxdiff import set_rank_scores, get_percentages
 
 
 # Function to plot Best-Worst Scores
-def plot_best_worst_scores(questions):
+def plot_best_worst_scores(questions, n_total_pages):
     if any([q.rank == 0 for q in questions]):
-        set_rank_scores(questions)
+        set_rank_scores(questions, n_total_pages)
 
     max_label_length = max(len(question.question_text) for question in questions)
     sorted_questions = sorted(questions, key=lambda q: q.rank)
