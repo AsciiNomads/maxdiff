@@ -6,9 +6,15 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>844</width>
-    <height>670</height>
+    <width>1538</width>
+    <height>671</height>
    </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Fixed" vsizetype="Maximum">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
   </property>
   <property name="windowTitle">
    <string>Form</string>
@@ -133,9 +139,6 @@ QRadioButton::indicator:checked {
          </property>
         </widget>
        </item>
-       <item>
-        <widget class="QComboBox" name="comboBox"/>
-       </item>
       </layout>
      </item>
      <item>
@@ -174,15 +177,21 @@ QRadioButton::indicator:checked {
            <bool>true</bool>
           </property>
           <property name="sizePolicy">
-           <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+           <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
             <horstretch>0</horstretch>
             <verstretch>0</verstretch>
            </sizepolicy>
           </property>
           <property name="minimumSize">
            <size>
-            <width>400</width>
+            <width>1500</width>
             <height>400</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>1500</width>
+            <height>16777215</height>
            </size>
           </property>
           <property name="baseSize">
@@ -192,13 +201,13 @@ QRadioButton::indicator:checked {
            </size>
           </property>
           <property name="autoFillBackground">
-           <bool>true</bool>
+           <bool>false</bool>
           </property>
           <property name="text">
            <string/>
           </property>
           <property name="pixmap">
-           <pixmap resource="resources/resource.qrc">:/newPrefix/images/wallhaven-01wzrv.jpg</pixmap>
+           <pixmap resource="../resources/resource.qrc">:/newPrefix/images/wallhaven-01wzrv.jpg</pixmap>
           </property>
           <property name="scaledContents">
            <bool>true</bool>
@@ -213,8 +222,9 @@ QRadioButton::indicator:checked {
   </layout>
  </widget>
  <resources>
-  <include location="resources/resource.qrc"/>
-  <include location="../../../../.designer/backup/resources/resource.qrc"/>
+  <include location="../resources/resource.qrc"/>
+  <include location="../resources/resource.qrc"/>
+  <include location="../resources/resource.qrc"/>
  </resources>
  <connections/>
 </ui>
