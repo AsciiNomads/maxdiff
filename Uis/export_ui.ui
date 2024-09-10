@@ -133,9 +133,6 @@ QRadioButton::indicator:checked {
          </property>
         </widget>
        </item>
-       <item>
-        <widget class="QComboBox" name="comboBox"/>
-       </item>
       </layout>
      </item>
      <item>
@@ -192,13 +189,13 @@ QRadioButton::indicator:checked {
            </size>
           </property>
           <property name="autoFillBackground">
-           <bool>true</bool>
+           <bool>false</bool>
           </property>
           <property name="text">
            <string/>
           </property>
           <property name="pixmap">
-           <pixmap resource="resources/resource.qrc">:/newPrefix/images/wallhaven-01wzrv.jpg</pixmap>
+           <pixmap resource="../resources/resource.qrc">:/newPrefix/images/wallhaven-01wzrv.jpg</pixmap>
           </property>
           <property name="scaledContents">
            <bool>true</bool>
@@ -213,8 +210,9 @@ QRadioButton::indicator:checked {
   </layout>
  </widget>
  <resources>
+  <include location="../resources/resource.qrc"/>
+  <include location="../resources/resource.qrc"/>
   <include location="resources/resource.qrc"/>
-  <include location="../../../../.designer/backup/resources/resource.qrc"/>
  </resources>
  <connections/>
 </ui>

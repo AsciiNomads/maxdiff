@@ -318,10 +318,10 @@ class Widget(QWidget):
         # Show the new widget
         self.new_widget.show()
         show_plot()
-        self.comboBox = self.ui.comboBox
-        self.comboBox.addItem("csv")
-        self.comboBox.addItem("pdf")
-        self.comboBox.addItem("png")
+        # self.comboBox = self.ui.comboBox
+        # self.comboBox.addItem("csv")
+        # self.comboBox.addItem("pdf")
+        # self.comboBox.addItem("png")
         self.ui.exportData.clicked.connect(self.export_data)
 
     def _create_dir(self):
@@ -392,13 +392,13 @@ class Widget(QWidget):
 
         print("Exporting data")
 
-        if self.comboBox.currentText() == "csv":
-            print("Exporting as CSV")
-            export_csv()
-        elif self.comboBox.currentText() == "pdf":
-            export_pdf()
-        elif self.comboBox.currentText() == "png":
-            export_png()
+        # if self.comboBox.currentText() == "csv":
+        #     print("Exporting as CSV")
+        #     export_csv()
+        # elif self.comboBox.currentText() == "pdf":
+        #     export_pdf()
+        # elif self.comboBox.currentText() == "png":
+        export_png()
 
 
 if __name__ == "__main__":
