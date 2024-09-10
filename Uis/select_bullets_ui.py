@@ -87,14 +87,21 @@ class Ui_Form(object):
 "    /* background-color: #FFFFFF; /* White background for a clean look */\n"
 "	background-color: None; \n"
 "}\n"
+"QLabel#bullet_num {\n"
+"    font-size: 13px;\n"
+"	color: #777;\n"
+"}\n"
+"QLabel#instruciton {\n"
+"    font-size: 22px;\n"
+"}\n"
 "\n"
 "QLabel#title {\n"
 "    font-size: 18px;\n"
-"    font-weight: bold;\n"
+"    fon"
+                        "t-weight: bold;\n"
 "    color: #1C2833; /* Darker, bold title */\n"
 "    padding: 12px 0;\n"
-"    background-color: #F7F9F9; /* S"
-                        "lightly off-white background for the title */\n"
+"    background-color: #F7F9F9; /* Slightly off-white background for the title */\n"
 "}\n"
 "/* Modern Green Confirm Button */\n"
 "\n"
@@ -120,12 +127,12 @@ class Ui_Form(object):
 "\n"
 "QPushButton#confirm_btn:disabled {\n"
 "    background-color: #A9DFBF; /* Light green when disabled */\n"
-"    color: #E9ECEF; /* Light gray text */\n"
+""
+                        "    color: #E9ECEF; /* Light gray text */\n"
 "    border: 1px solid #C3E6CB; /* Light green border when disabled */\n"
 "}\n"
 "\n"
-""
-                        "/* -------------------------------- */\n"
+"/* -------------------------------- */\n"
 "/* Add Button */\n"
 "QPushButton#add_btn {\n"
 "    background-color: #28A745; /* Modern green color for add */\n"
@@ -155,12 +162,12 @@ class Ui_Form(object):
 "    font-weight: bold;\n"
 "}\n"
 "\n"
-"QPushButton#add_btn_1:hover,\n"
+"Q"
+                        "PushButton#add_btn_1:hover,\n"
 "QPushButton#add_btn_2:hover,\n"
 "QPushButton#add_btn_3:hover,\n"
 "QPushButton#add_btn_4:hover,\n"
-""
-                        "QPushButton#add_btn_5:hover,\n"
+"QPushButton#add_btn_5:hover,\n"
 "QPushButton#add_btn_6:hover,\n"
 "QPushButton#add_btn_7:hover {\n"
 "    background-color: #218838; /* Darker green on hover */\n"
@@ -187,13 +194,13 @@ class Ui_Form(object):
 "QPushButton#remove_btn_5,\n"
 "QPushButton#remove_btn_6,\n"
 "QPushButton#remove_btn_7 {\n"
-"    background-color: #DC3545; /* Modern red color for remove */\n"
+"    background-color: #DC3545; /* Modern red color for remo"
+                        "ve */\n"
 "    color: #FFFFFF; /* White text */\n"
 "    font-size: 16px;\n"
 "    padding: 8px 16px;\n"
 "    border: none;\n"
-"    bo"
-                        "rder-radius: 6px; /* Rounded corners */\n"
+"    border-radius: 6px; /* Rounded corners */\n"
 "    font-weight: bold;\n"
 "}\n"
 "\n"
@@ -221,12 +228,12 @@ class Ui_Form(object):
 "\n"
 "QFrame {\n"
 "    border: none;\n"
-"    background-color: transparent; /* Optional: If you want a transparent background */\n"
+"    backgrou"
+                        "nd-color: transparent; /* Optional: If you want a transparent background */\n"
 "}\n"
 "\n"
 "QFrame#question_frame_1,\n"
-"QFrame#ques"
-                        "tion_frame_2,\n"
+"QFrame#question_frame_2,\n"
 "QFrame#question_frame_3,\n"
 "QFrame#question_frame_4,\n"
 "QFrame#question_frame_5,\n"
@@ -253,7 +260,13 @@ class Ui_Form(object):
         self.frame.setFrameShadow(QFrame.Shadow.Raised)
         self.verticalLayout_33 = QVBoxLayout(self.frame)
         self.verticalLayout_33.setObjectName(u"verticalLayout_33")
-        self.instruciton = QLabel(self.frame)
+        self.frame_2 = QFrame(self.frame)
+        self.frame_2.setObjectName(u"frame_2")
+        self.frame_2.setFrameShape(QFrame.Shape.StyledPanel)
+        self.frame_2.setFrameShadow(QFrame.Shadow.Raised)
+        self.verticalLayout_3 = QVBoxLayout(self.frame_2)
+        self.verticalLayout_3.setObjectName(u"verticalLayout_3")
+        self.instruciton = QLabel(self.frame_2)
         self.instruciton.setObjectName(u"instruciton")
         sizePolicy = QSizePolicy(QSizePolicy.Policy.Preferred, QSizePolicy.Policy.Maximum)
         sizePolicy.setHorizontalStretch(0)
@@ -262,8 +275,23 @@ class Ui_Form(object):
         self.instruciton.setSizePolicy(sizePolicy)
         self.instruciton.setMinimumSize(QSize(0, 50))
         self.instruciton.setBaseSize(QSize(0, 100))
+        font = QFont()
+        font.setBold(True)
+        self.instruciton.setFont(font)
 
-        self.verticalLayout_33.addWidget(self.instruciton)
+        self.verticalLayout_3.addWidget(self.instruciton)
+
+        self.bullet_num = QLabel(self.frame_2)
+        self.bullet_num.setObjectName(u"bullet_num")
+        font1 = QFont()
+        font1.setBold(False)
+        font1.setItalic(False)
+        self.bullet_num.setFont(font1)
+
+        self.verticalLayout_3.addWidget(self.bullet_num)
+
+
+        self.verticalLayout_33.addWidget(self.frame_2)
 
         self.question_frame_1 = QFrame(self.frame)
         self.question_frame_1.setObjectName(u"question_frame_1")
@@ -580,7 +608,8 @@ class Ui_Form(object):
 
     def retranslateUi(self, Form):
         Form.setWindowTitle(QCoreApplication.translate("Form", u"Change the questions", None))
-        self.instruciton.setText(QCoreApplication.translate("Form", u"select bullet", None))
+        self.instruciton.setText(QCoreApplication.translate("Form", u"Select bullet", None))
+        self.bullet_num.setText(QCoreApplication.translate("Form", u"Number of bullets: ", None))
         self.q_title_1.setText(QCoreApplication.translate("Form", u"questions 1 ", None))
         self.add_btn_1.setText(QCoreApplication.translate("Form", u"+", None))
         self.remove_btn_1.setText(QCoreApplication.translate("Form", u"-", None))

@@ -49,7 +49,13 @@ class Widget(QWidget):
         self.ui.confirm_btn.clicked.connect(self.on_confirm)
 
         if default:
-            self.get_all_list_widgets_items(in_one_list=True)
+            self.save_all_bullets_from_listWidgets(in_one_list=True)
+
+    def on_confirm(self):
+        self.save_content_of_listWidgets("bullets.xlsx")
+        # self.get_all_list_widgets_items(in_one_list=True)
+        self.confirm_clicked.emit()
+        self.close()
 
     def on_confirm(self):
         self.save_content_of_listWidgets("bullets.xlsx")        
@@ -76,6 +82,7 @@ class Widget(QWidget):
         list_widget = l_w
         list_widget.addItems(value)
         self.set_editable_items(list_widget)
+        self.update_bullets_num_label()
 
     # def delete_item(self, btn, list_widget):
     def removeItem(self, l_w):
@@ -86,6 +93,7 @@ class Widget(QWidget):
                 list_widget.takeItem(list_widget.row(item))
         else:
             print("QListWidget not found")
+        self.update_bullets_num_label()
 
     def setup_widget(self, widget):
         # set default for listwidget
@@ -157,6 +165,7 @@ class Widget(QWidget):
             tittles[i - 1].setText(questions[i - 1])
             list_widgets[i - 1].addItems(bullets[i - 1])
             self.set_editable_items(list_widgets[i - 1])
+        self.update_bullets_num_label()
 
     def save_content_of_listWidgets(self, file):
         if file.endswith(".csv"):
@@ -202,7 +211,7 @@ class Widget(QWidget):
         else:
             print("Invalid file format. Only CSV and XLSX files are supported.")
 
-    def get_all_list_widgets_items(self, in_one_list=False):
+    def read_bullets_from_widget(self, in_one_list=True) -> int:
         all_bullets = []
         self.questions = []
         for i in range(1, self.number_of_questions + 1):
@@ -216,15 +225,36 @@ class Widget(QWidget):
 
         if in_one_list:
             self.all_bullets = [item for sublist in all_bullets for item in sublist]
-            # return self.all_bullets
+        else:
+            self.all_bullets = all_bullets
+
+        return len(self.all_bullets)
+
+    def save_all_bullets_from_listWidgets(self, in_one_list=False) -> None:
+
+        self.read_bullets_from_widget(in_one_list)
 
         write_lines("Bullets.txt", self.all_bullets)
         self.save_content_of_listWidgets("bullets.xlsx")
         self.goto_maxdiff_widget()
 
-        self.all_bullets = all_bullets
+        return self.all_bullets
 
-        return all_bullets
+    def update_bullets_num_label(self):
+        bullets_num = self.read_bullets_from_widget(in_one_list=True)
+        label_text = f"Number of bullets: {bullets_num}"
+        self.ui.bullet_num.setText(label_text)
+
+        if bullets_num > 30:
+            self.ui.confirm_btn.setEnabled(False)
+            self.ui.bullet_num.setStyleSheet("color: red")
+            self.ui.confirm_btn.setToolTip("The number of bullets should not exceed 30")
+            self.ui.confirm_btn.setStyleSheet("background-color: red")
+        else:
+            self.ui.confirm_btn.setEnabled(True)
+            self.ui.bullet_num.setStyleSheet("color: black")
+            self.ui.confirm_btn.setToolTip("")
+            self.ui.confirm_btn.setStyleSheet("background-color: #4CAF50")
 
     def goto_maxdiff_widget(self):
         self.close()
