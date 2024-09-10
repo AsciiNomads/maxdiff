@@ -33,15 +33,21 @@ class AppController:
             with open(file, "r") as f:
                 reader = csv.reader(f, delimiter="|")
                 for row in reader:
-                    if len(row[1:]) > 0:
-                        return True
+                    try:
+                        if len(row[1:]) > 0:
+                            return True
+                    except Exception as e:
+                        pass
         elif file.endswith(".xlsx"):
             try:
                 df = pd.read_excel(file)
                 for i in range(len(df)):
-                    for item in df.iloc[i, 1:]:
-                        if pd.notna(item):
-                            return True
+                    try:
+                        for item in df.iloc[i, 1:]:
+                            if pd.notna(item):
+                                return True
+                    except Exception as e:
+                        pass
             except Exception as e:
                 print("Error reading xlsx file")
                 print(e)
