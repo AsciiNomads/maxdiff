@@ -4,7 +4,7 @@ import sys, os
 from PySide6.QtWidgets import QApplication
 from app_controller import AppController
 
-# os.environ["QT_QPA_PLATFORM"] = "windows:darkmode=0"
+os.environ["QT_QPA_PLATFORM"] = "windows:darkmode=0"
 
 # from bullets_widget import Widget
 from select_options import OptionDialog as Widget
