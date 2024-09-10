@@ -45,7 +45,7 @@ class OptionDialog(QDialog):
             self.ui = Ui_Form()
             self.ui.setupUi(self.new_widget)
 
-            self.new_widget.show()
+            self.new_widget.showMaximized()
             # self.close()
             self.accept()
 
