@@ -40,13 +40,13 @@ def plot_best_worst_scores(questions, n_total_pages):
 
     # Add horizontal lines for each row (black lines)
     for i in range(len(titles)):
-        ax.hlines(i, -100, 100, colors="lightgray", linestyles="--", linewidth=0.5)
+        ax.hlines(i, -120, 120, colors="lightgray", linestyles="--", linewidth=0.5)
 
     # Add vertical line at x=0
     ax.axvline(x=0, color="red", linestyle="--", linewidth=1)
 
     # Set x-axis limits to [-100, 100]
-    ax.set_xlim(-100, 100)
+    ax.set_xlim(-120, 120)
 
     # Add the scores as text on the bars
     for bar, score in zip(bars, scores):
