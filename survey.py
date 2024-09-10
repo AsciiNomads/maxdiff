@@ -105,7 +105,15 @@ class Widget(QWidget):
         self.setup_widget(self)
 
         self.next_button_style = self.ui.NextButton.styleSheet()
-
+        
+        if not self.question_sets:
+            msg = QMessageBox()
+            msg.setWindowTitle("No Questions added")
+            msg.setText("No questions added to the survey.")
+            msg.setIcon(QMessageBox.Warning)
+            msg.exec()
+            self.close()
+        
         self.load_question_set(self.question_sets[self.current_set_index])
 
     def setup_widget(self, widget):
