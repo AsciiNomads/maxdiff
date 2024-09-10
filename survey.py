@@ -8,7 +8,7 @@ from PySide6.QtWidgets import QApplication, QWidget, QFileDialog
 
 from Uis.light_form_ui import Ui_Widget
 
-from PySide6.QtWidgets import QApplication, QLabel, QWidget, QButtonGroup
+from PySide6.QtWidgets import QApplication, QLabel, QWidget, QButtonGroup, QMessageBox
 from PySide6.QtGui import QPixmap
 
 from utils.file_io import read_lines
@@ -389,6 +389,13 @@ class Widget(QWidget):
 
             fig = plot_best_worst_scores(self.questions, self.total_pages)
             fig.savefig(file_path, format="png")
+            
+            # show success messagebox
+            msg = QMessageBox()
+            msg.setWindowTitle("Export Successful")
+            msg.setText("PNG exported successfully.")
+            msg.setIcon(QMessageBox.Information)
+            msg.exec()
 
         print("Exporting data")
 
