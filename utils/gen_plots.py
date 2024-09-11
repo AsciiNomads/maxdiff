@@ -29,7 +29,7 @@ def plot_best_worst_scores(questions, n_total_pages):
     ]
 
     # Creating horizontal bars
-    fig, ax = plt.subplots(figsize=(fig_width, fig_height))
+    fig, ax = plt.subplots(figsize=(fig_width, fig_height), dpi=150)
     plt.subplots_adjust(left=0.2, right=0.8, top=0.9, bottom=0.2)  # Adjust margins for labels
 
     # Determine colors based on scores
@@ -59,10 +59,10 @@ def plot_best_worst_scores(questions, n_total_pages):
         else:
             ax.text(x_position + 5, y_position, f'{score:.2f}', va='center', ha='left', color='black')  # outside right
 
-    ax.set_xlabel("Scores")
-    ax.set_ylabel("Question Title")
-    ax.set_title("Best-Worst Scores")
-
+    ax.set_xlabel("Scores", fontsize=14)
+    ax.set_ylabel("Question Title", fontsize=14)
+    ax.set_title("Best-Worst Scores", fontsize=16)
+    ax.tick_params(axis='both', which='major', labelsize=12)
     ax.invert_yaxis()  # Highest score on top
 
     return fig
