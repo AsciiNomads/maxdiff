@@ -9,6 +9,7 @@ import pandas as pd
 
 from PySide6.QtWidgets import QApplication, QWidget, QFileDialog, QPushButton
 from PySide6.QtCore import Qt, Signal
+from PySide6.QtGui import QFont
 
 
 from PySide6.QtWidgets import (
@@ -30,6 +31,7 @@ from QuestionBullets import QuestionBullets
 
 class Widget(QWidget):
     confirm_clicked = Signal()
+
     def __init__(self, parent=None, default=False):
         super().__init__(parent)
         self.setWindowTitle("Change the questions")
@@ -58,7 +60,7 @@ class Widget(QWidget):
         self.close()
 
     def on_confirm(self):
-        self.save_content_of_listWidgets("bullets.xlsx")        
+        self.save_content_of_listWidgets("bullets.xlsx")
         # self.get_all_list_widgets_items(in_one_list=True)
         self.confirm_clicked.emit()
         self.close()
@@ -125,6 +127,18 @@ class Widget(QWidget):
         return lambda: self.removeItem(list_widget)
 
     def fill_list_widget_with_csv_file(self, file):
+        def change_font_size(list_widget, font_size=12):
+            font = QFont()
+            font.setPointSize(font_size)
+            list_widget.setFont(font)
+            list_widget.setStyleSheet("""
+                QListWidget {
+                    border: 2px solid black;
+                    border-radius: 3px;
+                    padding: 5px;
+                }
+            """)
+
         bullets = []
         questions = []
         if file.endswith(".csv"):
@@ -164,6 +178,7 @@ class Widget(QWidget):
 
             tittles[i - 1].setText(questions[i - 1])
             list_widgets[i - 1].addItems(bullets[i - 1])
+            change_font_size(list_widget, 15)
             self.set_editable_items(list_widgets[i - 1])
         self.update_bullets_num_label()
 
