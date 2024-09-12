@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1017</width>
-    <height>962</height>
+    <height>987</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -69,7 +69,7 @@ QTabBar::tab:hover {
 
 /* Style for QLabel */
 QLabel {
-    font-size: 14px;
+    font-size: 18px;
 
     color: #34495E; /* Darker text color */
     padding: 6px;
@@ -77,6 +77,10 @@ QLabel {
 	background-color: None; 
 }
 QLabel#bullet_num {
+    font-size: 13px;
+	color: #777;
+}
+QLabel#page_num {
     font-size: 13px;
 	color: #777;
 }
@@ -118,6 +122,39 @@ QPushButton#confirm_btn:disabled {
     color: #E9ECEF; /* Light gray text */
     border: 1px solid #C3E6CB; /* Light green border when disabled */
 }
+/* next btn */
+/* Modern Blue Next Button */
+
+QPushButton#next_btn,
+QPushButton#pre_btn {
+    background-color: #007BFF; /* Modern blue color */
+    color: #FFFFFF; /* White text */
+    font-size: 16px;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 6px; /* Rounded corners for a modern look */
+    font-weight: bold;
+}
+
+QPushButton#next_btn:hover,
+QPushButton#pre_btn:hover{
+    background-color: #0069D9; /* Darker blue on hover */
+}
+
+QPushButton#next_btn:pressed,
+QPushButton#pre_btn:pressed {
+    background-color: #0056B3; /* Even darker blue when pressed */
+    padding-top: 10px; /* Slightly shifts down when pressed for a tactile effect */
+    padding-bottom: 6px; /* Compensates for the shift */
+}
+
+QPushButton#next_btn:disabled,
+QPushButton#pre_btn:disabled  {
+    background-color: #B8DAFF; /* Light blue when disabled */
+    color: #E9ECEF; /* Light gray text */
+    border: 1px solid #A3C8F0; /* Light blue border when disabled */
+}
+
 
 /* -------------------------------- */
 /* Add Button */
@@ -223,7 +260,7 @@ QFrame#question_frame_4,
 QFrame#question_frame_5,
 QFrame#question_frame_6 {
     border: none; /* Removes all borders */
-    border-bottom: 2px solid #000000; /* Adds a 2px solid blue bottom border */
+    /* border-bottom: 2px solid #000000; /* Adds a 2px solid blue bottom border */
     background-color: transparent; /* Optional: Set the background color to transparent */
     border-radius: 0px; /* Ensures no rounded corners at the bottom */
 }
@@ -235,7 +272,14 @@ QListWidget::item:selected:active {
 QListWidget::item:selected {
     background-color: #3B82F6; /* Keep the normal selected item highlight color */
     color: white; /* Normal selected text color */
-}</string>
+}
+
+QListWidget {
+     border: 2px solid #007BFF; /* Blue border */
+     border-radius: 8px;        /* Rounded corners */
+     padding: 5px;              /* Inner padding */
+     /* background-color: #F0F8FF; /* Light background color */
+ }</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout_38">
    <item>
@@ -301,462 +345,603 @@ QListWidget::item:selected {
            </property>
           </widget>
          </item>
+         <item>
+          <widget class="QLabel" name="page_num">
+           <property name="text">
+            <string>Page num: </string>
+           </property>
+          </widget>
+         </item>
         </layout>
        </widget>
       </item>
       <item>
-       <widget class="QFrame" name="question_frame_1">
+       <widget class="QStackedWidget" name="stackedWidget">
+        <property name="currentIndex">
+         <number>5</number>
+        </property>
+        <widget class="QWidget" name="stack1">
+         <layout class="QVBoxLayout" name="verticalLayout_4">
+          <item>
+           <widget class="QFrame" name="question_frame_1">
+            <property name="frameShape">
+             <enum>QFrame::Shape::StyledPanel</enum>
+            </property>
+            <property name="frameShadow">
+             <enum>QFrame::Shadow::Raised</enum>
+            </property>
+            <layout class="QVBoxLayout" name="verticalLayout_8">
+             <property name="topMargin">
+              <number>0</number>
+             </property>
+             <property name="bottomMargin">
+              <number>0</number>
+             </property>
+             <item>
+              <widget class="QLabel" name="q_title_1">
+               <property name="text">
+                <string>questions 1 </string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QFrame" name="frame_1_1">
+               <property name="frameShape">
+                <enum>QFrame::Shape::StyledPanel</enum>
+               </property>
+               <property name="frameShadow">
+                <enum>QFrame::Shadow::Raised</enum>
+               </property>
+               <layout class="QHBoxLayout" name="horizontalLayout">
+                <property name="topMargin">
+                 <number>0</number>
+                </property>
+                <property name="bottomMargin">
+                 <number>0</number>
+                </property>
+                <item>
+                 <widget class="QListWidget" name="q_bullets_1"/>
+                </item>
+                <item>
+                 <widget class="QFrame" name="frame_1_2">
+                  <property name="frameShape">
+                   <enum>QFrame::Shape::StyledPanel</enum>
+                  </property>
+                  <property name="frameShadow">
+                   <enum>QFrame::Shadow::Raised</enum>
+                  </property>
+                  <layout class="QVBoxLayout" name="verticalLayout">
+                   <item>
+                    <widget class="QPushButton" name="add_btn_1">
+                     <property name="styleSheet">
+                      <string notr="true"/>
+                     </property>
+                     <property name="text">
+                      <string>+</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QPushButton" name="remove_btn_1">
+                     <property name="text">
+                      <string>-</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <spacer name="verticalSpacer_2">
+                     <property name="orientation">
+                      <enum>Qt::Orientation::Vertical</enum>
+                     </property>
+                     <property name="sizeHint" stdset="0">
+                      <size>
+                       <width>20</width>
+                       <height>40</height>
+                      </size>
+                     </property>
+                    </spacer>
+                   </item>
+                  </layout>
+                 </widget>
+                </item>
+               </layout>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+        <widget class="QWidget" name="stack2">
+         <layout class="QVBoxLayout" name="verticalLayout_5">
+          <item>
+           <widget class="QFrame" name="question_frame_2">
+            <property name="frameShape">
+             <enum>QFrame::Shape::StyledPanel</enum>
+            </property>
+            <property name="frameShadow">
+             <enum>QFrame::Shadow::Raised</enum>
+            </property>
+            <layout class="QVBoxLayout" name="verticalLayout_9">
+             <property name="topMargin">
+              <number>0</number>
+             </property>
+             <property name="bottomMargin">
+              <number>0</number>
+             </property>
+             <item>
+              <widget class="QLabel" name="q_title_2">
+               <property name="text">
+                <string>questions 2</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QFrame" name="frame_2_1">
+               <property name="frameShape">
+                <enum>QFrame::Shape::StyledPanel</enum>
+               </property>
+               <property name="frameShadow">
+                <enum>QFrame::Shadow::Raised</enum>
+               </property>
+               <layout class="QHBoxLayout" name="horizontalLayout_4">
+                <property name="topMargin">
+                 <number>0</number>
+                </property>
+                <property name="bottomMargin">
+                 <number>0</number>
+                </property>
+                <item>
+                 <widget class="QListWidget" name="q_bullets_2"/>
+                </item>
+                <item>
+                 <widget class="QFrame" name="frame_2_2">
+                  <property name="frameShape">
+                   <enum>QFrame::Shape::StyledPanel</enum>
+                  </property>
+                  <property name="frameShadow">
+                   <enum>QFrame::Shadow::Raised</enum>
+                  </property>
+                  <layout class="QVBoxLayout" name="verticalLayout_2">
+                   <item>
+                    <widget class="QPushButton" name="add_btn_2">
+                     <property name="text">
+                      <string>+</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QPushButton" name="remove_btn_2">
+                     <property name="text">
+                      <string>-</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <spacer name="verticalSpacer_6">
+                     <property name="orientation">
+                      <enum>Qt::Orientation::Vertical</enum>
+                     </property>
+                     <property name="sizeHint" stdset="0">
+                      <size>
+                       <width>20</width>
+                       <height>40</height>
+                      </size>
+                     </property>
+                    </spacer>
+                   </item>
+                  </layout>
+                 </widget>
+                </item>
+               </layout>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+        <widget class="QWidget" name="stack3">
+         <layout class="QVBoxLayout" name="verticalLayout_6">
+          <item>
+           <widget class="QFrame" name="question_frame_3">
+            <property name="frameShape">
+             <enum>QFrame::Shape::StyledPanel</enum>
+            </property>
+            <property name="frameShadow">
+             <enum>QFrame::Shadow::Raised</enum>
+            </property>
+            <layout class="QVBoxLayout" name="verticalLayout_25">
+             <property name="topMargin">
+              <number>0</number>
+             </property>
+             <property name="bottomMargin">
+              <number>0</number>
+             </property>
+             <item>
+              <widget class="QLabel" name="q_title_3">
+               <property name="text">
+                <string>questions 3</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QFrame" name="frame_3_1">
+               <property name="frameShape">
+                <enum>QFrame::Shape::StyledPanel</enum>
+               </property>
+               <property name="frameShadow">
+                <enum>QFrame::Shadow::Raised</enum>
+               </property>
+               <layout class="QHBoxLayout" name="horizontalLayout_23">
+                <property name="topMargin">
+                 <number>0</number>
+                </property>
+                <property name="bottomMargin">
+                 <number>0</number>
+                </property>
+                <item>
+                 <widget class="QListWidget" name="q_bullets_3"/>
+                </item>
+                <item>
+                 <widget class="QFrame" name="frame_3_2">
+                  <property name="frameShape">
+                   <enum>QFrame::Shape::StyledPanel</enum>
+                  </property>
+                  <property name="frameShadow">
+                   <enum>QFrame::Shadow::Raised</enum>
+                  </property>
+                  <layout class="QVBoxLayout" name="verticalLayout_30">
+                   <item>
+                    <widget class="QPushButton" name="add_btn_3">
+                     <property name="text">
+                      <string>+</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QPushButton" name="remove_btn_3">
+                     <property name="text">
+                      <string>-</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <spacer name="verticalSpacer_3">
+                     <property name="orientation">
+                      <enum>Qt::Orientation::Vertical</enum>
+                     </property>
+                     <property name="sizeHint" stdset="0">
+                      <size>
+                       <width>20</width>
+                       <height>40</height>
+                      </size>
+                     </property>
+                    </spacer>
+                   </item>
+                  </layout>
+                 </widget>
+                </item>
+               </layout>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+        <widget class="QWidget" name="stack4">
+         <layout class="QVBoxLayout" name="verticalLayout_7">
+          <item>
+           <widget class="QFrame" name="question_frame_4">
+            <property name="frameShape">
+             <enum>QFrame::Shape::StyledPanel</enum>
+            </property>
+            <property name="frameShadow">
+             <enum>QFrame::Shadow::Raised</enum>
+            </property>
+            <layout class="QVBoxLayout" name="verticalLayout_31">
+             <property name="topMargin">
+              <number>0</number>
+             </property>
+             <property name="bottomMargin">
+              <number>0</number>
+             </property>
+             <item>
+              <widget class="QLabel" name="q_title_4">
+               <property name="text">
+                <string>questions 4</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QFrame" name="frame_4_1">
+               <property name="frameShape">
+                <enum>QFrame::Shape::StyledPanel</enum>
+               </property>
+               <property name="frameShadow">
+                <enum>QFrame::Shadow::Raised</enum>
+               </property>
+               <layout class="QHBoxLayout" name="horizontalLayout_24">
+                <property name="topMargin">
+                 <number>0</number>
+                </property>
+                <property name="bottomMargin">
+                 <number>0</number>
+                </property>
+                <item>
+                 <widget class="QListWidget" name="q_bullets_4"/>
+                </item>
+                <item>
+                 <widget class="QFrame" name="frame_4_2">
+                  <property name="frameShape">
+                   <enum>QFrame::Shape::StyledPanel</enum>
+                  </property>
+                  <property name="frameShadow">
+                   <enum>QFrame::Shadow::Raised</enum>
+                  </property>
+                  <layout class="QVBoxLayout" name="verticalLayout_32">
+                   <item>
+                    <widget class="QPushButton" name="add_btn_4">
+                     <property name="text">
+                      <string>+</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QPushButton" name="remove_btn_4">
+                     <property name="text">
+                      <string>-</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <spacer name="verticalSpacer_4">
+                     <property name="orientation">
+                      <enum>Qt::Orientation::Vertical</enum>
+                     </property>
+                     <property name="sizeHint" stdset="0">
+                      <size>
+                       <width>20</width>
+                       <height>40</height>
+                      </size>
+                     </property>
+                    </spacer>
+                   </item>
+                  </layout>
+                 </widget>
+                </item>
+               </layout>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+        <widget class="QWidget" name="stack5">
+         <layout class="QVBoxLayout" name="verticalLayout_10">
+          <item>
+           <widget class="QFrame" name="question_frame_5">
+            <property name="frameShape">
+             <enum>QFrame::Shape::StyledPanel</enum>
+            </property>
+            <property name="frameShadow">
+             <enum>QFrame::Shadow::Raised</enum>
+            </property>
+            <layout class="QVBoxLayout" name="verticalLayout_34">
+             <property name="topMargin">
+              <number>0</number>
+             </property>
+             <property name="bottomMargin">
+              <number>0</number>
+             </property>
+             <item>
+              <widget class="QLabel" name="q_title_5">
+               <property name="text">
+                <string>questions 5</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QFrame" name="frame_5_1">
+               <property name="frameShape">
+                <enum>QFrame::Shape::StyledPanel</enum>
+               </property>
+               <property name="frameShadow">
+                <enum>QFrame::Shadow::Raised</enum>
+               </property>
+               <layout class="QHBoxLayout" name="horizontalLayout_25">
+                <property name="topMargin">
+                 <number>0</number>
+                </property>
+                <property name="bottomMargin">
+                 <number>0</number>
+                </property>
+                <item>
+                 <widget class="QListWidget" name="q_bullets_5"/>
+                </item>
+                <item>
+                 <widget class="QFrame" name="frame_5_2">
+                  <property name="frameShape">
+                   <enum>QFrame::Shape::StyledPanel</enum>
+                  </property>
+                  <property name="frameShadow">
+                   <enum>QFrame::Shadow::Raised</enum>
+                  </property>
+                  <layout class="QVBoxLayout" name="verticalLayout_35">
+                   <item>
+                    <widget class="QPushButton" name="add_btn_5">
+                     <property name="text">
+                      <string>+</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QPushButton" name="remove_btn_5">
+                     <property name="text">
+                      <string>-</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <spacer name="verticalSpacer_5">
+                     <property name="orientation">
+                      <enum>Qt::Orientation::Vertical</enum>
+                     </property>
+                     <property name="sizeHint" stdset="0">
+                      <size>
+                       <width>20</width>
+                       <height>40</height>
+                      </size>
+                     </property>
+                    </spacer>
+                   </item>
+                  </layout>
+                 </widget>
+                </item>
+               </layout>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+        <widget class="QWidget" name="stack6">
+         <layout class="QVBoxLayout" name="verticalLayout_11">
+          <item>
+           <widget class="QFrame" name="question_frame_6">
+            <property name="frameShape">
+             <enum>QFrame::Shape::StyledPanel</enum>
+            </property>
+            <property name="frameShadow">
+             <enum>QFrame::Shadow::Raised</enum>
+            </property>
+            <layout class="QVBoxLayout" name="verticalLayout_36">
+             <property name="topMargin">
+              <number>0</number>
+             </property>
+             <property name="bottomMargin">
+              <number>0</number>
+             </property>
+             <item>
+              <widget class="QLabel" name="q_title_6">
+               <property name="text">
+                <string>questions 6</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QFrame" name="frame_6_1">
+               <property name="frameShape">
+                <enum>QFrame::Shape::StyledPanel</enum>
+               </property>
+               <property name="frameShadow">
+                <enum>QFrame::Shadow::Raised</enum>
+               </property>
+               <layout class="QHBoxLayout" name="horizontalLayout_26">
+                <property name="topMargin">
+                 <number>0</number>
+                </property>
+                <property name="bottomMargin">
+                 <number>0</number>
+                </property>
+                <item>
+                 <widget class="QListWidget" name="q_bullets_6"/>
+                </item>
+                <item>
+                 <widget class="QFrame" name="frame_6_2">
+                  <property name="frameShape">
+                   <enum>QFrame::Shape::StyledPanel</enum>
+                  </property>
+                  <property name="frameShadow">
+                   <enum>QFrame::Shadow::Raised</enum>
+                  </property>
+                  <layout class="QVBoxLayout" name="verticalLayout_37">
+                   <item>
+                    <widget class="QPushButton" name="add_btn_6">
+                     <property name="text">
+                      <string>+</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QPushButton" name="remove_btn_6">
+                     <property name="text">
+                      <string>-</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <spacer name="verticalSpacer">
+                     <property name="orientation">
+                      <enum>Qt::Orientation::Vertical</enum>
+                     </property>
+                     <property name="sizeHint" stdset="0">
+                      <size>
+                       <width>20</width>
+                       <height>40</height>
+                      </size>
+                     </property>
+                    </spacer>
+                   </item>
+                  </layout>
+                 </widget>
+                </item>
+               </layout>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </widget>
+      </item>
+      <item>
+       <widget class="QFrame" name="frame_3">
         <property name="frameShape">
          <enum>QFrame::Shape::StyledPanel</enum>
         </property>
         <property name="frameShadow">
          <enum>QFrame::Shadow::Raised</enum>
         </property>
-        <layout class="QVBoxLayout" name="verticalLayout_8">
-         <property name="topMargin">
-          <number>0</number>
-         </property>
-         <property name="bottomMargin">
-          <number>0</number>
-         </property>
+        <layout class="QHBoxLayout" name="horizontalLayout_2">
          <item>
-          <widget class="QLabel" name="q_title_1">
-           <property name="text">
-            <string>questions 1 </string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QFrame" name="frame_1_1">
+          <widget class="QFrame" name="frame_4">
            <property name="frameShape">
             <enum>QFrame::Shape::StyledPanel</enum>
            </property>
            <property name="frameShadow">
             <enum>QFrame::Shadow::Raised</enum>
            </property>
-           <layout class="QHBoxLayout" name="horizontalLayout">
-            <property name="topMargin">
-             <number>0</number>
-            </property>
-            <property name="bottomMargin">
-             <number>0</number>
-            </property>
+           <layout class="QHBoxLayout" name="horizontalLayout_3">
             <item>
-             <widget class="QListWidget" name="q_bullets_1"/>
+             <widget class="QPushButton" name="pre_btn">
+              <property name="text">
+               <string>Previous</string>
+              </property>
+             </widget>
             </item>
             <item>
-             <widget class="QFrame" name="frame_1_2">
-              <property name="frameShape">
-               <enum>QFrame::Shape::StyledPanel</enum>
+             <widget class="QPushButton" name="next_btn">
+              <property name="text">
+               <string>Next</string>
               </property>
-              <property name="frameShadow">
-               <enum>QFrame::Shadow::Raised</enum>
-              </property>
-              <layout class="QVBoxLayout" name="verticalLayout">
-               <item>
-                <widget class="QPushButton" name="add_btn_1">
-                 <property name="styleSheet">
-                  <string notr="true"/>
-                 </property>
-                 <property name="text">
-                  <string>+</string>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <widget class="QPushButton" name="remove_btn_1">
-                 <property name="text">
-                  <string>-</string>
-                 </property>
-                </widget>
-               </item>
-              </layout>
              </widget>
             </item>
            </layout>
           </widget>
          </item>
-        </layout>
-       </widget>
-      </item>
-      <item>
-       <widget class="QFrame" name="question_frame_2">
-        <property name="frameShape">
-         <enum>QFrame::Shape::StyledPanel</enum>
-        </property>
-        <property name="frameShadow">
-         <enum>QFrame::Shadow::Raised</enum>
-        </property>
-        <layout class="QVBoxLayout" name="verticalLayout_9">
-         <property name="topMargin">
-          <number>0</number>
-         </property>
-         <property name="bottomMargin">
-          <number>0</number>
-         </property>
          <item>
-          <widget class="QLabel" name="q_title_2">
+          <widget class="QPushButton" name="confirm_btn">
            <property name="text">
-            <string>questions 2</string>
+            <string>Confirm</string>
            </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QFrame" name="frame_2_1">
-           <property name="frameShape">
-            <enum>QFrame::Shape::StyledPanel</enum>
-           </property>
-           <property name="frameShadow">
-            <enum>QFrame::Shadow::Raised</enum>
-           </property>
-           <layout class="QHBoxLayout" name="horizontalLayout_4">
-            <property name="topMargin">
-             <number>0</number>
-            </property>
-            <property name="bottomMargin">
-             <number>0</number>
-            </property>
-            <item>
-             <widget class="QListWidget" name="q_bullets_2"/>
-            </item>
-            <item>
-             <widget class="QFrame" name="frame_2_2">
-              <property name="frameShape">
-               <enum>QFrame::Shape::StyledPanel</enum>
-              </property>
-              <property name="frameShadow">
-               <enum>QFrame::Shadow::Raised</enum>
-              </property>
-              <layout class="QVBoxLayout" name="verticalLayout_2">
-               <item>
-                <widget class="QPushButton" name="add_btn_2">
-                 <property name="text">
-                  <string>+</string>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <widget class="QPushButton" name="remove_btn_2">
-                 <property name="text">
-                  <string>-</string>
-                 </property>
-                </widget>
-               </item>
-              </layout>
-             </widget>
-            </item>
-           </layout>
           </widget>
          </item>
         </layout>
-       </widget>
-      </item>
-      <item>
-       <spacer name="verticalSpacer">
-        <property name="orientation">
-         <enum>Qt::Orientation::Vertical</enum>
-        </property>
-        <property name="sizeHint" stdset="0">
-         <size>
-          <width>20</width>
-          <height>40</height>
-         </size>
-        </property>
-       </spacer>
-      </item>
-      <item>
-       <widget class="QFrame" name="question_frame_3">
-        <property name="frameShape">
-         <enum>QFrame::Shape::StyledPanel</enum>
-        </property>
-        <property name="frameShadow">
-         <enum>QFrame::Shadow::Raised</enum>
-        </property>
-        <layout class="QVBoxLayout" name="verticalLayout_25">
-         <property name="topMargin">
-          <number>0</number>
-         </property>
-         <property name="bottomMargin">
-          <number>0</number>
-         </property>
-         <item>
-          <widget class="QLabel" name="q_title_3">
-           <property name="text">
-            <string>questions 3</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QFrame" name="frame_3_1">
-           <property name="frameShape">
-            <enum>QFrame::Shape::StyledPanel</enum>
-           </property>
-           <property name="frameShadow">
-            <enum>QFrame::Shadow::Raised</enum>
-           </property>
-           <layout class="QHBoxLayout" name="horizontalLayout_23">
-            <property name="topMargin">
-             <number>0</number>
-            </property>
-            <property name="bottomMargin">
-             <number>0</number>
-            </property>
-            <item>
-             <widget class="QListWidget" name="q_bullets_3"/>
-            </item>
-            <item>
-             <widget class="QFrame" name="frame_3_2">
-              <property name="frameShape">
-               <enum>QFrame::Shape::StyledPanel</enum>
-              </property>
-              <property name="frameShadow">
-               <enum>QFrame::Shadow::Raised</enum>
-              </property>
-              <layout class="QVBoxLayout" name="verticalLayout_30">
-               <item>
-                <widget class="QPushButton" name="add_btn_3">
-                 <property name="text">
-                  <string>+</string>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <widget class="QPushButton" name="remove_btn_3">
-                 <property name="text">
-                  <string>-</string>
-                 </property>
-                </widget>
-               </item>
-              </layout>
-             </widget>
-            </item>
-           </layout>
-          </widget>
-         </item>
-        </layout>
-       </widget>
-      </item>
-      <item>
-       <widget class="QFrame" name="question_frame_4">
-        <property name="frameShape">
-         <enum>QFrame::Shape::StyledPanel</enum>
-        </property>
-        <property name="frameShadow">
-         <enum>QFrame::Shadow::Raised</enum>
-        </property>
-        <layout class="QVBoxLayout" name="verticalLayout_31">
-         <property name="topMargin">
-          <number>0</number>
-         </property>
-         <property name="bottomMargin">
-          <number>0</number>
-         </property>
-         <item>
-          <widget class="QLabel" name="q_title_4">
-           <property name="text">
-            <string>questions 4</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QFrame" name="frame_4_1">
-           <property name="frameShape">
-            <enum>QFrame::Shape::StyledPanel</enum>
-           </property>
-           <property name="frameShadow">
-            <enum>QFrame::Shadow::Raised</enum>
-           </property>
-           <layout class="QHBoxLayout" name="horizontalLayout_24">
-            <property name="topMargin">
-             <number>0</number>
-            </property>
-            <property name="bottomMargin">
-             <number>0</number>
-            </property>
-            <item>
-             <widget class="QListWidget" name="q_bullets_4"/>
-            </item>
-            <item>
-             <widget class="QFrame" name="frame_4_2">
-              <property name="frameShape">
-               <enum>QFrame::Shape::StyledPanel</enum>
-              </property>
-              <property name="frameShadow">
-               <enum>QFrame::Shadow::Raised</enum>
-              </property>
-              <layout class="QVBoxLayout" name="verticalLayout_32">
-               <item>
-                <widget class="QPushButton" name="add_btn_4">
-                 <property name="text">
-                  <string>+</string>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <widget class="QPushButton" name="remove_btn_4">
-                 <property name="text">
-                  <string>-</string>
-                 </property>
-                </widget>
-               </item>
-              </layout>
-             </widget>
-            </item>
-           </layout>
-          </widget>
-         </item>
-        </layout>
-       </widget>
-      </item>
-      <item>
-       <widget class="QFrame" name="question_frame_5">
-        <property name="frameShape">
-         <enum>QFrame::Shape::StyledPanel</enum>
-        </property>
-        <property name="frameShadow">
-         <enum>QFrame::Shadow::Raised</enum>
-        </property>
-        <layout class="QVBoxLayout" name="verticalLayout_34">
-         <property name="topMargin">
-          <number>0</number>
-         </property>
-         <property name="bottomMargin">
-          <number>0</number>
-         </property>
-         <item>
-          <widget class="QLabel" name="q_title_5">
-           <property name="text">
-            <string>questions 5</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QFrame" name="frame_5_1">
-           <property name="frameShape">
-            <enum>QFrame::Shape::StyledPanel</enum>
-           </property>
-           <property name="frameShadow">
-            <enum>QFrame::Shadow::Raised</enum>
-           </property>
-           <layout class="QHBoxLayout" name="horizontalLayout_25">
-            <property name="topMargin">
-             <number>0</number>
-            </property>
-            <property name="bottomMargin">
-             <number>0</number>
-            </property>
-            <item>
-             <widget class="QListWidget" name="q_bullets_5"/>
-            </item>
-            <item>
-             <widget class="QFrame" name="frame_5_2">
-              <property name="frameShape">
-               <enum>QFrame::Shape::StyledPanel</enum>
-              </property>
-              <property name="frameShadow">
-               <enum>QFrame::Shadow::Raised</enum>
-              </property>
-              <layout class="QVBoxLayout" name="verticalLayout_35">
-               <item>
-                <widget class="QPushButton" name="add_btn_5">
-                 <property name="text">
-                  <string>+</string>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <widget class="QPushButton" name="remove_btn_5">
-                 <property name="text">
-                  <string>-</string>
-                 </property>
-                </widget>
-               </item>
-              </layout>
-             </widget>
-            </item>
-           </layout>
-          </widget>
-         </item>
-        </layout>
-       </widget>
-      </item>
-      <item>
-       <widget class="QFrame" name="question_frame_6">
-        <property name="frameShape">
-         <enum>QFrame::Shape::StyledPanel</enum>
-        </property>
-        <property name="frameShadow">
-         <enum>QFrame::Shadow::Raised</enum>
-        </property>
-        <layout class="QVBoxLayout" name="verticalLayout_36">
-         <property name="topMargin">
-          <number>0</number>
-         </property>
-         <property name="bottomMargin">
-          <number>0</number>
-         </property>
-         <item>
-          <widget class="QLabel" name="q_title_6">
-           <property name="text">
-            <string>questions 6</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QFrame" name="frame_6_1">
-           <property name="frameShape">
-            <enum>QFrame::Shape::StyledPanel</enum>
-           </property>
-           <property name="frameShadow">
-            <enum>QFrame::Shadow::Raised</enum>
-           </property>
-           <layout class="QHBoxLayout" name="horizontalLayout_26">
-            <property name="topMargin">
-             <number>0</number>
-            </property>
-            <property name="bottomMargin">
-             <number>0</number>
-            </property>
-            <item>
-             <widget class="QListWidget" name="q_bullets_6"/>
-            </item>
-            <item>
-             <widget class="QFrame" name="frame_6_2">
-              <property name="frameShape">
-               <enum>QFrame::Shape::StyledPanel</enum>
-              </property>
-              <property name="frameShadow">
-               <enum>QFrame::Shadow::Raised</enum>
-              </property>
-              <layout class="QVBoxLayout" name="verticalLayout_37">
-               <item>
-                <widget class="QPushButton" name="add_btn_6">
-                 <property name="text">
-                  <string>+</string>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <widget class="QPushButton" name="remove_btn_6">
-                 <property name="text">
-                  <string>-</string>
-                 </property>
-                </widget>
-               </item>
-              </layout>
-             </widget>
-            </item>
-           </layout>
-          </widget>
-         </item>
-        </layout>
-       </widget>
-      </item>
-      <item>
-       <widget class="QPushButton" name="confirm_btn">
-        <property name="text">
-         <string>Confirm</string>
-        </property>
        </widget>
       </item>
      </layout>

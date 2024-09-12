@@ -17,13 +17,13 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QPalette, QPixmap, QRadialGradient, QTransform)
 from PySide6.QtWidgets import (QApplication, QFrame, QHBoxLayout, QLabel,
     QListWidget, QListWidgetItem, QPushButton, QSizePolicy,
-    QSpacerItem, QVBoxLayout, QWidget)
+    QSpacerItem, QStackedWidget, QVBoxLayout, QWidget)
 
 class Ui_Form(object):
     def setupUi(self, Form):
         if not Form.objectName():
             Form.setObjectName(u"Form")
-        Form.resize(1017, 962)
+        Form.resize(1017, 987)
         Form.setStyleSheet(u"/* Modern Light Theme */\n"
 "\n"
 "/* Style for QCheckBox */\n"
@@ -91,14 +91,18 @@ class Ui_Form(object):
 "    font-size: 13px;\n"
 "	color: #777;\n"
 "}\n"
+"QLabel#page_num {\n"
+"    font-size: 13px;\n"
+"	color: #777;\n"
+"}\n"
 "QLabel#instruciton {\n"
-"    font-size: 22px;\n"
+"    font-size: 2"
+                        "2px;\n"
 "}\n"
 "\n"
 "QLabel#title {\n"
 "    font-size: 18px;\n"
-"    fon"
-                        "t-weight: bold;\n"
+"    font-weight: bold;\n"
 "    color: #1C2833; /* Darker, bold title */\n"
 "    padding: 12px 0;\n"
 "    background-color: #F7F9F9; /* Slightly off-white background for the title */\n"
@@ -126,11 +130,45 @@ class Ui_Form(object):
 "}\n"
 "\n"
 "QPushButton#confirm_btn:disabled {\n"
-"    background-color: #A9DFBF; /* Light green when disabled */\n"
 ""
-                        "    color: #E9ECEF; /* Light gray text */\n"
+                        "    background-color: #A9DFBF; /* Light green when disabled */\n"
+"    color: #E9ECEF; /* Light gray text */\n"
 "    border: 1px solid #C3E6CB; /* Light green border when disabled */\n"
 "}\n"
+"/* next btn */\n"
+"/* Modern Blue Next Button */\n"
+"\n"
+"QPushButton#next_btn,\n"
+"QPushButton#pre_btn {\n"
+"    background-color: #007BFF; /* Modern blue color */\n"
+"    color: #FFFFFF; /* White text */\n"
+"    font-size: 16px;\n"
+"    padding: 8px 16px;\n"
+"    border: none;\n"
+"    border-radius: 6px; /* Rounded corners for a modern look */\n"
+"    font-weight: bold;\n"
+"}\n"
+"\n"
+"QPushButton#next_btn:hover,\n"
+"QPushButton#pre_btn:hover{\n"
+"    background-color: #0069D9; /* Darker blue on hover */\n"
+"}\n"
+"\n"
+"QPushButton#next_btn:pressed,\n"
+"QPushButton#pre_btn:pressed {\n"
+"    background-color: #0056B3; /* Even darker blue when pressed */\n"
+"    padding-top: 10px; /* Slightly shifts down when pressed for a tactile effect */\n"
+"    padding-bottom: 6px; /* Compensates for the shift */\n"
+"}\n"
+"\n"
+"QPushBu"
+                        "tton#next_btn:disabled,\n"
+"QPushButton#pre_btn:disabled  {\n"
+"    background-color: #B8DAFF; /* Light blue when disabled */\n"
+"    color: #E9ECEF; /* Light gray text */\n"
+"    border: 1px solid #A3C8F0; /* Light blue border when disabled */\n"
+"}\n"
+"\n"
 "\n"
 "/* -------------------------------- */\n"
 "/* Add Button */\n"
@@ -156,14 +194,14 @@ class Ui_Form(object):
 "    background-color: #28A745; /* Modern green color for add */\n"
 "    color: #FFFFFF; /* White text */\n"
 "    font-size: 16px;\n"
-"    padding: 8px 16px;\n"
+"    "
+                        "padding: 8px 16px;\n"
 "    border: none;\n"
 "    border-radius: 6px; /* Rounded corners */\n"
 "    font-weight: bold;\n"
 "}\n"
 "\n"
-"Q"
-                        "PushButton#add_btn_1:hover,\n"
+"QPushButton#add_btn_1:hover,\n"
 "QPushButton#add_btn_2:hover,\n"
 "QPushButton#add_btn_3:hover,\n"
 "QPushButton#add_btn_4:hover,\n"
@@ -191,11 +229,11 @@ class Ui_Form(object):
 "QPushButton#remove_btn_2,\n"
 "QPushButton#remove_btn_3,\n"
 "QPushButton#remove_btn_4,\n"
-"QPushButton#remove_btn_5,\n"
+"QPushButton#remo"
+                        "ve_btn_5,\n"
 "QPushButton#remove_btn_6,\n"
 "QPushButton#remove_btn_7 {\n"
-"    background-color: #DC3545; /* Modern red color for remo"
-                        "ve */\n"
+"    background-color: #DC3545; /* Modern red color for remove */\n"
 "    color: #FFFFFF; /* White text */\n"
 "    font-size: 16px;\n"
 "    padding: 8px 16px;\n"
@@ -222,14 +260,14 @@ class Ui_Form(object):
 "QPushButton#remove_btn_6:pressed,\n"
 "QPushButton#remove_btn_7:pressed {\n"
 "    background-color: #BD2130; /* Even darker red when pressed */\n"
-"    padding-top: 10px; /* Simulates button press effect */\n"
+"    padding-top:"
+                        " 10px; /* Simulates button press effect */\n"
 "    padding-bottom: 6px;\n"
 "}\n"
 "\n"
 "QFrame {\n"
 "    border: none;\n"
-"    backgrou"
-                        "nd-color: transparent; /* Optional: If you want a transparent background */\n"
+"    background-color: transparent; /* Optional: If you want a transparent background */\n"
 "}\n"
 "\n"
 "QFrame#question_frame_1,\n"
@@ -239,6 +277,7 @@ class Ui_Form(object):
 "QFrame#question_frame_5,\n"
 "QFrame#question_frame_6 {\n"
 "    border: none; /* Removes all borders */\n"
+"    /* border-bottom: 2px solid #000000; /* Adds a 2px solid blue bottom border */\n"
 "    background-color: transparent; /* Optional: Set the background color to transparent */\n"
 "    border-radius: 0px; /* Ensures no rounded corners at the bottom */\n"
 "}\n"
@@ -248,9 +287,17 @@ class Ui_Form(object):
 "}\n"
 "\n"
 "QListWidget::item:selected {\n"
-"    background-color: #3B82F6; /* Keep the normal selected item highlight color */\n"
+"    background-color: #3B82F6; /* Keep the normal selected item highlight col"
+                        "or */\n"
 "    color: white; /* Normal selected text color */\n"
-"}")
+"}\n"
+"\n"
+"QListWidget {\n"
+"     border: 2px solid #007BFF; /* Blue border */\n"
+"     border-radius: 8px;        /* Rounded corners */\n"
+"     padding: 5px;              /* Inner padding */\n"
+"     /* background-color: #F0F8FF; /* Light background color */\n"
+" }")
         self.verticalLayout_38 = QVBoxLayout(Form)
         self.verticalLayout_38.setObjectName(u"verticalLayout_38")
         self.frame = QFrame(Form)
@@ -289,10 +336,21 @@ class Ui_Form(object):
 
         self.verticalLayout_3.addWidget(self.bullet_num)
 
+        self.page_num = QLabel(self.frame_2)
+        self.page_num.setObjectName(u"page_num")
+
+        self.verticalLayout_3.addWidget(self.page_num)
+
 
         self.verticalLayout_33.addWidget(self.frame_2)
 
-        self.question_frame_1 = QFrame(self.frame)
+        self.stackedWidget = QStackedWidget(self.frame)
+        self.stackedWidget.setObjectName(u"stackedWidget")
+        self.stack1 = QWidget()
+        self.stack1.setObjectName(u"stack1")
+        self.verticalLayout_4 = QVBoxLayout(self.stack1)
+        self.verticalLayout_4.setObjectName(u"verticalLayout_4")
+        self.question_frame_1 = QFrame(self.stack1)
         self.question_frame_1.setObjectName(u"question_frame_1")
         self.question_frame_1.setFrameShape(QFrame.Shape.StyledPanel)
         self.question_frame_1.setFrameShadow(QFrame.Shadow.Raised)
@@ -333,6 +391,10 @@ class Ui_Form(object):
 
         self.verticalLayout.addWidget(self.remove_btn_1)
 
+        self.verticalSpacer_2 = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
+
+        self.verticalLayout.addItem(self.verticalSpacer_2)
+
 
         self.horizontalLayout.addWidget(self.frame_1_2)
 
@@ -340,9 +402,14 @@ class Ui_Form(object):
         self.verticalLayout_8.addWidget(self.frame_1_1)
 
 
-        self.verticalLayout_33.addWidget(self.question_frame_1)
+        self.verticalLayout_4.addWidget(self.question_frame_1)
 
-        self.question_frame_2 = QFrame(self.frame)
+        self.stackedWidget.addWidget(self.stack1)
+        self.stack2 = QWidget()
+        self.stack2.setObjectName(u"stack2")
+        self.verticalLayout_5 = QVBoxLayout(self.stack2)
+        self.verticalLayout_5.setObjectName(u"verticalLayout_5")
+        self.question_frame_2 = QFrame(self.stack2)
         self.question_frame_2.setObjectName(u"question_frame_2")
         self.question_frame_2.setFrameShape(QFrame.Shape.StyledPanel)
         self.question_frame_2.setFrameShadow(QFrame.Shadow.Raised)
@@ -382,6 +449,10 @@ class Ui_Form(object):
 
         self.verticalLayout_2.addWidget(self.remove_btn_2)
 
+        self.verticalSpacer_6 = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
+
+        self.verticalLayout_2.addItem(self.verticalSpacer_6)
+
 
         self.horizontalLayout_4.addWidget(self.frame_2_2)
 
@@ -389,13 +460,14 @@ class Ui_Form(object):
         self.verticalLayout_9.addWidget(self.frame_2_1)
 
 
-        self.verticalLayout_33.addWidget(self.question_frame_2)
+        self.verticalLayout_5.addWidget(self.question_frame_2)
 
-        self.verticalSpacer = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
-
-        self.verticalLayout_33.addItem(self.verticalSpacer)
-
-        self.question_frame_3 = QFrame(self.frame)
+        self.stackedWidget.addWidget(self.stack2)
+        self.stack3 = QWidget()
+        self.stack3.setObjectName(u"stack3")
+        self.verticalLayout_6 = QVBoxLayout(self.stack3)
+        self.verticalLayout_6.setObjectName(u"verticalLayout_6")
+        self.question_frame_3 = QFrame(self.stack3)
         self.question_frame_3.setObjectName(u"question_frame_3")
         self.question_frame_3.setFrameShape(QFrame.Shape.StyledPanel)
         self.question_frame_3.setFrameShadow(QFrame.Shadow.Raised)
@@ -435,6 +507,10 @@ class Ui_Form(object):
 
         self.verticalLayout_30.addWidget(self.remove_btn_3)
 
+        self.verticalSpacer_3 = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
+
+        self.verticalLayout_30.addItem(self.verticalSpacer_3)
+
 
         self.horizontalLayout_23.addWidget(self.frame_3_2)
 
@@ -442,9 +518,14 @@ class Ui_Form(object):
         self.verticalLayout_25.addWidget(self.frame_3_1)
 
 
-        self.verticalLayout_33.addWidget(self.question_frame_3)
+        self.verticalLayout_6.addWidget(self.question_frame_3)
 
-        self.question_frame_4 = QFrame(self.frame)
+        self.stackedWidget.addWidget(self.stack3)
+        self.stack4 = QWidget()
+        self.stack4.setObjectName(u"stack4")
+        self.verticalLayout_7 = QVBoxLayout(self.stack4)
+        self.verticalLayout_7.setObjectName(u"verticalLayout_7")
+        self.question_frame_4 = QFrame(self.stack4)
         self.question_frame_4.setObjectName(u"question_frame_4")
         self.question_frame_4.setFrameShape(QFrame.Shape.StyledPanel)
         self.question_frame_4.setFrameShadow(QFrame.Shadow.Raised)
@@ -484,6 +565,10 @@ class Ui_Form(object):
 
         self.verticalLayout_32.addWidget(self.remove_btn_4)
 
+        self.verticalSpacer_4 = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
+
+        self.verticalLayout_32.addItem(self.verticalSpacer_4)
+
 
         self.horizontalLayout_24.addWidget(self.frame_4_2)
 
@@ -491,9 +576,14 @@ class Ui_Form(object):
         self.verticalLayout_31.addWidget(self.frame_4_1)
 
 
-        self.verticalLayout_33.addWidget(self.question_frame_4)
+        self.verticalLayout_7.addWidget(self.question_frame_4)
 
-        self.question_frame_5 = QFrame(self.frame)
+        self.stackedWidget.addWidget(self.stack4)
+        self.stack5 = QWidget()
+        self.stack5.setObjectName(u"stack5")
+        self.verticalLayout_10 = QVBoxLayout(self.stack5)
+        self.verticalLayout_10.setObjectName(u"verticalLayout_10")
+        self.question_frame_5 = QFrame(self.stack5)
         self.question_frame_5.setObjectName(u"question_frame_5")
         self.question_frame_5.setFrameShape(QFrame.Shape.StyledPanel)
         self.question_frame_5.setFrameShadow(QFrame.Shadow.Raised)
@@ -533,6 +623,10 @@ class Ui_Form(object):
 
         self.verticalLayout_35.addWidget(self.remove_btn_5)
 
+        self.verticalSpacer_5 = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
+
+        self.verticalLayout_35.addItem(self.verticalSpacer_5)
+
 
         self.horizontalLayout_25.addWidget(self.frame_5_2)
 
@@ -540,9 +634,14 @@ class Ui_Form(object):
         self.verticalLayout_34.addWidget(self.frame_5_1)
 
 
-        self.verticalLayout_33.addWidget(self.question_frame_5)
+        self.verticalLayout_10.addWidget(self.question_frame_5)
 
-        self.question_frame_6 = QFrame(self.frame)
+        self.stackedWidget.addWidget(self.stack5)
+        self.stack6 = QWidget()
+        self.stack6.setObjectName(u"stack6")
+        self.verticalLayout_11 = QVBoxLayout(self.stack6)
+        self.verticalLayout_11.setObjectName(u"verticalLayout_11")
+        self.question_frame_6 = QFrame(self.stack6)
         self.question_frame_6.setObjectName(u"question_frame_6")
         self.question_frame_6.setFrameShape(QFrame.Shape.StyledPanel)
         self.question_frame_6.setFrameShadow(QFrame.Shadow.Raised)
@@ -582,6 +681,10 @@ class Ui_Form(object):
 
         self.verticalLayout_37.addWidget(self.remove_btn_6)
 
+        self.verticalSpacer = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
+
+        self.verticalLayout_37.addItem(self.verticalSpacer)
+
 
         self.horizontalLayout_26.addWidget(self.frame_6_2)
 
@@ -589,12 +692,44 @@ class Ui_Form(object):
         self.verticalLayout_36.addWidget(self.frame_6_1)
 
 
-        self.verticalLayout_33.addWidget(self.question_frame_6)
+        self.verticalLayout_11.addWidget(self.question_frame_6)
 
-        self.confirm_btn = QPushButton(self.frame)
+        self.stackedWidget.addWidget(self.stack6)
+
+        self.verticalLayout_33.addWidget(self.stackedWidget)
+
+        self.frame_3 = QFrame(self.frame)
+        self.frame_3.setObjectName(u"frame_3")
+        self.frame_3.setFrameShape(QFrame.Shape.StyledPanel)
+        self.frame_3.setFrameShadow(QFrame.Shadow.Raised)
+        self.horizontalLayout_2 = QHBoxLayout(self.frame_3)
+        self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
+        self.frame_4 = QFrame(self.frame_3)
+        self.frame_4.setObjectName(u"frame_4")
+        self.frame_4.setFrameShape(QFrame.Shape.StyledPanel)
+        self.frame_4.setFrameShadow(QFrame.Shadow.Raised)
+        self.horizontalLayout_3 = QHBoxLayout(self.frame_4)
+        self.horizontalLayout_3.setObjectName(u"horizontalLayout_3")
+        self.pre_btn = QPushButton(self.frame_4)
+        self.pre_btn.setObjectName(u"pre_btn")
+
+        self.horizontalLayout_3.addWidget(self.pre_btn)
+
+        self.next_btn = QPushButton(self.frame_4)
+        self.next_btn.setObjectName(u"next_btn")
+
+        self.horizontalLayout_3.addWidget(self.next_btn)
+
+
+        self.horizontalLayout_2.addWidget(self.frame_4)
+
+        self.confirm_btn = QPushButton(self.frame_3)
         self.confirm_btn.setObjectName(u"confirm_btn")
 
-        self.verticalLayout_33.addWidget(self.confirm_btn)
+        self.horizontalLayout_2.addWidget(self.confirm_btn)
+
+
+        self.verticalLayout_33.addWidget(self.frame_3)
 
 
         self.verticalLayout_38.addWidget(self.frame)
@@ -602,13 +737,17 @@ class Ui_Form(object):
 
         self.retranslateUi(Form)
 
+        self.stackedWidget.setCurrentIndex(5)
+
+
         QMetaObject.connectSlotsByName(Form)
     # setupUi
 
     def retranslateUi(self, Form):
         Form.setWindowTitle(QCoreApplication.translate("Form", u"Change the questions", None))
-        self.instruciton.setText(QCoreApplication.translate("Form", u"Change the questions", None))
+        self.instruciton.setText(QCoreApplication.translate("Form", u"Select bullet", None))
         self.bullet_num.setText(QCoreApplication.translate("Form", u"Number of bullets: ", None))
+        self.page_num.setText(QCoreApplication.translate("Form", u"Page num: ", None))
         self.q_title_1.setText(QCoreApplication.translate("Form", u"questions 1 ", None))
         self.add_btn_1.setText(QCoreApplication.translate("Form", u"+", None))
         self.remove_btn_1.setText(QCoreApplication.translate("Form", u"-", None))
@@ -627,6 +766,8 @@ class Ui_Form(object):
         self.q_title_6.setText(QCoreApplication.translate("Form", u"questions 6", None))
         self.add_btn_6.setText(QCoreApplication.translate("Form", u"+", None))
         self.remove_btn_6.setText(QCoreApplication.translate("Form", u"-", None))
+        self.pre_btn.setText(QCoreApplication.translate("Form", u"Previous", None))
+        self.next_btn.setText(QCoreApplication.translate("Form", u"Next", None))
         self.confirm_btn.setText(QCoreApplication.translate("Form", u"Confirm", None))
     # retranslateUi
 

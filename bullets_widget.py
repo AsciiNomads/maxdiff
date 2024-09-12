@@ -48,7 +48,17 @@ class Widget(QWidget):
 
         self.bullets = []
         self.all_bullets = []
+        self.ui.stackedWidget.setCurrentIndex(0)  # Index 0 corresponds to the first page
+        self.update_page_num_label()
+
         self.ui.confirm_btn.clicked.connect(self.on_confirm)
+        self.ui.next_btn.clicked.connect(
+            lambda: self.show_next_page(self.ui.stackedWidget)
+        )
+        self.ui.pre_btn.clicked.connect(
+            lambda: self.show_pre_page(self.ui.stackedWidget)
+        )
+
 
         if default:
             self.save_all_bullets_from_listWidgets(in_one_list=True)
@@ -131,13 +141,6 @@ class Widget(QWidget):
             font = QFont()
             font.setPointSize(font_size)
             list_widget.setFont(font)
-            list_widget.setStyleSheet("""
-                QListWidget {
-                    border: 2px solid black;
-                    border-radius: 3px;
-                    padding: 5px;
-                }
-            """)
 
         bullets = []
         questions = []
@@ -278,6 +281,24 @@ class Widget(QWidget):
         self.ui.setupUi(self.new_widget)
 
         self.new_widget.show()
+
+    def show_next_page(self, stacked_widget):
+        current_index = stacked_widget.currentIndex()
+        next_index = (current_index + 1) % stacked_widget.count()  # Cycle through pages
+        stacked_widget.setCurrentIndex(next_index)
+        self.update_page_num_label()
+
+    def show_pre_page(self, stacked_widget):
+        current_index = stacked_widget.currentIndex()
+        next_index = (current_index - 1) % stacked_widget.count()  # Cycle through pages
+        stacked_widget.setCurrentIndex(next_index)
+        self.update_page_num_label()
+
+
+    def update_page_num_label(self):
+        current_index = self.ui.stackedWidget.currentIndex()
+        total_pages = self.ui.stackedWidget.count()
+        self.ui.page_num.setText(f"Page {current_index + 1} of {total_pages}")
 
 
 if __name__ == "__main__":
