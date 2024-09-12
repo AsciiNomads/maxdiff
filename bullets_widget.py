@@ -49,7 +49,8 @@ class Widget(QWidget):
         self.bullets = []
         self.all_bullets = []
         self.ui.stackedWidget.setCurrentIndex(0)  # Index 0 corresponds to the first page
-        self.update_page_num_label()
+        # self.update_page_num_label()
+        self.update_bullets_page()
 
         self.ui.confirm_btn.clicked.connect(self.on_confirm)
         self.ui.next_btn.clicked.connect(
@@ -286,20 +287,38 @@ class Widget(QWidget):
         current_index = stacked_widget.currentIndex()
         next_index = (current_index + 1) % stacked_widget.count()  # Cycle through pages
         stacked_widget.setCurrentIndex(next_index)
-        self.update_page_num_label()
+        # self.update_page_num_label()
+        # self.check_if_next_is_valid()
+        self.update_bullets_page()
 
     def show_pre_page(self, stacked_widget):
         current_index = stacked_widget.currentIndex()
         next_index = (current_index - 1) % stacked_widget.count()  # Cycle through pages
         stacked_widget.setCurrentIndex(next_index)
-        self.update_page_num_label()
-
+        # self.update_page_num_label()
+        # self.check_if_next_is_valid()
+        self.update_bullets_page()
 
     def update_page_num_label(self):
         current_index = self.ui.stackedWidget.currentIndex()
         total_pages = self.ui.stackedWidget.count()
         self.ui.page_num.setText(f"Page {current_index + 1} of {total_pages}")
 
+    def check_if_next_is_valid(self):
+        current_index = self.ui.stackedWidget.currentIndex()
+        next_index = (current_index + 1) % self.ui.stackedWidget.count()
+        if next_index == 0:
+            self.ui.next_btn.setEnabled(False)
+        else:
+            self.ui.next_btn.setEnabled(True)
+        if current_index == 0:
+            self.ui.pre_btn.setEnabled(False)
+        else:
+            self.ui.pre_btn.setEnabled(True)
+    
+    def update_bullets_page(self):
+        self.update_page_num_label()
+        self.check_if_next_is_valid()
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
