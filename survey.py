@@ -76,7 +76,7 @@ def generate_random_questions(number_of_questions: int):
         q.total_proposed = q.most_preferred + q.least_preferred + randint(1, 10)
         questions.append(q)
 
-    return questions
+    return (questions, total_pages := 30)
 
 
 MAX_NUMBER_OF_APPEARANCES = 5
@@ -84,10 +84,9 @@ MAX_QUESTIONS_PER_PAGE = 4
 
 
 class Widget(QWidget):
-    def __init__(self, parent=None):
+    def __init__(self, parent=None, show_export_widget=False):
         super().__init__(parent)
         self.setWindowTitle("MaxDiff Survey")
-        # self.show_new_widget()
         self.resources_dir = "resources/"
         self._create_dir()
 
@@ -105,7 +104,7 @@ class Widget(QWidget):
         self.setup_widget(self)
 
         self.next_button_style = self.ui.NextButton.styleSheet()
-        
+
         if not self.question_sets:
             msg = QMessageBox()
             msg.setWindowTitle("No Questions added")
@@ -113,8 +112,12 @@ class Widget(QWidget):
             msg.setIcon(QMessageBox.Warning)
             msg.exec()
             self.close()
-        
+
         self.load_question_set(self.question_sets[self.current_set_index])
+
+        if show_export_widget:
+            self.close()
+            self.exportWidget()
 
     def setup_widget(self, widget):
         self.ui.left_button_group = QButtonGroup(self)
@@ -307,8 +310,8 @@ class Widget(QWidget):
             self.ui.plot_pic.setPixmap(scaled_pixmap)
 
         # get questions
-        self.questions = self.get_questions()
-        # self.questions = generate_random_questions(15)
+        # self.questions = self.get_questions()
+        self.questions, self.total_pages = generate_random_questions(30)
         set_rank_scores(self.questions, self.total_pages)
 
         # self.questions.sort(key=lambda )
@@ -397,7 +400,7 @@ class Widget(QWidget):
 
             fig = plot_best_worst_scores(self.questions, self.total_pages)
             fig.savefig(file_path, format="png")
-            
+
             # show success messagebox
             msg = QMessageBox()
             msg.setWindowTitle("Export Successful")
@@ -418,8 +421,8 @@ class Widget(QWidget):
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
-    widget = Widget()
+    widget = Widget(show_export_widget=True)
     # widget.exportWidget()
-    widget.show()
+    # widget.show()
 
     sys.exit(app.exec())
