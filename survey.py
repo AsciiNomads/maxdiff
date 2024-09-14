@@ -70,7 +70,7 @@ def generate_random_questions(number_of_questions: int):
     """this function is for testing purposes"""
     questions = []
     for i in range(number_of_questions):
-        q = Question(f"Question {i + 1}", i + 1)
+        q = Question(f"Question {i + 1}"+'x'*50, i + 1)
         q.most_preferred = randint(1, 10)
         q.least_preferred = randint(1, 10)
         q.total_proposed = q.most_preferred + q.least_preferred + randint(1, 10)
@@ -296,18 +296,56 @@ class Widget(QWidget):
             original_width = pixmap.width()
             original_height = pixmap.height()
 
-            # Determine the size to scale the image to
-            # Example: scaling to half the original size
-            scaled_width = original_width // 1.5
-            scaled_height = original_height // 1.5
-            # scaled_width = original_width
-            # scaled_height = original_height
+            # Get the QLabel's dimensions
+            label_width = self.ui.plot_pic.width()
+            label_height = self.ui.plot_pic.height()
 
-            # Scale the image while keeping the aspect ratio and using smooth transformation
+            # Get the Form dimensions (or use your monitor's resolution if needed)
+            form_width = self.width()  # You can also use a fixed max size, e.g., 1920 for width
+            form_height = self.height()  # Or a fixed max height, e.g., 1080
+
+            # Set a reasonable maximum size, which could be the Form size or the QLabel size
+            max_width = min(form_width, label_width)
+            max_height = min(form_height, label_height)
+
+            # Calculate aspect ratios
+            scaled_w_ratio = max_width / original_width
+            scaled_h_ratio = max_height / original_height
+
+            # Use the smaller ratio to maintain the aspect ratio without exceeding available space
+            scale_ratio = min(scaled_w_ratio, scaled_h_ratio)
+
+            # Calculate new scaled width and height based on the chosen ratio
+            scaled_width = int(original_width * scale_ratio)
+            scaled_height = int(original_height * scale_ratio)
+
+            # Ensure the scaled dimensions do not exceed the form or label size
+            scaled_width = min(scaled_width, max_width)
+            scaled_height = min(scaled_height, max_height)
+            
+            # if label_width > scaled_width:
+            #     width_ratio = label_width / scaled_width
+            #     scaled_width = scaled_width * width_ratio
+            #     scaled_height = scaled_height * width_ratio
+            #     self.setFixedHeight(form_height*width_ratio)
+            #     self.setFixedWidth(form_width*width_ratio)
+
+            print(f"Original: {original_width}x{original_height}")
+            print(f"Scaled: {scaled_width}x{scaled_height}")
+            print(f"Form size: {form_width}x{form_height}")
+            print(f"Label size: {label_width}x{label_height}")
+
+            # Scale the image while keeping the aspect ratio
             scaled_pixmap = pixmap.scaled(
                 scaled_width, scaled_height, Qt.KeepAspectRatio, Qt.SmoothTransformation
             )
+
+            # Set the scaled pixmap to the QLabel
             self.ui.plot_pic.setPixmap(scaled_pixmap)
+
+            # Optionally adjust the QLabel size if needed:
+            self.ui.plot_pic.setFixedSize(scaled_width, scaled_height)
+
 
         # get questions
         # self.questions = self.get_questions()
