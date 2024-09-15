@@ -17,7 +17,6 @@ def plot_best_worst_scores(questions, n_total_pages):
     sorted_questions = sorted(questions, key=lambda q: q.rank)
     scores = [q.score for q in sorted_questions]
 
-    
     # Calculate the figure width and height based on the number of questions
     # fig_width = max(6.5, 0.25 * max_label_length)
     fig_width = 1500 / 96
@@ -27,10 +26,17 @@ def plot_best_worst_scores(questions, n_total_pages):
         q.question_text[:37] + "..." if len(q.question_text) > 40 else q.question_text
         for q in sorted_questions
     ]
+    max_left_title = max([len(item) for item in titles])
+    left_marge = 0.1 + 0.005 * max(0, (max_left_title))
+
+    bottom_marge = 0.2 + 0.008 * (30 - len(questions))
+    # print(f"left_marge: {left_marge}, bottom_marge: {bottom_marge}")
 
     # Creating horizontal bars
     fig, ax = plt.subplots(figsize=(fig_width, fig_height), dpi=150)
-    plt.subplots_adjust(left=0.3, right=0.9, top=0.85, bottom=0.2)  # Adjust margins for labels
+    plt.subplots_adjust(
+        left=left_marge, right=0.9, top=0.85, bottom=bottom_marge
+    )  # Adjust margins for labels
 
     # Determine colors based on scores
     colors = ["green" if score >= 0 else "blue" for score in scores]
@@ -55,14 +61,28 @@ def plot_best_worst_scores(questions, n_total_pages):
 
         # Display the score text either inside or outside the bar depending on the score
         if x_position < 0:
-            ax.text(x_position - 5, y_position, f'{score:.2f}', va='center', ha='right', color='black')  # inside left
+            ax.text(
+                x_position - 5,
+                y_position,
+                f"{score:.2f}",
+                va="center",
+                ha="right",
+                color="black",
+            )  # inside left
         else:
-            ax.text(x_position + 5, y_position, f'{score:.2f}', va='center', ha='left', color='black')  # outside right
+            ax.text(
+                x_position + 5,
+                y_position,
+                f"{score:.2f}",
+                va="center",
+                ha="left",
+                color="black",
+            )  # outside right
 
     ax.set_xlabel("Scores", fontsize=14)
     ax.set_ylabel("Question Title", fontsize=14)
     ax.set_title("Best-Worst Scores", fontsize=16)
-    ax.tick_params(axis='both', which='major', labelsize=12)
+    ax.tick_params(axis="both", which="major", labelsize=12)
     ax.invert_yaxis()  # Highest score on top
 
     return fig

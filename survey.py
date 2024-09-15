@@ -70,7 +70,7 @@ def generate_random_questions(number_of_questions: int):
     """this function is for testing purposes"""
     questions = []
     for i in range(number_of_questions):
-        q = Question(f"Question {i + 1}"+'x'*50, i + 1)
+        q = Question(f"Question {i + 1}" + "x" * 0, i + 1)
         q.most_preferred = randint(1, 10)
         q.least_preferred = randint(1, 10)
         q.total_proposed = q.most_preferred + q.least_preferred + randint(1, 10)
@@ -89,6 +89,7 @@ class Widget(QWidget):
         self.setWindowTitle("MaxDiff Survey")
         self.resources_dir = "resources/"
         self._create_dir()
+        self.show_export_widget = show_export_widget
 
         self.ui = Ui_Widget()
         self.ui.setupUi(self)
@@ -118,6 +119,8 @@ class Widget(QWidget):
         if show_export_widget:
             self.close()
             self.exportWidget()
+        else:
+            self.show()
 
     def setup_widget(self, widget):
         self.ui.left_button_group = QButtonGroup(self)
@@ -272,10 +275,10 @@ class Widget(QWidget):
                 self.current_set_index + 1, len(self.question_sets)
             )
         else:
-            print("Bullets:")
-            for q in self.get_questions():
-                print(q)
-            print("No more questions.")
+            # print("Bullets:")
+            # for q in self.get_questions():
+            #     print(q)
+            # print("No more questions.")
 
             self.close()
             self.exportWidget()
@@ -301,7 +304,9 @@ class Widget(QWidget):
             label_height = self.ui.plot_pic.height()
 
             # Get the Form dimensions (or use your monitor's resolution if needed)
-            form_width = self.width()  # You can also use a fixed max size, e.g., 1920 for width
+            form_width = (
+                self.width()
+            )  # You can also use a fixed max size, e.g., 1920 for width
             form_height = self.height()  # Or a fixed max height, e.g., 1080
 
             # Set a reasonable maximum size, which could be the Form size or the QLabel size
@@ -322,7 +327,7 @@ class Widget(QWidget):
             # Ensure the scaled dimensions do not exceed the form or label size
             scaled_width = min(scaled_width, max_width)
             scaled_height = min(scaled_height, max_height)
-            
+
             # if form_width < scaled_width:
             width_ratio = form_width / scaled_width
             scaled_width = scaled_width * width_ratio
@@ -330,14 +335,17 @@ class Widget(QWidget):
             self.setFixedHeight(max_height)
             self.setFixedWidth(max_width)
 
-            print(f"Original: {original_width}x{original_height}")
-            print(f"Scaled: {scaled_width}x{scaled_height}")
-            print(f"Form size: {form_width}x{form_height}")
-            print(f"Label size: {label_width}x{label_height}")
+            # print(f"Original: {original_width}x{original_height}")
+            # print(f"Scaled: {scaled_width}x{scaled_height}")
+            # print(f"Form size: {form_width}x{form_height}")
+            # print(f"Label size: {label_width}x{label_height}")
 
             # Scale the image while keeping the aspect ratio
             scaled_pixmap = pixmap.scaled(
-                scaled_width, scaled_height+15, Qt.KeepAspectRatio, Qt.SmoothTransformation
+                scaled_width,
+                scaled_height + 15,
+                Qt.KeepAspectRatio,
+                Qt.SmoothTransformation,
             )
 
             # Set the scaled pixmap to the QLabel
@@ -348,11 +356,11 @@ class Widget(QWidget):
             # Optionally adjust the QLabel size if needed:
             self.ui.plot_pic.setFixedSize(scaled_width, scaled_height)
 
-
-
         # get questions
-        self.questions = self.get_questions()
-        # self.questions, self.total_pages = generate_random_questions(30)
+        if self.show_export_widget:
+            self.questions, self.total_pages = generate_random_questions(30)
+        else:
+            self.questions = self.get_questions()
         set_rank_scores(self.questions, self.total_pages)
 
         # self.questions.sort(key=lambda )
@@ -368,7 +376,7 @@ class Widget(QWidget):
         # self.new_widget.setLayout(layout)
 
         # Show the new widget
-        self.new_widget.show()
+        self.new_widget.showFullScreen()
         show_plot()
         # self.comboBox = self.ui.comboBox
         # self.comboBox.addItem("csv")
