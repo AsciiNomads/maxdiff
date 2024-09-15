@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="sizePolicy">
-   <sizepolicy hsizetype="Fixed" vsizetype="Maximum">
+   <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
     <horstretch>0</horstretch>
     <verstretch>0</verstretch>
    </sizepolicy>
@@ -144,7 +144,7 @@ QRadioButton::indicator:checked {
      <item>
       <widget class="QWidget" name="formWidget_2" native="true">
        <property name="sizePolicy">
-        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+        <sizepolicy hsizetype="MinimumExpanding" vsizetype="MinimumExpanding">
          <horstretch>0</horstretch>
          <verstretch>40</verstretch>
         </sizepolicy>
@@ -158,7 +158,7 @@ QRadioButton::indicator:checked {
        <property name="maximumSize">
         <size>
          <width>16777215</width>
-         <height>600</height>
+         <height>3000</height>
         </size>
        </property>
        <property name="baseSize">
@@ -177,7 +177,7 @@ QRadioButton::indicator:checked {
            <bool>true</bool>
           </property>
           <property name="sizePolicy">
-           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+           <sizepolicy hsizetype="Maximum" vsizetype="MinimumExpanding">
             <horstretch>0</horstretch>
             <verstretch>0</verstretch>
            </sizepolicy>
@@ -185,12 +185,12 @@ QRadioButton::indicator:checked {
           <property name="minimumSize">
            <size>
             <width>1500</width>
-            <height>400</height>
+            <height>500</height>
            </size>
           </property>
           <property name="maximumSize">
            <size>
-            <width>1500</width>
+            <width>3000</width>
             <height>16777215</height>
            </size>
           </property>

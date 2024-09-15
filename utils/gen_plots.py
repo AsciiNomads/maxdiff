@@ -30,7 +30,7 @@ def plot_best_worst_scores(questions, n_total_pages):
 
     # Creating horizontal bars
     fig, ax = plt.subplots(figsize=(fig_width, fig_height), dpi=150)
-    plt.subplots_adjust(left=0.3, right=0.9, top=0.85, bottom=0.15)  # Adjust margins for labels
+    plt.subplots_adjust(left=0.3, right=0.9, top=0.85, bottom=0.2)  # Adjust margins for labels
 
     # Determine colors based on scores
     colors = ["green" if score >= 0 else "blue" for score in scores]

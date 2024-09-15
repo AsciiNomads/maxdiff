@@ -323,12 +323,12 @@ class Widget(QWidget):
             scaled_width = min(scaled_width, max_width)
             scaled_height = min(scaled_height, max_height)
             
-            # if label_width > scaled_width:
-            #     width_ratio = label_width / scaled_width
-            #     scaled_width = scaled_width * width_ratio
-            #     scaled_height = scaled_height * width_ratio
-            #     self.setFixedHeight(form_height*width_ratio)
-            #     self.setFixedWidth(form_width*width_ratio)
+            # if form_width < scaled_width:
+            width_ratio = form_width / scaled_width
+            scaled_width = scaled_width * width_ratio
+            scaled_height = scaled_height * width_ratio
+            self.setFixedHeight(max_height)
+            self.setFixedWidth(max_width)
 
             print(f"Original: {original_width}x{original_height}")
             print(f"Scaled: {scaled_width}x{scaled_height}")
@@ -337,19 +337,22 @@ class Widget(QWidget):
 
             # Scale the image while keeping the aspect ratio
             scaled_pixmap = pixmap.scaled(
-                scaled_width, scaled_height, Qt.KeepAspectRatio, Qt.SmoothTransformation
+                scaled_width, scaled_height+15, Qt.KeepAspectRatio, Qt.SmoothTransformation
             )
 
             # Set the scaled pixmap to the QLabel
             self.ui.plot_pic.setPixmap(scaled_pixmap)
+            self.ui.formWidget_2.setFixedHeight(scaled_height)
+            self.ui.formWidget_2.setFixedWidth(scaled_width)
 
             # Optionally adjust the QLabel size if needed:
             self.ui.plot_pic.setFixedSize(scaled_width, scaled_height)
 
 
+
         # get questions
-        # self.questions = self.get_questions()
-        self.questions, self.total_pages = generate_random_questions(30)
+        self.questions = self.get_questions()
+        # self.questions, self.total_pages = generate_random_questions(30)
         set_rank_scores(self.questions, self.total_pages)
 
         # self.questions.sort(key=lambda )
