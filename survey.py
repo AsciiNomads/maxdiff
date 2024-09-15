@@ -376,7 +376,7 @@ class Widget(QWidget):
         # self.new_widget.setLayout(layout)
 
         # Show the new widget
-        self.new_widget.showFullScreen()
+        self.new_widget.showMaximized()
         show_plot()
         # self.comboBox = self.ui.comboBox
         # self.comboBox.addItem("csv")
