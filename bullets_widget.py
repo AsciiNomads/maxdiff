@@ -1,16 +1,10 @@
 import sys
-
 import csv
 import pandas as pd
-
-# import random
-
-# import os
 
 from PySide6.QtWidgets import QApplication, QWidget, QFileDialog, QPushButton
 from PySide6.QtCore import Qt, Signal
 from PySide6.QtGui import QFont
-
 
 from PySide6.QtWidgets import (
     QApplication,
@@ -25,7 +19,6 @@ from utils.file_io import write_lines
 from Uis.select_bullets_ui import Ui_Form
 from survey import Widget as wg
 import Uis.light_form_ui as light_survey_form
-
 from QuestionBullets import QuestionBullets
 
 
@@ -35,7 +28,6 @@ class Widget(QWidget):
     def __init__(self, parent=None, default=False):
         super().__init__(parent)
         self.setWindowTitle("Change the questions")
-        # self.show_new_widget()
         self.resources_dir = "resources/"
 
         self.number_of_questions = 6
@@ -44,12 +36,10 @@ class Widget(QWidget):
 
         self.setup_widget(self)
         self.fill_list_widget_with_csv_file("bullets.xlsx")
-        # self.fill_list_widget_with_csv_file("bullets.csv")
 
         self.bullets = []
         self.all_bullets = []
         self.ui.stackedWidget.setCurrentIndex(0)  # Index 0 corresponds to the first page
-        # self.update_page_num_label()
         self.update_bullets_page()
 
         self.ui.confirm_btn.clicked.connect(self.on_confirm)
@@ -66,13 +56,11 @@ class Widget(QWidget):
 
     def on_confirm(self):
         self.save_content_of_listWidgets("bullets.xlsx")
-        # self.get_all_list_widgets_items(in_one_list=True)
         self.confirm_clicked.emit()
         self.close()
 
     def on_confirm(self):
         self.save_content_of_listWidgets("bullets.xlsx")
-        # self.get_all_list_widgets_items(in_one_list=True)
         self.confirm_clicked.emit()
         self.close()
 
@@ -97,7 +85,6 @@ class Widget(QWidget):
         self.set_editable_items(list_widget)
         self.update_bullets_num_label()
 
-    # def delete_item(self, btn, list_widget):
     def removeItem(self, l_w):
         list_widget = l_w
 
@@ -200,19 +187,16 @@ class Widget(QWidget):
                     writer.writerow([title.text()] + items)
         elif file.endswith(".xlsx"):
             try:
-                # df = pd.DataFrame(columns=["Question"])
                 list_of_items = []
                 list_of_titles = []
                 for i in range(1, self.number_of_questions + 1):
                     list_widget = getattr(self.ui, f"q_bullets_{i}")
                     title = getattr(self.ui, f"q_title_{i}")
                     list_of_titles.append(title.text())
-                    # print("title", title.text())
 
                     items = [
                         list_widget.item(j).text() for j in range(list_widget.count())
                     ]
-                    # print("items", items)
                     row = [title.text()] + items
                     print("row ", row)
                     list_of_items.append(row)
@@ -287,16 +271,12 @@ class Widget(QWidget):
         current_index = stacked_widget.currentIndex()
         next_index = (current_index + 1) % stacked_widget.count()  # Cycle through pages
         stacked_widget.setCurrentIndex(next_index)
-        # self.update_page_num_label()
-        # self.check_if_next_is_valid()
         self.update_bullets_page()
 
     def show_pre_page(self, stacked_widget):
         current_index = stacked_widget.currentIndex()
         next_index = (current_index - 1) % stacked_widget.count()  # Cycle through pages
         stacked_widget.setCurrentIndex(next_index)
-        # self.update_page_num_label()
-        # self.check_if_next_is_valid()
         self.update_bullets_page()
 
     def update_page_num_label(self):
@@ -324,8 +304,4 @@ if __name__ == "__main__":
     app = QApplication(sys.argv)
     widget = Widget()
     widget.show()
-
-    # get all items for each list_widget
-    # print(widget.get_all_list_widgets_items(in_one_list=True))
-
     sys.exit(app.exec())
