@@ -215,14 +215,6 @@ class Widget(QWidget):
             self.question_objs, MAX_NUMBER_OF_APPEARANCES, MAX_QUESTIONS_PER_PAGE
         )
 
-        # number_of_sets = len(self.question_objs) * 3
-        # number_of_sets = 2
-
-        # for i in range(0, len(self.question_objs), 4):
-        #     # subset = random.sample(self.Bullet_objs, 4)
-        #     # result.append(subset)
-        #     result.append(self.question_objs[i:i+4])
-
         # Define sets of questions (can have repeated questions)
         return result
 
@@ -275,14 +267,8 @@ class Widget(QWidget):
                 self.current_set_index + 1, len(self.question_sets)
             )
         else:
-            # print("Bullets:")
-            # for q in self.get_questions():
-            #     print(q)
-            # print("No more questions.")
-
             self.close()
             self.exportWidget()
-            # Handle end of questions, e.g., show results or submit data
 
     def get_questions(self):
         return self.question_objs
@@ -363,19 +349,10 @@ class Widget(QWidget):
             self.questions = self.get_questions()
         set_rank_scores(self.questions, self.total_pages)
 
-        # self.questions.sort(key=lambda )
-        # Create a new widget to show
         self.new_widget = QWidget()
         self.ui = Ui_Form()
         self.ui.setupUi(self.new_widget)
-        # self.new_widget.setWindowTitle("New Widget")
 
-        # Add some content to the new widget
-        # layout = QVBoxLayout()
-        # layout.addWidget(QLabel("This is the new widget!"))
-        # self.new_widget.setLayout(layout)
-
-        # Show the new widget
         self.new_widget.showMaximized()
         show_plot()
         # self.comboBox = self.ui.comboBox
