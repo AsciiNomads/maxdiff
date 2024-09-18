@@ -1,10 +1,10 @@
 from PySide6.QtWidgets import QApplication
 from select_options import OptionDialog
 from bullets_widget import Widget as BulletsWidget
-from welcome_screen import show_welcome_screen
 import csv
 import pandas as pd
 import os
+import sys
 
 class AppController:
     def __init__(self):
@@ -26,17 +26,21 @@ class AppController:
         if self.option_dialog:
             self.option_dialog.close()
 
-    def show_welcome_screen(self):
-        is_first_time = self.check_if_first_time()
-        self.welcome_screen = show_welcome_screen(is_first_time)
-        self.welcome_screen.show()
-        self.welcome_screen.close_signal.connect(self.on_welcome_screen_closed)
-
     def on_welcome_screen_closed(self):
-        if not self.check_questions_bullets("bullets.xlsx"):
-            self.show_bullets_widget()
+        # exit the program and remove the first time file
+        config_file = "not_first_time"
+        if os.name == "posix":
+            config_path = os.path.expanduser("~/.config/maxdiff")
         else:
-            self.show_option_dialog()
+            config_path = os.path.join(os.getenv("APPDATA"), "maxdiff")
+        if not os.path.exists(config_path):
+            os.makedirs(config_path)
+        config_file = os.path.join(config_path, config_file)
+        if os.path.exists(config_file):
+            os.remove(config_file)
+        print("First time file removed.")
+        # exit the program
+        sys.exit(0)
     
     def check_if_first_time(self) -> bool:
         config_file = "not_first_time"
@@ -87,9 +91,7 @@ class AppController:
         return False
 
     def start(self):
-        self.show_welcome_screen()
-
-        # if not self.check_questions_bullets("bullets.xlsx"):
-        #     self.show_bullets_widget()
-        # else:
-        #     self.show_option_dialog()
+        if not self.check_questions_bullets("bullets.xlsx"):
+            self.show_bullets_widget()
+        else:
+            self.show_option_dialog()
