@@ -82,7 +82,7 @@ class WelcomeScreen(QWidget):
         else:
             return ("Welcome back to the MaxDiff Survey App!\n\n"
                     "If you want to change your previous answers or redo the survey:\n"
-                    "1. Click on 'Change Questions' on the main screen.\n"
+                    "1. Click on 'Change Answers' on the main screen.\n"
                     "2. You can modify the question set or start a new survey.\n"
                     "3. Your new results will replace the previous ones.\n\n"
                     "Ready to continue or make changes? Let's go!")

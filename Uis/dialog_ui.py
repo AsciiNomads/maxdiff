@@ -126,6 +126,6 @@ class Ui_Dialog(object):
         Dialog.setWindowTitle(QCoreApplication.translate("Dialog", u"Choose an Option", None))
         self.label.setText(QCoreApplication.translate("Dialog", u"Select Survey", None))
         self.start_btn.setText(QCoreApplication.translate("Dialog", u"Start Survey", None))
-        self.change_btn.setText(QCoreApplication.translate("Dialog", u"Change Questions", None))
+        self.change_btn.setText(QCoreApplication.translate("Dialog", u"Change Answers", None))
     # retranslateUi
 

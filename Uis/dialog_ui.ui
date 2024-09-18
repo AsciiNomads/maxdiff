@@ -146,7 +146,7 @@ QFrame {
          <item>
           <widget class="QPushButton" name="change_btn">
            <property name="text">
-            <string>Change Questions</string>
+            <string>Change Answers</string>
            </property>
           </widget>
          </item>
