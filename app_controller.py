@@ -4,7 +4,7 @@ from bullets_widget import Widget as BulletsWidget
 from welcome_screen import show_welcome_screen
 import csv
 import pandas as pd
-
+import os
 
 class AppController:
     def __init__(self):
@@ -39,7 +39,20 @@ class AppController:
             self.show_option_dialog()
     
     def check_if_first_time(self) -> bool:
-        return not self.check_questions_bullets("bullets.xlsx")
+        config_file = "not_first_time"
+        if os.name == "posix":
+            config_path = os.path.expanduser("~/.config/maxdiff")
+        else:
+            config_path = os.path.join(os.getenv("APPDATA"), "maxdiff")
+        if not os.path.exists(config_path):
+            os.makedirs(config_path)
+        config_file = os.path.join(config_path, config_file)
+        if not os.path.exists(config_file):
+            with open(config_file, "w") as f:
+                f.write("This is just a file to check if the app has been run before.")
+            return True
+        else:
+            return False
     
     def on_bullets_confirm(self):
         self.bullets_widget.close()
