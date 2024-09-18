@@ -51,7 +51,6 @@ class Ui_Widget(object):
 "    padding: 10px 20px;\n"
 "    margin: 4px 0;\n"
 "    font-weight: bold;\n"
-"    transition: background-color 0.3s;\n"
 "}\n"
 "\n"
 "QPushButton:hover {\n"

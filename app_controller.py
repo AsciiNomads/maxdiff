@@ -16,8 +16,10 @@ class AppController:
         self.option_dialog = None
         self.bullets_widget = None
         self.welcome_screen = None
+        self.all_bullets = []
 
     def show_survey_widget(self):
+        self.save_bullets_into_txt("bullets.xlsx", "Bullets.txt")
         self.new_widget = survey_widget()
         self.ui = survey_form()
         self.ui.setupUi(self.new_widget)
@@ -69,6 +71,24 @@ class AppController:
             return True
         else:
             return False
+    
+    def save_bullets_into_txt(self, read_file, write_file):
+        if read_file.endswith(".xlsx"):
+            df = pd.read_excel(read_file)
+            for _, row in df.iterrows():
+                for value in row[1:]:
+                    if pd.notna(value):  # Check if the cell is not NaN
+                        self.all_bullets.append(value.strip())
+
+            with open(write_file, "w") as file:
+                for bullet in self.all_bullets:
+                    print(bullet)
+                    file.write(f"{bullet}\n")
+        else:
+            with open(read_file, "r") as file:
+                reader = csv.reader(file, delimiter="|")
+                for row in reader:
+                    self.all_bullets.append(row[1:])
     
     def show_welcome_screen(self):
         self.welcome_screen = WelcomeScreen()

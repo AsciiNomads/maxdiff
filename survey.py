@@ -24,7 +24,6 @@ from utils.pdf_export import *
 from utils.maxdiff import set_rank_scores, set_question_ranks
 from maxdiff_function import generate_maxdiff_survey
 
-
 class Question:
     def __init__(self, question_text, _id):
         self.id = _id
