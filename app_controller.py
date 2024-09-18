@@ -1,6 +1,11 @@
 from PySide6.QtWidgets import QApplication
 from select_options import OptionDialog
 from bullets_widget import Widget as BulletsWidget
+from instructions_screen import InstructionsScreen
+from welcome_screen import WelcomeScreen
+from survey import Widget as survey_widget
+from Uis.light_form_ui import Ui_Widget as survey_form
+
 import csv
 import pandas as pd
 import os
@@ -11,6 +16,13 @@ class AppController:
         self.option_dialog = None
         self.bullets_widget = None
         self.welcome_screen = None
+
+    def show_survey_widget(self):
+        self.new_widget = survey_widget()
+        self.ui = survey_form()
+        self.ui.setupUi(self.new_widget)
+
+        self.new_widget.show()
 
     def show_option_dialog(self):
         if self.option_dialog is None:
@@ -58,9 +70,19 @@ class AppController:
         else:
             return False
     
+    def show_welcome_screen(self):
+        self.welcome_screen = WelcomeScreen()
+        self.welcome_screen.show()
+        self.welcome_screen.finished.connect(self.show_bullets_widget)
+    
     def on_bullets_confirm(self):
         self.bullets_widget.close()
-        self.show_option_dialog()
+        self.show_instructions()
+
+    def show_instructions(self):
+        self.instructions_screen = InstructionsScreen()
+        self.instructions_screen.show()
+        self.instructions_screen.finished.connect(self.show_survey_widget)
 
     def check_questions_bullets(self, file) -> bool:
         if file.endswith(".csv"):
@@ -91,7 +113,13 @@ class AppController:
         return False
 
     def start(self):
-        if not self.check_questions_bullets("bullets.xlsx"):
-            self.show_bullets_widget()
+        if self.check_if_first_time():
+            self.show_welcome_screen()
         else:
-            self.show_option_dialog()
+            self.show_instructions()
+            
+        # elif not self.check_questions_bullets("bullets.xlsx"):
+        #     self.show_bullets_widget()
+        # else:
+        #     self.show_option_dialog()
+
