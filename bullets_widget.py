@@ -27,7 +27,7 @@ class Widget(QWidget):
 
     def __init__(self, parent=None, default=False):
         super().__init__(parent)
-        self.setWindowTitle("Change the questions")
+        self.setWindowTitle("Change the answers")
         self.resources_dir = "resources/"
 
         self.number_of_questions = 6

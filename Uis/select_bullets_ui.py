@@ -744,7 +744,7 @@ class Ui_Form(object):
     # setupUi
 
     def retranslateUi(self, Form):
-        Form.setWindowTitle(QCoreApplication.translate("Form", u"Change the questions", None))
+        Form.setWindowTitle(QCoreApplication.translate("Form", u"Change the answers", None))
         self.instruciton.setText(QCoreApplication.translate("Form", u"Select bullet", None))
         self.bullet_num.setText(QCoreApplication.translate("Form", u"Number of bullets: ", None))
         self.page_num.setText(QCoreApplication.translate("Form", u"Page num: ", None))
