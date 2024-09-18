@@ -74,7 +74,7 @@ def plot_best_worst_scores(questions, n_total_pages):
 
     ax.set_xlabel("Scores", fontsize=14)
     ax.set_ylabel("Question Title", fontsize=14)
-    ax.set_title("Best-Worst Scores", fontsize=16)
+    ax.set_title("Least and Most Important", fontsize=16)
     ax.tick_params(axis="both", which="major", labelsize=12)
     ax.invert_yaxis()  # Highest score on top
 
@@ -128,7 +128,7 @@ def plot_best_worst_percentages(questions):
 
     plt.xlabel("Percentage")
     plt.ylabel("Question ID")
-    plt.title("Best-Worst Percentages")
+    plt.title("Least and Most Important")
     plt.legend(loc="best")
 
     plt.gca().invert_yaxis()  # Invert y-axis to have the highest score on top
