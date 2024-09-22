@@ -14,6 +14,7 @@ from survey import Widget as survey_widget
 
 class OptionDialog(QDialog):
     change_clicked = Signal()
+    survey_button_clicked = Signal()
 
     def __init__(self):
         super().__init__()
@@ -31,6 +32,7 @@ class OptionDialog(QDialog):
 
     def goto_bullet_option_select(self, choice="start"):
         if choice == "start":
+            self.survey_button_clicked.emit()
             self.save_bullets_into_txt("bullets.xlsx", "Bullets.txt")
             self.new_widget = survey_widget()
             self.ui = survey_form()

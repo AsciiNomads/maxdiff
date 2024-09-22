@@ -77,18 +77,75 @@ class AppController:
 
         msg_box.exec()
 
+    def show_duplicate_check_prompt(self):
+        msg_box = QMessageBox()
+        msg_box.setWindowTitle("Review Your Answers")
+        msg_box.setText("Before proceeding to the survey, please review your answers carefully:\n\n"
+                        "1. Look for any duplicate items.\n"
+                        "2. Check for items that express the same idea in different words.\n"
+                        "3. Remove or consolidate any redundant entries.\n\n"
+                        "This step is crucial for ensuring the quality of your survey data.")
+        
+        review_button = QPushButton("Continue to Survey")
+        review_button.setStyleSheet("""
+            QPushButton {
+                background-color: #3B82F6;
+                color: white;
+                border: none;
+                border-radius: 6px;
+                padding: 10px 20px;
+                margin: 4px 0;
+                font-weight: bold;
+            }
+            QPushButton:hover {
+                background-color: #2563EB;
+            }
+            QPushButton:pressed {
+                background-color: #1D4ED8;
+            }
+        """)
+        stay_button = QPushButton("Review Answers")
+        stay_button.setStyleSheet("""
+            QPushButton {
+                background-color: #F87171;
+                color: white;
+                border: none;
+                border-radius: 6px;
+                padding: 10px 20px;
+                margin: 4px 0;
+                font-weight: bold;
+            }
+            QPushButton:hover {
+                background-color: #EF4444;
+            }
+            QPushButton:pressed {
+                background-color: #DC2626;
+            }
+        """)
+        
+        msg_box.addButton(review_button, QMessageBox.AcceptRole)
+        msg_box.addButton(stay_button, QMessageBox.RejectRole)
+        
+        return msg_box.exec()
+
+
     def show_survey_widget(self):
         self.save_bullets_into_txt("bullets.xlsx", "Bullets.txt")
         self.new_widget = survey_widget()
         self.ui = survey_form()
         self.ui.setupUi(self.new_widget)
-
+        # Show the pre-survey message
         self.new_widget.show()
+
+    def show_pre_survey_message(self):
+        # Show the pre-survey message
+        self.show_message("Survey Instructions", SHOW_BEFORE_SURVEY_MESSAGE)
 
     def show_option_dialog(self):
         if self.option_dialog is None:
             self.option_dialog = OptionDialog()
         self.option_dialog.show()
+        self.option_dialog.survey_button_clicked.connect(self.show_pre_survey_message)
         self.option_dialog.change_clicked.connect(self.click_on_show_bullets)
     
     def click_on_show_bullets(self):
@@ -154,7 +211,15 @@ class AppController:
                     self.all_bullets.append(row[1:])
     
     def on_bullets_confirm(self):
-        self.bullets_widget.close()
+        response = self.show_duplicate_check_prompt()
+        if response == 2: # 2 is for AcceptRole
+            print("Start survey")
+            self.bullets_widget.close()
+            self.show_pre_survey_message()
+            self.show_survey_widget()
+        elif response == 3: # 3 is for RejectRole
+            print("Review answers")
+            # Do nothing, let the user review the answers
 
     def check_questions_bullets(self, file) -> bool:
         if file.endswith(".csv"):
@@ -191,8 +256,6 @@ class AppController:
             self.show_message("Questionnaire Instructions", SHOW_AT_FIRST_RUN_OR_ANSWER_CHANGE)
             self.show_bullets_widget()
         else:
-            # Show the pre-survey message
-            self.show_message("Survey Instructions", SHOW_BEFORE_SURVEY_MESSAGE)
             self.show_option_dialog()
 
 

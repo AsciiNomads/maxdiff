@@ -57,12 +57,12 @@ class Widget(QWidget):
     def on_confirm(self):
         self.save_content_of_listWidgets("bullets.xlsx")
         self.confirm_clicked.emit()
-        self.close()
+        # self.close()
 
     def on_confirm(self):
         self.save_content_of_listWidgets("bullets.xlsx")
         self.confirm_clicked.emit()
-        self.close()
+        # self.close()
 
     def set_editable_items(self, list_widget):
         for i in range(list_widget.count()):
