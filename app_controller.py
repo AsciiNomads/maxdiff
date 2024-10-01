@@ -46,6 +46,7 @@ class AppController:
         self.option_dialog = None
         self.bullets_widget = None
         self.all_bullets = []
+        self.second_run_bullets = False
 
     def show_message(self, title, message):
         msg_box = QMessageBox()
@@ -122,8 +123,8 @@ class AppController:
                 background-color: #DC2626;
             }
         """)
-        
-        msg_box.addButton(review_button, QMessageBox.AcceptRole)
+        if self.second_run_bullets:
+            msg_box.addButton(review_button, QMessageBox.AcceptRole)
         msg_box.addButton(stay_button, QMessageBox.RejectRole)
         
         return msg_box.exec()
@@ -212,6 +213,8 @@ class AppController:
     
     def on_bullets_confirm(self):
         response = self.show_duplicate_check_prompt()
+        if not self.second_run_bullets:
+            response = 3
         if response == 2: # 2 is for AcceptRole
             print("Start survey")
             self.bullets_widget.close()
@@ -219,7 +222,7 @@ class AppController:
             self.show_survey_widget()
         elif response == 3: # 3 is for RejectRole
             print("Review answers")
-            # Do nothing, let the user review the answers
+            self.second_run_bullets = True
 
     def check_questions_bullets(self, file) -> bool:
         if file.endswith(".csv"):
