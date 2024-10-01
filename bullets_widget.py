@@ -141,7 +141,7 @@ class Widget(QWidget):
         elif file.endswith(".xlsx"):
             try:
                 df = pd.read_excel(file)
-                print(df)
+                # print(df)
                 for i in range(len(df)):
                     questions.append(df.iloc[i, 0])
                     bullets.append(
@@ -198,10 +198,10 @@ class Widget(QWidget):
                         list_widget.item(j).text() for j in range(list_widget.count())
                     ]
                     row = [title.text()] + items
-                    print("row ", row)
+                    # print("row ", row)
                     list_of_items.append(row)
 
-                print(list_of_items)
+                # print(list_of_items)
 
                 df_header = pd.DataFrame(["Question"])
                 df_data = pd.DataFrame(list_of_items)
