@@ -164,10 +164,12 @@ class AppController:
     def set_to_not_first_time(self):
         # exit the program and remove the first time file
         config_file = "not_first_time"
-        if os.name == "posix":
-            config_path = os.path.expanduser("~/.config/maxdiff")
-        else:
+        if sys.platform == "win32":
             config_path = os.path.join(os.getenv("APPDATA"), "maxdiff")
+        elif sys.platform == "darwin":
+            config_path = os.path.expanduser("~/Library/Application Support/maxdiff")
+        else:
+            config_path = os.path.expanduser("~/.config/maxdiff")
         if not os.path.exists(config_path):
             os.makedirs(config_path)
         config_file = os.path.join(config_path, config_file)
@@ -179,10 +181,12 @@ class AppController:
     
     def check_if_first_time(self) -> bool:
         config_file = "not_first_time"
-        if os.name == "posix":
-            config_path = os.path.expanduser("~/.config/maxdiff")
-        else:
+        if sys.platform == "win32":
             config_path = os.path.join(os.getenv("APPDATA"), "maxdiff")
+        elif sys.platform == "darwin":
+            config_path = os.path.expanduser("~/Library/Application Support/maxdiff")
+        else:
+            config_path = os.path.expanduser("~/.config/maxdiff")
         if not os.path.exists(config_path):
             os.makedirs(config_path)
         config_file = os.path.join(config_path, config_file)
